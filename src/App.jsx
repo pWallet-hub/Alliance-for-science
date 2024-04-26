@@ -2,12 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Sidebar from './Components/Header/Sidebar';
-import Home from './assets/Pages/Home/Home';
-import About from './assets/Pages/About/About';
-import News from './assets/Pages/News/News';
-import Team from './assets/Pages/Team/Team';
-import Activities from './assets/Pages/Activities/Activities';
-import Footer from './assets/Footer/Footer';
+import Home from './Pages/Home/Home';
+import About from './Pages/About/About';
+import News from './Pages/News/News';
+import Team from './Pages/Team/Team';
+import Activities from './Pages/Activities/Activities';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   return (

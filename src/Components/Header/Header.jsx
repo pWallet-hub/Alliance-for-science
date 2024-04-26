@@ -2,7 +2,8 @@
 import React from 'react';
 import './Header.css';
 import allianceLogo from '../../assets/image/alliance.png';
-import { FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaEnvelope} from 'react-icons/fa';
+import { FaPhone } from "react-icons/fa6";
 
 function Header() {
   return (

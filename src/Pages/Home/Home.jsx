@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.css';
-import image from '../../image/bd image.jpg';
-import aboutimage from '../../image/aboutimage.jpg';
+import image from '../../assets/image/bd image.jpg';
+import aboutimage from '../../assets/image/aboutimage.jpg';
 import { FaBowlFood } from "react-icons/fa6";
 import { TiWeatherCloudy } from "react-icons/ti";
 import { MdOutlineScience } from "react-icons/md";
@@ -9,23 +9,17 @@ import { GrDocumentText } from "react-icons/gr";
 
 
 function Home() {
-  const containerStyle = {
-    backgroundImage: `url(${image})`, 
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    height: '100vh',
-    width: '100%',
-    top: '80%',
-    zIndex: '1', 
-    
-  };
+ 
 
   return (
-    <div className='home-container' style={containerStyle}>
+    <div className='home-container'>
       <div className='home-content'>
-        <h1>ALLIANCE for SCIENCE RWANDA</h1>
-        <p>Alliance for Science  Rwanda is all about <br /> 
-         creating a poverty  free world .</p>
+        {/* <img src={image} alt="image" width={"100%"} className='image' /> */}
+        <div className='text-content'>
+          <h1>ALLIANCE for SCIENCE RWANDA</h1>
+          <p>Alliance for Science  Rwanda is all about <br /> 
+          creating a poverty  free world .</p>
+        </div>
       </div>
       <div className='card-container'>
         <div className='card'>

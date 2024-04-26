@@ -1,16 +1,17 @@
 .sidebar {
   background: #025496C4;
-  width: 1200px; 
-  height: 65px; 
- margin-top: -2px;
+  width: 85%; 
   display: flex;
   flex-direction: column;
-  padding-top: 20px; 
+  padding-top: 10px; 
   justify-content: center;
-  margin-left: 35px; 
-  margin-right: 2rem;
-  z-index: 3; /* Set a higher z-index value */
-  position: relative; /* Ensure position is set to relative or absolute */
+  position: absolute; 
+  z-index: 1000;
+  left: 50%; 
+  transform: translateX(-50%);
+  border-bottom-left-radius: 10px; 
+  border-bottom-right-radius: 10px;
+
 }
 
 .sidebar ul {
@@ -30,12 +31,17 @@
 .sidebar ul li a {
   color: #fff; 
   text-decoration: none; 
-  padding: 10px; 
+  padding: 5px; 
   display: block; 
   font-family: sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .sidebar ul li a:hover {
   color: #025496C4; 
+}
+
+.sidebar ul li a.active {
+  background: #025496C4;
+  color: #fff;
 }

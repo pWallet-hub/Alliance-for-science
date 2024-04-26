@@ -2,11 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
     background-color: #025496;
     color: #fff;
-    width: 1265px;
-    height: 50px;
+    width: 100%;
   }
   
   .logo-container {
@@ -23,15 +21,11 @@
   }
   
   .contact-item {
-    margin-left: 20px;
+    
     display: flex;
     align-items: center;
-    width: 193px;
-    height: 22px;
-    top: 24px;
-    left: 1056px;
-    gap: 0px;
-    opacity: 0px;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
   
   .icon {
@@ -40,9 +34,5 @@
     color: #92D050;
     width: 16.17px;
     height: 17.81px;
-    top: -467px;
-    left: 592px;
-    gap: 0px;
-    opacity: 0px;
   }
   
