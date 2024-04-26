@@ -1,33 +1,49 @@
-.home-container{
-    background-image: url('../../image/bd\ image.jpg');
-  background-size: cover; 
-  background-position: center; 
-  margin-top: -4rem;
-
-}
-.home-content{
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    min-height: 100vh;
     display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
-  background: #00000043;
-  font-family: sans-serif;
-  text-transform: capitalize;
-}
-.home-content h1 {
+    flex-direction: column;
+  }
+  
+  .app {
+    flex-grow: 1;
+  }
+  
+  /* Home Page Styles */
+  .home-container {
+    background-image: url('../../image/bd\ image.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-top: -4rem;
+    height: auto;
+  }
+  
+  .home-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background: #00000043;
+    font-family: sans-serif;
+    text-transform: capitalize;
+  }
+  
+  .home-content h1 {
     color: #FCFEFF;
     margin-bottom: 2rem;
-    
-    
-}
-.home-content p{
+  }
+  
+  .home-content p {
     color: #D9D9D9;
     font-size: 30px;
     text-align: center;
-
-}
-.card-container{
+  }
+  
+  .card-container {
     display: flex;
     flex-direction: row;
     font-family: sans-serif;
@@ -35,8 +51,9 @@
     border-radius: 3rem;
     margin-left: 75px;
     height: 150px;
-}
-.card{
+  }
+  
+  .card {
     display: flex;
     flex-direction: row;
     background-color: #0254965C;
@@ -47,10 +64,9 @@
     width: 370px;
     border-radius: 5px;
     position: relative;
-    
-}
-
-.card:after {
+  }
+  
+  .card:after {
     content: '';
     position: absolute;
     top: 50%;
@@ -58,63 +74,76 @@
     transform: translateY(-50%);
     width: 5px;
     height: 50%;
-    background-color: #025496; /* Change the color of the dividing line */
+    background-color: #025496;
   }
   
-.card1{
+  .card1 {
     color: rgb(67, 216, 216);
     display: flex;
     flex-direction: row;
-}
-.cardo1{
+  }
+  
+  .cardo1 {
     color: #000000;
     text-align: left;
     text-transform: capitalize;
-}
-.card-date{
+  }
+  
+  .card-date {
     color: #025496;
     text-align: left;
-}
-.card-description{
+  }
+  
+  .card-description {
     color: #000;
     margin-left: 2rem;
     text-transform: capitalize;
-}
-.card-description1{
+  }
+  
+  .card-description1 {
     color: #0D4012D4;
     margin-left: 2rem;
-}
-.about{
+  }
+  
+  /* About Page Styles */
+  .about {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     margin-top: 2rem;
-   font-family: sans-serif;
-}
-.image{
+    font-family: sans-serif;
+  }
+  
+  .image {
     height: 80vh;
     width: 40%;
     border-radius: 10px;
-}
-.about-content{
+  }
+  
+  .about-content {
     font-size: 18px;
     color: #333;
     line-height: 1.3;
     width: 35%;
     margin-top: 2rem;
-    
-}
-.about-content h1{
+  }
+  
+  .about-content h1 {
     font-size: 36px;
     font-weight: bold;
     margin-bottom: 1rem;
-}
-.about-content p{
+    text-transform: capitalize;
+    text-decoration: solid 2px underline #19629d;
+    color: #000000;
+  }
+  
+  .about-content p {
     margin-bottom: 1rem;
     color: #000000;
     font-size: 18px;
-}
-.about-content button{
+  }
+  
+  .about-content button {
     color: #FFFFFF;
     background: #025496C4;
     width: 151px;
@@ -123,29 +152,27 @@
     border-radius: 6px;
     font-size: 20px;
     font-family: sans-serif;
-    /* margin-left: 4rem; */
     text-transform: capitalize;
     border: none;
-}
-.about-content h1{
-    text-transform: capitalize;
-    text-decoration: solid 2px underline #19629d;
-    color: #000000;
-}
-.about-content button:hover{
+  }
+  
+  .about-content button:hover {
     background: #7c8a95;
     cursor: pointer;
     color: #33cac0;
-}
-.main-activities {
+  }
+  
+  /* Activities Page Styles */
+  .main-activities {
     background-color: #0077b6;
     padding: 2rem;
-    color: #fff;
+    color: #FFFFFF;
     text-align: center;
+    font-family: sans-serif;
   }
   
   .main-activities h2 {
-    font-size: 2rem;
+    font-size: 45px;
     margin-bottom: 2rem;
   }
   
@@ -164,28 +191,31 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #00b050;
+    background-color: #0077b6;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    font-size: 50px;
     margin-bottom: 1rem;
+    color: #92D050;
   }
   
   .food-security {
-    background-color: #4caf50;
+    background-color: #0077b6;
+    color: #92D050;
+    font-size: 45px;
   }
   
   .climate-change {
-    background-color: #00b050;
+    background-color: #0077b6;
   }
   
   .research-innovation {
-    background-color: #008000;
+    background-color: #0077b6;
   }
   
   .policy-advocacy {
-    background-color: #006400;
+    background-color: #0077b6;
   }
   
   .activity-item h3 {
@@ -195,4 +225,102 @@
   
   .activity-item p {
     font-size: 1rem;
+    font-family: sans-serif;
+  }
+  
+  /* Footer Styles */
+  .footer {
+    background-color: #0077b6;
+    color: #fff;
+    padding: 40px 0;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .footer-left {
+    max-width: 400px;
+  }
+  
+  .footer-left .logo img {
+    max-width: 200px;
+  }
+  
+  .footer-left p {
+    margin-top: 20px;
+  }
+  
+  .social-icons {
+    margin-top: 20px;
+  }
+  
+  .social-icons a {
+    color: #fff;
+    font-size: 24px;
+    margin-right: 20px;
+  }
+  
+  .footer-right {
+    flex: 1;
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  
+  .footer-col {
+    margin-left: 40px;
+  }
+  
+  .footer-col h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-col ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-col ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footer-col ul li i {
+    margin-right: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer-left,
+    .footer-right {
+      max-width: 100%;
+      text-align: center;
+    }
+  
+    .footer-links {
+      justify-content: center;
+      margin-top: 40px;
+    }
+  
+    .footer-col {
+      margin: 20px 0;
+    }
   }
