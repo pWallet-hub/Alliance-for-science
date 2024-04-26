@@ -13,7 +13,7 @@ function Home() {
     backgroundImage: `url(${image})`, 
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: '90vh',
+    height: '100vh',
     width: '100%',
     top: '80%',
     zIndex: '1', 
@@ -105,6 +105,7 @@ function Home() {
           <h3>POLICY ADVOCACY</h3>
           <p>Alliance for science Rwanda has been incorporated</p>
         </div>
+        
       </div>
       </div>
       
