@@ -6,6 +6,7 @@ import { FaBowlFood } from "react-icons/fa6";
 import { TiWeatherCloudy } from "react-icons/ti";
 import { MdOutlineScience } from "react-icons/md";
 import { GrDocumentText } from "react-icons/gr";
+import ofab from '../../assets/image/OFAB-logo-removebg-preview.png'
 
 
 function Home() {
@@ -102,7 +103,20 @@ function Home() {
         
       </div>
       </div>
-      
+      <div className='parterner'>
+        <h2>OUR PARTNERS</h2>
+        <div className='image0'>
+          <div className='image1'>
+        <img src= {ofab} alt="ofab" />
+        </div>
+        <div className='image1'>
+        <img src= {ofab} alt="ofab" />
+        </div>
+        <div className='image1'>
+        <img src= {ofab} alt="ofab" />
+        </div>
+        </div>
+      </div>
     </div>
   );
 }

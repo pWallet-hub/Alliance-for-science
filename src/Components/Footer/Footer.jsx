@@ -1,5 +1,13 @@
 import React from 'react';
 import './Footer.css';
+import alliance from '../../assets/image/alliance.png'
+import { IoChevronForward } from "react-icons/io5";
+import { FaPhone } from "react-icons/fa6";
+import { MdOutlineEmail } from "react-icons/md";
+
+
+
+
 
 const Footer = () => {
   return (
@@ -7,10 +15,10 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-left">
           <div className="logo">
-            <img src="/logo.png" alt="Alliance for Science Rwanda" />
+            <img src={alliance} alt="Alliance for Science Rwanda" />
           </div>
           <p>
-            Alliance for Science Rwanda is all about creating a poverty free
+            Alliance for Science Rwanda is all <br /> about creating a poverty free
             world.
           </p>
           <div className="social-icons">
@@ -31,15 +39,19 @@ const Footer = () => {
               <h4>Our Services</h4>
               <ul>
                 <li>
+                <IoChevronForward />
                   <a href="#">Food Security</a>
                 </li>
                 <li>
+                <IoChevronForward />
                   <a href="#">Climate Change</a>
                 </li>
                 <li>
+                <IoChevronForward />
                   <a href="#">Research Innovation</a>
                 </li>
                 <li>
+                <IoChevronForward />
                   <a href="#">Policy Advocacy</a>
                 </li>
               </ul>
@@ -48,15 +60,19 @@ const Footer = () => {
               <h4>Pages</h4>
               <ul>
                 <li>
+                <IoChevronForward />
                   <a href="#">New &amp; Views</a>
                 </li>
                 <li>
+                <IoChevronForward />
                   <a href="#">About Us</a>
                 </li>
                 <li>
+                <IoChevronForward />
                   <a href="#">Services</a>
                 </li>
                 <li>
+                <IoChevronForward />
                   <a href="#">Our Team</a>
                 </li>
               </ul>
@@ -65,10 +81,10 @@ const Footer = () => {
               <h4>Contact</h4>
               <ul>
                 <li>
-                  <i className="fas fa-phone"></i> +250 788 667 469
+                  <i className="fas fa-phone"><FaPhone /></i> +250 788 667 469
                 </li>
                 <li>
-                  <i className="fas fa-envelope"></i> rwandaafs@gmail.com
+                  <i className="fas fa-envelope"><MdOutlineEmail  /></i> rwandaafs@gmail.com
                 </li>
               </ul>
             </div>
