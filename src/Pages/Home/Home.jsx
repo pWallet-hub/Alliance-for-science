@@ -15,7 +15,6 @@ function Home() {
   return (
     <div className='home-container'>
       <div className='home-content'>
-        {/* <img src={image} alt="image" width={"100%"} className='image' /> */}
         <div className='text-content'>
           <h1>ALLIANCE for SCIENCE RWANDA</h1>
           <p>Alliance for Science  Rwanda is all about <br /> 
