@@ -7,13 +7,13 @@ import { GoDotFill } from "react-icons/go";
 function About() {
     return (
         <div>
-            <div className='about'>
+            <div className='about1'>
                 <div className='about-text'>
                     <h1>About Us</h1>
                 </div>
             </div>
-            <div className='about1'>
-                <img src={aboutImage} alt="image" className='image' />
+            <div className='about2'>
+                <img src={aboutImage} alt="image" className='image2' />
                 <div className='about-content1'>
                     <h1>About Us</h1>
                     <p>Alliance for Science Rwanda has been incorporated as a social enterprise with a mission to seek food security, sustainability through education and advocacy of innovative farming technologies in Rwanda by mitigating effects of climate change, pests, and diseases.</p>
@@ -32,11 +32,11 @@ function About() {
             <div className='goal'>
                 <h1>Goal</h1>
                 <ul>
-                    <li> <GoDotFill />Empower farming communities through bridging the gap between farming
+                <li><i class='bx bxs-circle'></i>Empower farming communities through bridging the gap between farming
                          innovative technologies developers, farmers, and local government</li>
-                    <li><GoDotFill />Engage key stakeholders including local government, through information
+                    <li><i class='bx bxs-circle'></i>Engage key stakeholders including local government, through information
                          sharing and round tables discussions.</li>
-                    <li><GoDotFill />Create a national consortium network of Agricultural technology 
+                         <li><i class='bx bxs-circle'></i>Create a national consortium network of Agricultural technology 
                                practitioners and enthusiasts of food security.</li>
                 </ul>
             </div>

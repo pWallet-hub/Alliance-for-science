@@ -57,7 +57,7 @@ function Home() {
         </div>
       </div>
       <div className='about'>
-        <img src={aboutimage} alt="image" className='image' />
+        <img src={aboutimage} alt="image" className='image1' />
         <div className='about-content'>
             <h1>about us</h1>
             <p>Alliance for science Rwanda <br />
