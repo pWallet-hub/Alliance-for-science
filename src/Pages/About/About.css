@@ -1,29 +1,31 @@
 /* About.css */
 
 .about1 {
-  background-image: url('../../assets/image/irrigation.jpg');
-  width: 100%;
-  height: 30rem;
-  background-size: cover;
-  background-color: rgba(0, 0, 0, 0.423);
-  background-position: center;
-  color: white;
-  padding: 200px;
-  font-family: sans-serif;
-  text-align: center;
-  margin-top: 0;
-  font-size: 20px;
-  text-transform: capitalize; 
-  
- 
-  
- 
-  
-}
+  background-image: url('../../assets/image/_72A2707.jpg');
+    width: 100%;
+    height: 30rem;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.423); /* Background color with transparency */
+    background-position: center;
+    color: white;
+    padding: 200px;
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 0;
+    font-size: 20px;
+    text-transform: capitalize;
+  }
 .about-text {
-  margin-top: 2rem;
+  margin-top: 1rem;
  
 }
+.about-text h1{
+  font-size: 36px;
+  font-weight: bold;
+  /* margin-bottom: 1rem; */
+  text-transform: uppercase;
+}
+
 .about2{
   display: flex;
   flex-direction: row;
@@ -50,12 +52,13 @@
   color: #000000;
   font-size: 18px;
   margin-right: 5rem;
+  text-align: justify;
 }
 .about-content1 h1{
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 1rem;
-  text-transform: capitalize;
+  text-transform: uppercase;
   text-decoration: solid 4px underline #19629d;
   color: #000000;
   font-family: sans-serif;
@@ -153,11 +156,51 @@
 .goal ul li {
   margin-bottom: 0.5rem;
  line-height: 1.5rem;
+list-style: decimal;
+text-align: justify;
 
   
 }
 .bx{
-  color: #0077b6;
-  font-size: 16px;
-  padding-right: 1rem;
+  color: #fff;
+  font-size: 10px;
+  padding-right: 10rem;
+}
+@media (max-width: 768px) {
+  .about2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 2rem;
+    font-family: sans-serif;
+    width: 100%;
+
+  }
+ /* .about-text {
+    margin-top: 1rem;
+    margin-left: 2rem;
+  } */
+  .about-content1{
+    width: 100%;
+  }
+  .image2{
+    width: 100%;
+    height:auto;
+  }
+  .about-content1 p {
+    margin-bottom: 1rem;
+    color: #000000;
+    font-size: 18px;
+    margin-right: 1rem;
+    text-align: justify;
+    margin-left: 2rem;
+  }
+  .about-content1 h1{
+    text-align: center;
+  }
+  .about-content1 button{
+    margin-left: 2rem;
+    margin-right: 2rem;
+    width: 80%;
+  }
 }

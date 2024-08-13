@@ -18,7 +18,7 @@ const Footer = () => {
             <img src={alliance} alt="Alliance for Science Rwanda" />
           </div>
           <p>
-            Alliance for Science Rwanda is all <br /> about creating a poverty free
+            Alliance for Science Rwanda is all  about creating a poverty free
             world.
           </p>
           <div className="social-icons">
@@ -39,19 +39,19 @@ const Footer = () => {
               <h4>Our Services</h4>
               <ul>
                 <li>
-                <IoChevronForward />
+                  <IoChevronForward />
                   <a href="#">Food Security</a>
                 </li>
                 <li>
-                <IoChevronForward />
+                  <IoChevronForward />
                   <a href="#">Climate Change</a>
                 </li>
                 <li>
-                <IoChevronForward />
+                  <IoChevronForward />
                   <a href="#">Research Innovation</a>
                 </li>
                 <li>
-                <IoChevronForward />
+                  <IoChevronForward />
                   <a href="#">Policy Advocacy</a>
                 </li>
               </ul>
@@ -60,19 +60,19 @@ const Footer = () => {
               <h4>Pages</h4>
               <ul>
                 <li>
-                <IoChevronForward />
+                  <IoChevronForward />
                   <a href="#">New &amp; Views</a>
                 </li>
                 <li>
-                <IoChevronForward />
+                  <IoChevronForward />
                   <a href="#">About Us</a>
                 </li>
                 <li>
-                <IoChevronForward />
+                  <IoChevronForward />
                   <a href="#">Services</a>
                 </li>
                 <li>
-                <IoChevronForward />
+                  <IoChevronForward />
                   <a href="#">Our Team</a>
                 </li>
               </ul>
@@ -84,7 +84,7 @@ const Footer = () => {
                   <i className="fas fa-phone"><FaPhone /></i> +250 788 667 469
                 </li>
                 <li>
-                  <i className="fas fa-envelope"><MdOutlineEmail  /></i> rwandaafs@gmail.com
+                  <i className="fas fa-envelope"><MdOutlineEmail /></i> rwandaafs@gmail.com
                 </li>
               </ul>
             </div>

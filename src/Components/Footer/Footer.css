@@ -19,9 +19,7 @@
     margin-top: -3rem;
   }
   
-  .footer-left .logo img {
-    max-width: 200px;
-  }
+  
   
   .footer-left p {
     margin-top: 20px;
@@ -87,6 +85,7 @@
   
   @media (max-width: 768px) {
     .footer-container {
+      display: flex;
       flex-direction: column;
       align-items: center;
     }
@@ -95,6 +94,17 @@
     .footer-right {
       max-width: 100%;
       text-align: center;
+    }
+    p{
+      text-align: justify;
+      margin: 2rem;
+    }
+    .footer-links{
+      flex-direction: column;
+      margin-left: 0;
+      display: flex;
+      width: 90%;
+      align-items: left;
     }
   
     .footer-links {

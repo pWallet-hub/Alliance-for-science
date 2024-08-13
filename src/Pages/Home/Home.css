@@ -9,7 +9,7 @@
      position: relative;
      width: 100%;
      height: 105vh;
-     background: url('../../assets/image/bd image.jpg');
+     background: url('../../assets/image/intro.jpg');
      background-size: cover;
      background-position: center;
   }
@@ -116,6 +116,7 @@
     width: 35%;
     border-radius: 5px;
     margin-bottom: 2rem;
+    object-fit: cover;
   }
   
   .about-content {
@@ -139,6 +140,7 @@
     margin-bottom: 1rem;
     color: #000000;
     font-size: 18px;
+    text-align: justify;
   }
   .about-content button {
     color: #FFFFFF;
@@ -209,6 +211,9 @@
     color: #FFFFFF;
     text-align: center;
     font-family: sans-serif;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    
   }
   
   .main-activities h2 {
@@ -220,18 +225,27 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    row-gap: 2rem;
   }
   
   .activity-item {
     margin: 1rem;
+    margin-top: 3rem;
     max-width: 300px;
+    text-align: justify;
+  }
+  .activity-item1{
+    margin-top: 0rem;
+    max-width: 300px;
+    text-align: justify;
+    
   }
   
   .activity-icon {
     width: 80px;
-    height: 80px;
+    /* height: 80px; */
     border-radius: 50%;
-    background-color: #0077b6;
+    /* background-color: #0077b6; */
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -241,21 +255,21 @@
   }
   
   .food-security {
-    background-color: #0077b6;
+    /* background-color: #0077b6; */
     color: #92D050;
     font-size: 45px;
   }
   
   .climate-change {
-    background-color: #0077b6;
+    /* background-color: #0077b6; */
   }
   
   .research-innovation {
-    background-color: #0077b6;
+    /* background-color: #0077b6; */
   }
   
   .policy-advocacy {
-    background-color: #0077b6;
+    /* background-color: #0077b6; */
   }
   
   .activity-item h3 {
@@ -266,6 +280,7 @@
   .activity-item p {
     font-size: 1rem;
     font-family: sans-serif;
+    text-align: justify;
   }
   
   
@@ -288,7 +303,9 @@
   }
   
   .footer-left .logo img {
-    max-width: 200px;
+    width: 170px;
+    margin-top: 20px;
+    object-fit: cover;
   }
   
   .footer-left p {
@@ -352,12 +369,30 @@
   .parterner h2{
     display: flex;
     justify-content: center;
+    font-size: 45px;
+    font-weight: bold;
+
+    color: #92D050;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-left: 4rem;
+    margin-right: 4rem;
   }
-  .image0 {
+ 
+  
+  .image4{
     display: flex;
     flex-direction: row;
+    background-size: cover;
+    justify-content: center;
+    margin-left: 1rem;
+    margin-right: 3rem;
+  }
+  .image4 img{
     width: 100%;
-    height: 25rem;
+    height: 120px;
+    object-fit: contain;
   }
  
   
@@ -381,4 +416,89 @@
     .footer-col {
       margin: 20px 0;
     }
+    .image4{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 2rem;
+    }
+    .image4 img{
+      width: 30%;
+      height: 60px;
+      object-fit: contain;
+    }
+    .main-activities h2{
+      font-size: 20px;
+    }
+    .activity-item h3{
+      font-size: 18px;
+    }
+    .activity-item p{
+      font-size: 18px;
+    }
+    .about {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .image1{
+      width: 90%;
+      height: 40vh;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .home-content p{
+      font-size: 25px;
+      margin: 1rem;
+      color: #ffff;
+      font-weight: bold;
+    }
+    .text-content p{
+      margin-top: 6rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      text-align: justify;
+    }
+    .about-content h1{
+      font-size: 20px;
+     justify-content: center;
+      display: flex;
+    }
+    .about-content button {
+      width: 80%;
+     margin: 2rem;
+    }
+    .about-content{
+      width: 90%;
+      margin: 1rem;
+    }
+    .card-container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 95%;
+      height: auto;
+      object-fit: cover;
+      margin: 10px;
+    }
+    .card{
+      width: 90%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+      padding: 1rem;
+    }
+    .about-content p{
+      font-size: 15px;
+      margin: 1rem;
+    }
+    .parterner h2{
+      font-size: 15px;
+      margin: 1rem;
+    }
+    
+  .main-activities{
+    margin: 1rem;
+  }
   }
