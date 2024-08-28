@@ -6,9 +6,10 @@ function Activities() {
 
 
   return (
-    <div>
+    <div className='activity-page '>
         <h1>activity page</h1>
     </div>
+    
   );
 }
 
