@@ -88,7 +88,7 @@ function Home() {
             <h3>FOOD SECURITY</h3>
             <p>Alliance for science Rwanda has been incorporated</p>
           </div>
-          <div className="activity-item1">
+          <div className="activity-item">
             <div className="activity-icon climate-change"><BiSolidCloudRain /></div>
             <h3>CLIMATE CHANGE</h3>
             <p>Alliance for science Rwanda has been incorporated</p>
@@ -100,7 +100,7 @@ function Home() {
             <h3>RESEARCH INNOVATION</h3>
             <p>Alliance for science Rwanda has been incorporated</p>
           </div>
-          <div className="activity-item1">
+          <div className="activity-item">
             <div className="activity-icon policy-advocacy"><GrDocumentText /></div>
             <h3>POLICY ADVOCACY</h3>
             <p>Alliance for science Rwanda has been incorporated</p>
@@ -112,11 +112,9 @@ function Home() {
         <h2>OUR PARTNERS</h2>
         <div className='image4'>
          
-         <img src={rab} alt="image" />
-         <img src={ofab} alt="image" />
+          <img src={rab} alt="image" />
+          <img src={ofab} alt="image" />
           <img src={aatf} alt="image" />
-     
-          
           <img src={rmc} alt="image" />
           <img src={virca} alt="image" />
          

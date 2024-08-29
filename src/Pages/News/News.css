@@ -6,10 +6,9 @@
     background-color: rgba(0, 0, 0, 0.689);
     background-position: center;
     color: white;
-    padding: 200px;
+    padding-top: 200px;
     font-family: sans-serif;
     text-align: center;
-    margin-top: 0;
     font-size: 20px;
     text-transform: capitalize; 
 }
@@ -23,6 +22,7 @@
     padding: 20px;
     text-align: center;
 }
+
 .news-container img{
     width: 95%;
     object-fit: cover;
@@ -107,4 +107,21 @@
   
   .contact-form button:hover {
     background-color: #6b9e76; 
+  }
+  @media (max-width: 480px){
+    .blog{
+     margin-top: 2em;
+    }
+    .blog p{
+    font-size: 15px;
+    }
+   .news-container{
+    display: grid;
+   }
+
+  }
+  @media (max-width: 1118px){
+    .blog p{
+      font-size: 15px;
+      }
   }

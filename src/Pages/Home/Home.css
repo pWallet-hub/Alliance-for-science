@@ -7,30 +7,24 @@
   
   .home-content {
      position: relative;
-     width: 100%;
-     height: 105vh;
+     height: 100vh;
      background: url('../../assets/image/intro.jpg');
      background-size: cover;
      background-position: center;
+     padding-top: 300px;
   }
 
  
   .text-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   color: #fff; 
   text-align: center;
    background: #00000043;
-   width: 100%;
    height: 100%;
    text-transform: capitalize;
 }
   .home-content h1 {
-    padding-top: 25%;
     color: #FCFEFF;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
   
   .home-content p {
@@ -45,8 +39,8 @@
     font-size: 16px;
     height: 220px;
     width: 100%;
-  justify-content: center;
-   margin-top: -5rem;
+    justify-content: center;
+    margin-top: 3rem;
   
   }
   
@@ -230,15 +224,8 @@
   
   .activity-item {
     margin: 1rem;
-    margin-top: 3rem;
-    max-width: 300px;
-    text-align: justify;
-  }
-  .activity-item1{
-    margin-top: 0rem;
-    max-width: 300px;
-    text-align: justify;
-    
+    max-width: 220px;
+    text-align: justify
   }
   
   .activity-icon {
@@ -255,21 +242,8 @@
   }
   
   .food-security {
-    /* background-color: #0077b6; */
     color: #92D050;
     font-size: 45px;
-  }
-  
-  .climate-change {
-    /* background-color: #0077b6; */
-  }
-  
-  .research-innovation {
-    /* background-color: #0077b6; */
-  }
-  
-  .policy-advocacy {
-    /* background-color: #0077b6; */
   }
   
   .activity-item h3 {
@@ -394,9 +368,42 @@
     height: 120px;
     object-fit: contain;
   }
- 
-  
+
+  @media (max-width: 1010px){
+  .card-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 95%;
+    height: auto;
+    object-fit: cover;
+    margin: 10px;
+  }
+  .card{
+    width: 90%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    padding: 1rem;
+  }
+  .card-description h2,.card-description1 h2{
+    font-size: 1.2em;
+  }
+  .card-content h1{
+    font-size: 1.5em;
+  }
+}
+
   @media (max-width: 768px) {
+    .home-content h1{
+      font-size: 1.5em;
+      margin-bottom: -70px;
+    }
+    .home-content .text-content p{
+      font-size: 1.3em;
+    }
+
     .footer-container {
       flex-direction: column;
       align-items: center;
@@ -472,23 +479,7 @@
       width: 90%;
       margin: 1rem;
     }
-    .card-container{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      width: 95%;
-      height: auto;
-      object-fit: cover;
-      margin: 10px;
-    }
-    .card{
-      width: 90%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 4px;
-      padding: 1rem;
-    }
+    
     .about-content p{
       font-size: 15px;
       margin: 1rem;
@@ -501,4 +492,15 @@
   .main-activities{
     margin: 1rem;
   }
+  }
+  @media (max-width:480px){
+    .home-content h1{
+      font-size: 1.4em;
+    }
+    .home-content .text-content p{
+      font-size: 1.2em;
+    }
+    .activity-item p{
+      font-size: 15px;
+    }
   }
