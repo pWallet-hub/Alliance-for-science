@@ -10,10 +10,9 @@
     background-color: rgba(0, 0, 0, 0.689);
     background-position: center;
     color: white;
-    padding: 200px;
+    padding-top: 200px;
     font-family: sans-serif;
     text-align: center;
-    margin-top: 0;
     font-size: 20px;
     text-transform: capitalize; 
   }

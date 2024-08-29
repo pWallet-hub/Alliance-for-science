@@ -7,11 +7,11 @@
     background-size: cover;
     background-color: rgba(0, 0, 0, 0.423); /* Background color with transparency */
     background-position: center;
-    color: white;
-    padding: 200px;
+    color: #ffffff;
+    padding-top: 200px;
     font-family: sans-serif;
     text-align: center;
-    margin-top: 0;
+
     font-size: 20px;
     text-transform: capitalize;
   }
@@ -202,5 +202,18 @@ text-align: justify;
     margin-left: 2rem;
     margin-right: 2rem;
     width: 80%;
+  }
+}
+
+
+@media (max-width: 480px){
+  .about-content1 p{
+  font-size: 15px;
+  }
+  .goal li{
+    font-size: 15px;
+  }
+  .mission p{
+    font-size: 15px;
   }
 }
