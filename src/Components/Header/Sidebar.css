@@ -4,16 +4,15 @@
   display: flex;
   flex-direction: column;
   padding: 6px;
-  position: fixed; /* Fixed position to keep it in place */
-  top: 60px; /* Adjust based on header height */
+  position: fixed; 
+  top: 60px;
   z-index: 1000;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  transform: translateX(-100%); /* Hide it off-screen initially */
+  transform: translateX(-100%); 
   opacity: 0;
 }
 
 
-/* Sidebar visible when hamburger is open */
 .sidebar.open {
   transform: translateX(0);
   opacity: 1;
@@ -23,12 +22,12 @@
   list-style-type: none;
   margin: auto;
   display: flex;
-  flex-direction: row; /* Display items in a row */
+  flex-direction: row; 
   align-items: center;
 }
 
 .sidebar ul li {
-  margin: 0 17px; /* Horizontal spacing between items */
+  margin: 0 17px; 
 }
 
 .sidebar ul li a {
@@ -45,18 +44,18 @@
   color: #d0e5f7;
 }
 
-/* Hamburger menu */
+
 .hamburger {
   display: none;
   cursor: pointer;
-  position: absolute; /* Fixed to stay in the same place */
-  top: 101px; /* Move the hamburger down */
+  position: absolute;
+  top: 101px; 
   left: 20px;
   z-index: 1001;
 }
 
 .hamburger.open .bar {
-  background-color: #f5f5f5; /* Change color when open */
+  background-color: #f5f5f5; 
 }
 
 .hamburger .bar {
@@ -66,17 +65,16 @@
   margin: 4px 0;
 }
 
-/* Sidebar visible by default on medium and large screens */
 @media (min-width: 768px) {
   .sidebar {
     transform: translateX(0);
     opacity: 1;
-    position: static; /* Static position on larger screens */
-    width: auto; /* Adjust width to fit content */
+    position: static; 
+    width: auto;
   }
 
   .sidebar ul {
-    flex-direction: row; /* Keep items in a row */
+    flex-direction: row; 
   }
 
   .hamburger {
@@ -84,7 +82,7 @@
   }
 }
 
-/* Hamburger visible on smaller screens */
+/
 @media (max-width: 768px) {
   .hamburger {
     display: block;
@@ -92,13 +90,13 @@
 
   .sidebar {
     position: absolute;
-    top: 84px; /* Adjust based on header height */
-    width: 250px; /* Fixed width on smaller screens */
+    top: 84px; 
+    width: 250px; 
     border-radius: 0;
   }
 
   .sidebar ul {
-    flex-direction: column; /* Stack items vertically when sidebar is open */
+    flex-direction: column;
   }
 
   .sidebar ul li {
@@ -112,14 +110,14 @@
 
   .sidebar {
     position: absolute;
-    top: 114px; /* Adjust based on header height */
-    width: 250px; /* Fixed width on smaller screens */
+    top: 114px; 
+    width: 250px;
     border-radius: 0;
   }
 }
 
 @media (max-width: 480px) {
   .sidebar ul li a {
-    font-size: 14px; /* Adjust font size for smaller screens */
+    font-size: 14px; 
   }
 }
