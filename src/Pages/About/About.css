@@ -11,10 +11,16 @@
     padding-top: 200px;
     font-family: sans-serif;
     text-align: center;
-
     font-size: 20px;
     text-transform: capitalize;
+    transition: .5s ease-in-out; 
   }
+  @media (max-width:900px){
+    .about1{
+      margin-top: -50px;
+    }
+  }
+  
 .about-text {
   margin-top: 1rem;
  
