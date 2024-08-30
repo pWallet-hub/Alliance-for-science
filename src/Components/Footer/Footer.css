@@ -17,6 +17,7 @@
 .footer-left {
   text-align: center;
   flex-direction: column;
+  margin: auto;
 }
 
 .footer-left .logo img {
@@ -42,6 +43,7 @@
 .footer-col {
   flex-direction: column;
   width: 170px;
+  margin: auto;
 }
 
 .footer-col h4 {

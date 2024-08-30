@@ -2,7 +2,6 @@
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-  
     background-image: url('../../assets/image/_72A2707.jpg');
     width: 100%;
     height: 30rem;
@@ -14,7 +13,13 @@
     font-family: sans-serif;
     text-align: center;
     font-size: 20px;
-    text-transform: capitalize; 
+    text-transform: capitalize;
+    transition: .5s ease-in-out; 
+  }
+  @media (max-width:900px){
+    .activity-page{
+      margin-top: -50px;
+    }
   }
   
   .header {
