@@ -4,14 +4,13 @@
   display: flex;
   flex-direction: column;
   padding: 6px;
-  position: fixed; /* Fixed position to keep it in place */
-  top: 60px; /* Adjust based on header height */
+  position: fixed;
+  top: 60px;
   z-index: 1000;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   transform: translateX(-100%); /* Hide it off-screen initially */
   opacity: 0;
 }
-
 
 /* Sidebar visible when hamburger is open */
 .sidebar.open {
@@ -23,7 +22,7 @@
   list-style-type: none;
   margin: auto;
   display: flex;
-  flex-direction: row; /* Display items in a row */
+  flex-direction: row;
   align-items: center;
 }
 
@@ -49,34 +48,46 @@
 .hamburger {
   display: none;
   cursor: pointer;
-  position: absolute; /* Fixed to stay in the same place */
-  top: 101px; /* Move the hamburger down */
+  position: absolute;
+  top: 107px;
   left: 20px;
   z-index: 1001;
-}
-
-.hamburger.open .bar {
-  background-color: #f5f5f5; /* Change color when open */
 }
 
 .hamburger .bar {
   width: 25px;
   height: 3px;
-  background-color: black;
+  background-color: white;
   margin: 4px 0;
+  transition: all 0.3s ease;
 }
 
-/* Sidebar visible by default on medium and large screens */
+/* Transform bars to cross when sidebar is open */
+.hamburger.open .bar1 {
+  transform: rotate(45deg) translate(5px, 5px);
+  background-color: #f5f5f5;
+}
+
+.hamburger.open .bar2 {
+  opacity: 0; /* Hide middle bar */
+}
+
+.hamburger.open .bar3 {
+  transform: rotate(-45deg) translate(5px, -5px);
+  background-color: #f5f5f5;
+}
+
+/* Media queries */
 @media (min-width: 768px) {
   .sidebar {
     transform: translateX(0);
     opacity: 1;
-    position: static; /* Static position on larger screens */
-    width: auto; /* Adjust width to fit content */
+    position: static;
+    width: auto;
   }
 
   .sidebar ul {
-    flex-direction: row; /* Keep items in a row */
+    flex-direction: row;
   }
 
   .hamburger {
@@ -84,7 +95,6 @@
   }
 }
 
-/* Hamburger visible on smaller screens */
 @media (max-width: 768px) {
   .hamburger {
     display: block;
@@ -92,34 +102,34 @@
 
   .sidebar {
     position: absolute;
-    top: 84px; /* Adjust based on header height */
-    width: 250px; /* Fixed width on smaller screens */
+    top: 84px;
+    width: 250px;
     border-radius: 0;
   }
 
   .sidebar ul {
-    flex-direction: column; /* Stack items vertically when sidebar is open */
+    flex-direction: column;
   }
 
   .sidebar ul li {
     margin: 10px 0;
   }
 }
+
 @media (max-width: 540px) {
   .hamburger {
-    top: 130px;
+    top: 137px;
   }
 
   .sidebar {
-    position: absolute;
-    top: 114px; /* Adjust based on header height */
-    width: 250px; /* Fixed width on smaller screens */
+    top: 114px;
+    width: 250px;
     border-radius: 0;
   }
 }
 
 @media (max-width: 480px) {
   .sidebar ul li a {
-    font-size: 14px; /* Adjust font size for smaller screens */
+    font-size: 14px;
   }
 }

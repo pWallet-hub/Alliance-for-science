@@ -1,13 +1,9 @@
 import React from 'react';
 import './Footer.css';
-import alliance from '../../assets/image/alliance.png'
+import alliance from '../../assets/image/alliance.png';
 import { IoChevronForward } from "react-icons/io5";
-import { FaPhone } from "react-icons/fa6";
+import { FaPhone } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
-
-
-
-
 
 const Footer = () => {
   return (
@@ -18,7 +14,7 @@ const Footer = () => {
             <img src={alliance} alt="Alliance for Science Rwanda" />
           </div>
           <p>
-            Alliance for Science Rwanda is all  about creating a poverty free
+            Alliance for Science Rwanda is all about creating a poverty-free
             world.
           </p>
           <div className="social-icons">
@@ -61,7 +57,7 @@ const Footer = () => {
               <ul>
                 <li>
                   <IoChevronForward />
-                  <a href="#">New &amp; Views</a>
+                  <a href="#">News & Views</a>
                 </li>
                 <li>
                   <IoChevronForward />
@@ -81,10 +77,10 @@ const Footer = () => {
               <h4>Contact</h4>
               <ul>
                 <li>
-                  <i className="fas fa-phone"><FaPhone /></i> +250 788 667 469
+                  <FaPhone /> +250 788 667 469
                 </li>
                 <li>
-                  <i className="fas fa-envelope"><MdOutlineEmail /></i> rwandaafs@gmail.com
+                  <MdOutlineEmail /> rwandaafs@gmail.com
                 </li>
               </ul>
             </div>

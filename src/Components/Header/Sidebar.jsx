@@ -1,4 +1,3 @@
-// Sidebar.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
@@ -12,10 +11,10 @@ function Sidebar() {
 
   return (
     <>
-      <div className="hamburger" onClick={toggleSidebar}>
-        <div className="bar"></div>
-        <div className="bar"></div>
-        <div className="bar"></div>
+      <div className={`hamburger ${isOpen ? 'open' : ''}`} onClick={toggleSidebar}>
+        <div className="bar bar1"></div>
+        <div className="bar bar2"></div>
+        <div className="bar bar3"></div>
       </div>
 
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
