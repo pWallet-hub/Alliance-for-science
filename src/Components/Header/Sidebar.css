@@ -1,4 +1,4 @@
-/* Sidebar container */
+
 .sidebar {
   background: #025496C4;
   display: flex;
@@ -12,7 +12,7 @@
   opacity: 0;
 }
 
-/* Sidebar visible when hamburger is open */
+
 .sidebar.open {
   transform: translateX(0);
   opacity: 1;
@@ -27,7 +27,7 @@
 }
 
 .sidebar ul li {
-  margin: 0 17px; /* Horizontal spacing between items */
+  margin: 0 17px; 
 }
 
 .sidebar ul li a {
@@ -44,7 +44,7 @@
   color: #d0e5f7;
 }
 
-/* Hamburger menu */
+
 .hamburger {
   display: none;
   cursor: pointer;
@@ -62,14 +62,14 @@
   transition: all 0.3s ease;
 }
 
-/* Transform bars to cross when sidebar is open */
+
 .hamburger.open .bar1 {
   transform: rotate(45deg) translate(5px, 5px);
   background-color: #f5f5f5;
 }
 
 .hamburger.open .bar2 {
-  opacity: 0; /* Hide middle bar */
+  opacity: 0; 
 }
 
 .hamburger.open .bar3 {
@@ -77,7 +77,7 @@
   background-color: #f5f5f5;
 }
 
-/* Media queries */
+
 @media (min-width: 768px) {
   .sidebar {
     transform: translateX(0);

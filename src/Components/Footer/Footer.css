@@ -1,4 +1,4 @@
-/* Base Footer Styles */
+
 .footer {
   background-color: #02446C;
   color: white;
@@ -17,11 +17,11 @@
 .footer-left {
   flex: 1;
   text-align: left;
-  max-width: 25%; /* Limits the width of the left column */
+  max-width: 25%; 
 }
 
 .footer-left .logo img {
-  max-width: 90px; /* Adjust the logo size */
+  max-width: 90px;
   margin-bottom: 10px;
   margin-top: -10px;
 }
@@ -29,7 +29,7 @@
 .footer-left p {
   margin-bottom: 10px;
   line-height: 1.5;
-  font-size: 13px; /* Reduced font size */
+  font-size: 13px; 
 }
 
 .social-icons {
@@ -39,7 +39,7 @@
 
 .social-icons a {
   color: white;
-  font-size: 20px; /* Adjusted icon size */
+  font-size: 20px; 
   transition: color 0.3s;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .footer-right {
-  flex: 2; /* Ensures the right section gets more space */
+  flex: 2; 
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -62,7 +62,7 @@
 
 .footer-col h4 {
   margin-bottom: 10px;
-  font-size: 14px; /* Reduced font size */
+  font-size: 14px;
   color: #A9CCE3;
   display: flex;
 }
@@ -82,7 +82,7 @@
 .footer-col ul li a {
   color: #fff;
   text-decoration: none;
-  font-size: 12px; /* Reduced font size */
+  font-size: 12px; 
   transition: color 0.3s;
 }
 
@@ -95,7 +95,7 @@
   font-size: 12px;
 }
 
-/* Responsive Design for Screens Below 768px */
+
 @media (max-width: 768px) {
   .footer-left {
     margin: auto;
@@ -129,7 +129,6 @@
   }
 }
 
-/* Responsive Design for Screens Below 540px */
 @media (max-width: 620px) {
   .footer-container {
     flex-wrap: wrap;
