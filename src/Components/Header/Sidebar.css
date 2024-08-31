@@ -1,17 +1,15 @@
-/* Sidebar container */
 .sidebar {
   background: #025496C4;
   display: flex;
   flex-direction: column;
   padding: 6px;
-  position: fixed; 
+  position: fixed;
   top: 60px;
   z-index: 1000;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   transform: translateX(-100%); 
   opacity: 0;
 }
-
 
 .sidebar.open {
   transform: translateX(0);
@@ -22,7 +20,7 @@
   list-style-type: none;
   margin: auto;
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   align-items: center;
 }
 
@@ -44,37 +42,47 @@
   color: #d0e5f7;
 }
 
-
 .hamburger {
   display: none;
   cursor: pointer;
   position: absolute;
-  top: 101px; 
+  top: 107px;
   left: 20px;
   z-index: 1001;
-}
-
-.hamburger.open .bar {
-  background-color: #f5f5f5; 
 }
 
 .hamburger .bar {
   width: 25px;
   height: 3px;
-  background-color: black;
+  background-color: white;
   margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+.hamburger.open .bar1 {
+  transform: rotate(45deg) translate(5px, 5px);
+  background-color: #f5f5f5;
+}
+
+.hamburger.open .bar2 {
+  opacity: 0; 
+}
+
+.hamburger.open .bar3 {
+  transform: rotate(-45deg) translate(5px, -5px);
+  background-color: #f5f5f5;
 }
 
 @media (min-width: 768px) {
   .sidebar {
     transform: translateX(0);
     opacity: 1;
-    position: static; 
+    position: static;
     width: auto;
   }
 
   .sidebar ul {
-    flex-direction: row; 
+    flex-direction: row;
   }
 
   .hamburger {
@@ -82,7 +90,6 @@
   }
 }
 
-/
 @media (max-width: 768px) {
   .hamburger {
     display: block;
@@ -103,13 +110,13 @@
     margin: 10px 0;
   }
 }
+
 @media (max-width: 540px) {
   .hamburger {
-    top: 130px;
+    top: 137px;
   }
 
   .sidebar {
-    position: absolute;
     top: 114px; 
     width: 250px;
     border-radius: 0;
