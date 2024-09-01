@@ -11,12 +11,11 @@
 
 .logo-container {
   flex: 1;
-  display: flex;
-  justify-content: center; /* Center the logo */
+  display: flex;/* Center the logo */
 }
 
 .logo {
-  width: 80px;
+  width: 130px;
 }
 
 .contact-info {
@@ -29,7 +28,7 @@
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .icon {
@@ -43,11 +42,11 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) { /* Tablet view */
   .logo {
-    width: 80px;
+    width: 130px;
   }
 
   .contact-item {
-    font-size: 0.8rem;
+    font-size: 1rem;
     padding: 0.5rem 0.75rem;
   }
 
@@ -58,7 +57,7 @@
 
 @media (max-width: 540px) { /* Mobile view */
   .logo {
-    width: 110px;
+    width: 130px;
   }
   .header {
     flex-direction: column;
@@ -81,7 +80,7 @@
 
   .contact-item {
     padding: 0.15rem; /* Less padding for mobile */
-    font-size: 0.8rem; /* Adjust font size */
+    font-size: 1rem; /* Adjust font size */
     justify-content: center; /* Center align the contact items */
   }
 
