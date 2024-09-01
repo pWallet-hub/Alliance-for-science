@@ -1,87 +1,115 @@
-import React from 'react'
-import './Team.css'
-import aboutImage from '../../assets/image/pacc.jpg';
+import React from 'react';
+import './Team.css';
 import image1 from '../../assets/image/habiman.jpeg';
 import image2 from '../../assets/image/_72A2686.jpg';
 import image3 from '../../assets/image/DSC_1823.jpg';
-
+import aboutImage from '../../assets/image/pacc.jpg';
+import { FaFacebook, FaTwitter, FaLinkedin ,FaPhone} from 'react-icons/fa';
 
 function Team() {
   return (
-    <div>
+    <>
+      <div>
         <div className='team'> 
           <h1>Our Team</h1>
-          </div>
-          <div className='team-container'>
-          <img src={aboutImage} alt="image" className='image' />
-            <div className='team-content'>
-              <h2> pacifique nshimiyimana</h2>
-              <p>Alliance for science Rwanda
-                 has been incorporated as a 
-                 social enterprise with mission 
-                 to seek food security, sustana
-                 bility through education and 
-                 advocacy of innovative farming
-                 technologies in Rwanda by 
-                 mitigating effects of climate 
-                  change , pests and diseases.
-                  </p>
+        </div>
+        <div className='team-cards'>
+          <div className='team-card'>
+            <div 
+              className='card-image' 
+              style={{ backgroundImage: `url(${aboutImage})` }}
+            >
+              <div className='card-content'>
+                <h1>Pacifique Nshimiyimana</h1>
+                <p>Executive Director</p>
+                <div className='icons'>
+                  <a href='#'><FaFacebook /></a>
+                  <a href='#'><FaTwitter /></a>
+                  <a href='#'><FaLinkedin /></a>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          <div className='team-container'>
-          <img src={image1} alt="image" className='image' />
-            <div className='team-content'>
-              <h2>jean claude habimana </h2>
-              <p>Alliance for science Rwanda
-                 has been incorporated as a 
-                 social enterprise with mission 
-                 to seek food security, sustana
-                 bility through education and 
-                 advocacy of innovative farming
-                 technologies in Rwanda by 
-                 mitigating effects of climate 
-                  change , pests and diseases.
-                  </p>
-            </div>
-          </div>
-          
-          <div className='team-container'>
-          <img src={image2} alt="image" className='image' />
-            <div className='team-content'>
-              <h2>gisele ndizeye</h2>
-              <p>Alliance for science Rwanda
-                 has been incorporated as a 
-                 social enterprise with mission 
-                 to seek food security, sustana
-                 bility through education and 
-                 advocacy of innovative farming
-                 technologies in Rwanda by 
-                 mitigating effects of climate 
-                  change , pests and diseases.
-                  </p>
-            </div>
-          </div>
-          
-          <div className='team-container'>
-          <img src={image3} alt="image" className='image' />
-            <div className='team-content'>
-              <h2>agape nduwamungu</h2>
-              <p>Alliance for science Rwanda
-                 has been incorporated as a 
-                 social enterprise with mission 
-                 to seek food security, sustana
-                 bility through education and 
-                 advocacy of innovative farming
-                 technologies in Rwanda by 
-                 mitigating effects of climate 
-                  change , pests and diseases.
-                  </p>
+            <div className='tsocial-icons'>
+              <a href='#'><FaFacebook /></a>
+              <a href='#'><FaTwitter /></a>
+              <a href='#'><FaPhone /></a>
+              <a href='#'><FaLinkedin /></a>
             </div>
           </div>
 
-    </div>
+          <div className='team-card'>
+            <div 
+              className='card-image' 
+              style={{ backgroundImage: `url(${image1})` }}
+            >
+              <div className='card-content'>
+                <h1>Jean Claude Habimana</h1>
+                <p>Chief Operations Officer</p>
+                <div className='icons'>
+                  <a href='#'><FaFacebook /></a>
+                  <a href='#'><FaTwitter /></a>
+                  <a href='#'><FaLinkedin /></a>
+                </div>
+              </div>
+            </div>
+            <div className='tsocial-icons'>
+              <a href='#'><FaFacebook /></a>
+              <a href='#'><FaTwitter /></a>
+              <a href='#'><FaPhone /></a>
+              <a href='#'><FaLinkedin /></a>
+            </div>
+          </div>
+
+          <div className='team-card'>
+            <div 
+              className='card-image' 
+              style={{ backgroundImage: `url(${image2})` }}
+            >
+              <div className='card-content'>
+                <h1>Gisele Ndizeye</h1>
+                <p>Head of Marketing</p>
+                <div className='icons'>
+                  <a href='#'><FaFacebook /></a>
+                  <a href='#'><FaTwitter /></a>
+                  <a href='#'><FaLinkedin /></a>
+                </div>
+              </div>
+            </div>
+            <div className='tsocial-icons'>
+              <a href='#'><FaFacebook /></a>
+              <a href='#'><FaTwitter /></a>
+              <a href='#'><FaPhone /></a>
+              <a href='#'><FaLinkedin /></a>
+            </div>
+          </div>
+          <div className='team-card'>
+            <div 
+              className='card-image' 
+              style={{ backgroundImage: `url(${image3})` }}
+            >
+              <div className='card-content'>
+                <h1>Agape Nduwamungu</h1>
+                <p>Head of Marketing</p>
+                <div className='icons'>
+                  <a href='#'><FaFacebook /></a>
+                  <a href='#'><FaTwitter /></a>
+                  <a href='#'><FaLinkedin /></a>
+                </div>
+              </div>
+            </div>
+            <div className='tsocial-icons'>
+              <a href='#'><FaFacebook /></a>
+              <a href='#'><FaTwitter /></a>
+              <a href='#'><FaPhone /></a>
+              <a href='#'><FaLinkedin /></a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+    </>
   );
 }
 
-export default Team
+export default Team;
