@@ -11,7 +11,7 @@
 
 .logo-container {
   flex: 1;
-  display: flex;/* Center the logo */
+  display: flex;
 }
 
 .logo {
@@ -35,16 +35,9 @@
   margin-right: 5px;
   font-size: 1.2rem;
   color: #92D050;
-  width: auto;
-  height: auto;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) { /* Tablet view */
-  .logo {
-    width: 130px;
-  }
-
+@media (max-width: 768px) {
   .contact-item {
     font-size: 1rem;
     padding: 0.5rem 0.75rem;
@@ -55,36 +48,33 @@
   }
 }
 
-@media (max-width: 540px) { /* Mobile view */
-  .logo {
-    width: 130px;
-  }
+@media (max-width: 540px) {
   .header {
     flex-direction: column;
-    align-items: center; /* Center align the entire header */
+    align-items: center;
   }
 
   .logo-container {
     justify-content: center;
-    margin-bottom: 0.5rem; /* Add some space below the logo */
-    margin-top: -1rem; /* Move the logo slightly up */
+    margin-bottom: 0.5rem;
+    margin-top: -1rem;
   }
 
   .contact-info {
     flex-direction: column;
     align-items: center;
     display: grid;
-    grid-template-columns: repeat(2, auto); /* Create two columns */
-    grid-gap: 0.4rem; /* Add space between the columns */
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 0.4rem;
   }
 
   .contact-item {
-    padding: 0.15rem; /* Less padding for mobile */
-    font-size: 1rem; /* Adjust font size */
-    justify-content: center; /* Center align the contact items */
+    padding: 0.15rem;
+    font-size: 1rem;
+    justify-content: center;
   }
 
   .icon {
-    font-size: 1rem; /* Adjust icon size */
+    font-size: 1rem;
   }
 }
