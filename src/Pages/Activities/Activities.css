@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 .activity-page {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -10,7 +12,7 @@
     background-position: center;
     color: white;
     padding-top: 200px;
-    font-family: sans-serif;
+    font-family: poppins;
     text-align: center;
     font-size: 20px;
     text-transform: capitalize;
