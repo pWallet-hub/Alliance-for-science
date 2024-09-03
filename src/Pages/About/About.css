@@ -2,73 +2,74 @@
 
 .about1 {
   background-image: url('../../assets/image/_72A2707.jpg');
-    width: 100%;
-    height: 30rem;
-    background-size: cover;
-    background-color: rgba(0, 0, 0, 0.423); /* Background color with transparency */
-    background-position: center;
-    color: #ffffff;
-    padding-top: 200px;
-    font-family: sans-serif;
-    text-align: center;
-    font-size: 20px;
-    text-transform: capitalize;
-    transition: .5s ease-in-out; 
+  width: 100%;
+  height: 30rem;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  padding-top: 200px;
+  text-align: center;
+  font-size: 20px;
+  text-transform: capitalize;
+  transition: 0.5s ease-in-out;
+}
+
+@media (max-width: 900px) {
+  .about1 {
+    margin-top: -50px;
   }
-  @media (max-width:900px){
-    .about1{
-      margin-top: -50px;
-    }
-  }
-  
+}
+
 .about-text {
   margin-top: 1rem;
- 
 }
-.about-text h1{
+
+.about-text h1 {
   font-size: 36px;
   font-weight: bold;
-  /* margin-bottom: 1rem; */
   text-transform: uppercase;
 }
 
-.about2{
+.about2 {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   margin-top: 2rem;
-  font-family: sans-serif;
   background-color: rgba(255, 255, 255, 0.9);
   padding: 20px;
 }
+
 .image2 {
   height: 70vh;
-    width: 35%;
-    border-radius: 5px;
+  width: 35%;
+  border-radius: 5px;
 }
+
 .about-content1 {
   font-size: 18px;
   color: #333;
   line-height: 1.5;
-  width: 50%; 
+  width: 50%;
   margin-top: 2rem;
 }
-.about-content1 p{
+
+.about-content1 p {
   margin-bottom: 1rem;
   color: #000000;
-  font-size: 18px;
+  font-size: 20px;
   margin-right: 5rem;
   text-align: justify;
 }
-.about-content1 h1{
+
+.about-content1 h1 {
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 1rem;
   text-transform: uppercase;
-  text-decoration: solid 4px underline #19629d;
+  text-decoration: underline solid 4px #19629d;
   color: #000000;
-  font-family: sans-serif;
 }
+
 .about-content1 button {
   color: #FFFFFF;
   background: linear-gradient(90deg, #0077b6, #92D050, #33cac0, #c37510);
@@ -77,12 +78,10 @@
   margin-top: 4rem;
   border-radius: 6px;
   font-size: 20px;
-  font-family: sans-serif;
   text-transform: capitalize;
   border: none;
   display: grid;
   place-content: center;
-  box-sizing: border-box;
   cursor: pointer;
   background-size: 400%;
   transition: background-position 0.5s;
@@ -122,30 +121,32 @@
   background-position: 0 0;
   animation: shimmering 5s linear infinite;
 }
-.mission{
+
+.mission {
   background: #02549678;
   margin: 2rem;
   padding: 2rem;
   color: #000000;
-  font-family: sans-serif;
 }
-.mission h1{
+
+.mission h1 {
   color: #FFFFFF;
   text-transform: uppercase;
   margin-bottom: 1rem;
 }
-.mission p{
-  font-size: 18px;
-  line-height: 1.5;
 
+.mission p {
+  font-size: 20px;
+  line-height: 1.5;
 }
-.goal{
+
+.goal {
   background: #92D050D4;
   margin: 2rem;
   padding: 2rem;
-
 }
-.goal h1{
+
+.goal h1 {
   color: #FFFFFF;
   margin-bottom: 1rem;
   text-transform: uppercase;
@@ -154,73 +155,59 @@
 .goal ul {
   list-style-type: circle;
   color: #000000;
-  font-size: 18px;
+  font-size: 20px;
   margin-left: 2rem;
 }
 
-
 .goal ul li {
   margin-bottom: 0.5rem;
- line-height: 1.5rem;
-list-style: decimal;
-overflow: hidden;
-text-align: justify;
-
-  
+  line-height: 1.5rem;
+  list-style: decimal;
+  overflow: hidden;
+  text-align: justify;
 }
-.bx{
+
+.bx {
   color: #fff;
   font-size: 10px;
   padding-right: 10rem;
 }
-@media (max-width: 768px) {
-  .about2{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-top: 2rem;
-    font-family: sans-serif;
-    width: 100%;
 
-  }
- /* .about-text {
-    margin-top: 1rem;
-    margin-left: 2rem;
-  } */
-  .about-content1{
+@media (max-width: 768px) {
+  .about2 {
+    flex-direction: column;
     width: 100%;
   }
-  .image2{
+
+  .about-content1 {
     width: 100%;
-    height:auto;
   }
+
+  .image2 {
+    width: 100%;
+    height: auto;
+  }
+
   .about-content1 p {
-    margin-bottom: 1rem;
-    color: #000000;
-    font-size: 18px;
     margin-right: 1rem;
-    text-align: justify;
     margin-left: 2rem;
   }
-  .about-content1 h1{
+
+  .about-content1 h1 {
     text-align: center;
   }
-  .about-content1 button{
+
+  .about-content1 button {
     margin-left: 2rem;
     margin-right: 2rem;
     width: 80%;
   }
 }
 
-
-@media (max-width: 480px){
-  .about-content1 p{
-  font-size: 15px;
-  }
-  .goal li{
-    font-size: 15px;
-  }
-  .mission p{
-    font-size: 15px;
+@media (max-width: 480px) {
+  .about-content1 p,
+  .goal li,
+  .mission p {
+    font-size: 18px;
   }
 }
