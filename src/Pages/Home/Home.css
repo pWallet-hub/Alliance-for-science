@@ -17,6 +17,7 @@
   text-align: center;
   height: 100%;
   text-transform: capitalize;
+  background: #00000043;
 }
 
 .home-content h1 {
@@ -134,7 +135,7 @@
 .about-content p {
   margin-bottom: 1rem;
   color: #000000;
-  font-size: 20px;
+  font-size: 18px;
   text-align: justify;
   overflow: hidden;
 }
@@ -204,17 +205,14 @@
 
 .main-activities {
   background-color: #025496C4;
-  padding: 1rem;
   color: #FFFFFF;
   text-align: center;
   font-family: sans-serif;
-  margin-left: 4rem;
-  margin-right: 4rem;
 }
 
 .main-activities h2 {
-  font-size: 45px;
-  margin-bottom: 2rem;
+  font-size: 35px;
+  margin: 20px auto;
 }
 
 .activities-container {
@@ -225,9 +223,10 @@
 }
 
 .activity-item {
-  margin: 1rem;
-  max-width: 220px;
+  margin: 2rem;
+  max-width: 280px;
   text-align: justify;
+  margin-bottom: 50px;
 }
 
 .activity-icon {
@@ -242,12 +241,12 @@
 }
 
 .activity-item h3 {
-  font-size: 1.5rem;
+  font-size: 20px;
   margin-bottom: 0.5rem;
 }
 
 .activity-item p {
-  font-size: 1.2rem;
+  font-size: 18px;
   text-align: justify;
 }
 
@@ -329,11 +328,15 @@
   }
 
   .about-content {
-    font-size: 16px;
     width: 100%;
   }
   .about-content h1{
+    font-size: 25px;
     margin: 0 0 15px 0;
+    text-align: center;
+  }
+  .about-content p{
+    font-size: 17px;
   }
 
   .about {
@@ -352,9 +355,9 @@
 
   .about-content button {
     font-size: 17px;
-    width: 200px;
+    width: 80%;
     height: 50px;
-    margin: 30px 0;
+    margin: 30px auto;
   }
 
   .main-activities h2 {

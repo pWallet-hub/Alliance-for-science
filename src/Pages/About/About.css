@@ -14,14 +14,12 @@
   transition: 0.5s ease-in-out;
 }
 
-@media (max-width: 900px) {
-  .about1 {
-    margin-top: -50px;
-  }
-}
-
 .about-text {
-  margin-top: 1rem;
+  color: #fff;
+  text-align: center;
+  height: 100%;
+  text-transform: capitalize;
+  background: #00000043;
 }
 
 .about-text h1 {
@@ -56,7 +54,7 @@
 .about-content1 p {
   margin-bottom: 1rem;
   color: #000000;
-  font-size: 20px;
+  font-size: 18px;
   margin-right: 5rem;
   text-align: justify;
 }
@@ -173,6 +171,13 @@
   padding-right: 10rem;
 }
 
+@media (max-width: 900px) {
+  .about1 {
+    margin-top: -50px;
+  }
+}
+
+
 @media (max-width: 768px) {
   .about2 {
     flex-direction: column;
@@ -191,23 +196,22 @@
   .about-content1 p {
     margin-right: 1rem;
     margin-left: 2rem;
+    font-size: 17px;
   }
 
   .about-content1 h1 {
     text-align: center;
+    font-size: 25px;
   }
 
   .about-content1 button {
-    margin-left: 2rem;
-    margin-right: 2rem;
+    font-size: 17px;
+    margin: 30px auto 10px auto;
     width: 80%;
+  }
+  .goal li,
+  .mission p {
+    font-size: 17px;
   }
 }
 
-@media (max-width: 480px) {
-  .about-content1 p,
-  .goal li,
-  .mission p {
-    font-size: 18px;
-  }
-}
