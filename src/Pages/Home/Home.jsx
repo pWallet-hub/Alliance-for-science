@@ -28,9 +28,9 @@ function Home() {
         </div>
       </div>
       <div className='card-container'>
-        <div className='card'>
+        <div className='card first'>
           <div className='card1'>
-            <div className='card-content'>
+            <div className='card-contente'>
               <div className='cardo1'><h1>01</h1></div>
               <div className='card-date'><h1>JAN <br />2023</h1></div>
             </div>
@@ -41,7 +41,7 @@ function Home() {
         </div>
         <div className='card'>
           <div className='card1'>
-            <div className='card-content'>
+            <div className='card-contente'>
               <div className='cardo1'><h1>02</h1></div>
               <div className='card-date'><h1>FEB <br />2023</h1></div>
             </div>
@@ -50,9 +50,9 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className='card'>
+        <div className='card last'>
           <div className='card1'>
-            <div className='card-content'>
+            <div className='card-contente'>
               <div className='cardo1'><h1>04</h1></div>
               <div className='card-date'><h1>OCT <br />2023</h1></div>
             </div>

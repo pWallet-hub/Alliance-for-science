@@ -2,8 +2,8 @@ import React from 'react';
 import './Footer.css';
 import alliance from '../../assets/image/alliance.png';
 import { IoChevronForward } from "react-icons/io5";
-import { FaPhone } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import { FaPhone, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -19,13 +19,13 @@ const Footer = () => {
           </p>
           <div className="social-icons">
             <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
-              <i className="fab fa-facebook"></i>
+              <FaFacebook />
             </a>
             <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-              <i className="fab fa-instagram"></i>
+              <FaInstagram />
             </a>
             <a href="https://twitter.com/" target="_blank" rel="noreferrer">
-              <i className="fab fa-twitter"></i>
+              <FaTwitter />
             </a>
           </div>
         </div>
@@ -35,19 +35,19 @@ const Footer = () => {
               <h4>Our Services</h4>
               <ul>
                 <li>
-                  <IoChevronForward />
+                  <IoChevronForward style={{ color: '#92D050' }} />
                   <a href="#">Food Security</a>
                 </li>
                 <li>
-                  <IoChevronForward />
+                  <IoChevronForward style={{ color: '#92D050' }} />
                   <a href="#">Climate Change</a>
                 </li>
                 <li>
-                  <IoChevronForward />
+                  <IoChevronForward style={{ color: '#92D050' }} />
                   <a href="#">Research Innovation</a>
                 </li>
                 <li>
-                  <IoChevronForward />
+                  <IoChevronForward style={{ color: '#92D050' }} />
                   <a href="#">Policy Advocacy</a>
                 </li>
               </ul>
@@ -56,19 +56,19 @@ const Footer = () => {
               <h4>Pages</h4>
               <ul>
                 <li>
-                  <IoChevronForward />
+                  <IoChevronForward style={{ color: '#92D050' }} />
                   <a href="#">News & Views</a>
                 </li>
                 <li>
-                  <IoChevronForward />
+                  <IoChevronForward style={{ color: '#92D050' }} />
                   <a href="#">About Us</a>
                 </li>
                 <li>
-                  <IoChevronForward />
+                  <IoChevronForward style={{ color: '#92D050' }} />
                   <a href="#">Services</a>
                 </li>
                 <li>
-                  <IoChevronForward />
+                  <IoChevronForward style={{ color: '#92D050' }} />
                   <a href="#">Our Team</a>
                 </li>
               </ul>
@@ -77,10 +77,10 @@ const Footer = () => {
               <h4>Contact</h4>
               <ul>
                 <li>
-                  <FaPhone /> +250 788 667 469
+                  <FaPhone style={{ color: '#92D050' }} /> +250 788 667 469
                 </li>
                 <li>
-                  <MdOutlineEmail /> rwandaafs@gmail.com
+                  <MdOutlineEmail style={{ color: '#92D050' }} /> rwandaafs@gmail.com
                 </li>
               </ul>
             </div>
