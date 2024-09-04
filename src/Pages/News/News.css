@@ -14,6 +14,15 @@
   transition: .5s ease-in-out;
 }
 
+.news-content{
+  color: #fff;
+  text-align: center;
+  height: 100%;
+  text-transform: capitalize;
+  background: #00000043;
+}
+
+
 .news-container {
   display: flex;
   flex-direction: row;
@@ -32,7 +41,7 @@
 
 .blog p {
   padding: 1rem;
-  font-size: 19px;
+  font-size: 18px;
   text-align: justify;
 }
 
@@ -107,29 +116,23 @@
   background-color: #6b9e76;
 }
 
-@media (max-width: 1118px) {
-  .blog p {
-    font-size: 19px;
-  }
-}
-
-/* For screens up to 900px */
 @media (max-width: 900px) {
   .news {
     margin-top: -50px;
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 768px) {
   .blog {
     margin-top: 2em;
   }
 
   .blog p {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .news-container {
     display: grid;
   }
 }
+

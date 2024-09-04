@@ -94,9 +94,7 @@ function Home() {
             <p>Alliance for science Rwanda has been incorporated</p>
           </div>
           <div className="activity-item">
-            <div className="activity-icon research-innovation">
-              <span><MdOutlineScience /></span>
-            </div>
+            <div className="activity-icon research-innovation"><MdOutlineScience /></div>
             <h3>RESEARCH INNOVATION</h3>
             <p>Alliance for science Rwanda has been incorporated</p>
           </div>
