@@ -11,7 +11,9 @@ function Team() {
     <>
       <div>
         <div className='team'> 
+        <div className='team-content'> 
           <h1>Our Team</h1>
+          </div>
         </div>
         <div className='team-cards'>
           <div className='team-card'>

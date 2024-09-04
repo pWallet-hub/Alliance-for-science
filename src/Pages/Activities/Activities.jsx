@@ -5,7 +5,9 @@ function Activities() {
   return (
     <>
       <div className='activity-page'>
+      <div className='activity-content1'> 
         <h1>activity page</h1>
+        </div>
       </div>
       <div className='activity-body'>
         <h1>The top three principal activities of Alliance for Science Rwanda (AfS-Rwanda) based on the provided content are</h1>

@@ -17,13 +17,20 @@
   transition: 0.5s ease-in-out;
 }
 
+.activity-content1 {
+  color: #fff;
+  text-align: center;
+  height: 100%;
+  text-transform: capitalize;
+  background: #00000043;
+}
 .activity-body {
   margin: auto;
   padding: 60px;
 }
 
 .activity-body h1 {
-  font-size: 2.5em;
+  font-size: 25px;
   text-align: center;
   margin-top: 20px;
   font-weight: 600;
@@ -32,7 +39,7 @@
 .section {
   width: 100%;
   padding: 50px;
-  font-size: 1.6em;
+  font-size: 20px;
   margin-top: 30px;
   box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.4);
 }
@@ -68,23 +75,12 @@
     margin-top: -50px;
   }
 }
-
-@media (max-width: 540px) {
-  .activity-body h1 {
-    font-size: 1.9em;
-  }
-
+@media (max-width: 768px) {
   .section {
-    font-size: 1.2em;
+    font-size: 17px;
   }
-}
-
-@media (max-width: 480px) {
   .activity-body h1 {
-    font-size: 1.6em;
+    font-size: 20px;
   }
 
-  .section {
-    font-size: 1em;
-  }
 }

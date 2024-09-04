@@ -6,7 +6,9 @@ function News() {
   return (
     <div>
       <div className='news'>
+        <div className='news-content'>
         <h2>News & Viewer</h2>
+        </div>
       </div>
       <div className='news-container'>
         <div className='blog'>
