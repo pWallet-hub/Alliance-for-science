@@ -1,12 +1,12 @@
 .team {
-  background-image: url('../../assets/image/_72A2707.jpg');
+  background-image: url('../../assets/image/teamimage.jpg');
   width: 100%;
   height: 30rem;
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.826);
   background-position: center;
   color: white;
-  padding-top: 200px;
+
   font-family: sans-serif;
   text-align: center;
   font-size: 20px;
@@ -16,10 +16,11 @@
 
 .team-content {
   color: #fff;
-  text-align: center;
   height: 100%;
+  text-align: center;
   text-transform: capitalize;
   background: #00000043;
+  padding-top: 200px;
 }
 
 .team-cards {
@@ -52,7 +53,7 @@
   width: 100%;
   height: 85%;
   background-size: cover;
-  background-position: center;
+  background-position: top;
   transition: background-color 0.3s ease-in-out;
 }
 
