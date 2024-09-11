@@ -4,81 +4,135 @@
   padding: 0;
   width: 100%;
   height: 30rem;
-  background-image: url('../../assets/image/_72A2707.jpg');
+  background-image: url('../../assets/image/news.jpg');
   background-size: cover;
   background-position: center;
   color: white;
-  padding-top: 200px;
   text-align: center;
   font-size: 20px;
   text-transform: capitalize;
   transition: 0.5s ease-in-out;
 }
-
-.activity-content1 {
+.activity-content1{
   color: #fff;
   text-align: center;
   height: 100%;
+  padding-top: 200px;
   text-transform: capitalize;
   background: #00000043;
 }
-.activity-body {
-  margin: auto;
-  padding: 60px;
+
+.activity-body{
+  margin: 90px 0 30px 0;
+  padding: 0 70px;
 }
 
-.activity-body h1 {
-  font-size: 25px;
+.activity-body h1{
   text-align: center;
-  margin-top: 20px;
-  font-weight: 600;
+  margin-bottom: 20px;
+}
+.Page-activity{
+  margin-bottom: 30px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  position: relative;
+  overflow: visible;
+}
+.Page-activity .p-activity-image{
+  background-size: cover;
+  background-position: center;
+  width: 300px;
+  height: 33vh;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px 0 rgba(231, 186, 186, 0.5);
+}
+.Page-activity .p-activity-image.one{
+  background-image: url('../../assets/image/act1.webp');
+}
+.Page-activity .p-activity-image.two{
+  background-image: url('../../assets/image/act2.jpg');
+  position: absolute;
+  right: -10px;
+}
+.Page-activity .p-activity-image.three{
+  background-image: url('../../assets/image/act3.jpg');
 }
 
-.section {
+.Page-activity .p-activity-content{
   width: 100%;
-  padding: 50px;
-  font-size: 20px;
-  margin-top: 30px;
-  box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.4);
+  text-align: justify;
 }
-
-.section.one {
-  background-color: rgb(160, 222, 247);
+.Page-activity{
+  margin-top: 60px;
 }
-
-.section.two {
-  background-color: orange;
-  color: white;
+.Page-activity.plast{
+  margin-top: 100px;
 }
-
-.section.three {
-  background-color: #d279a6;
-  color: white;
+.p-activity-content h3{
+  color: #025496;
 }
-
-.separator {
-  width: 15px;
-  height: 150px;
-  background-color: #025496;
+.p-activity-content p{
+  font-size: 14px;
+}
+.activity-foot h3{
+  text-align: center;
   margin: auto;
-  margin-top: 30px;
+  width: 60%;
+  margin-top: 70px;
+  margin-bottom: 50px;
+  font-weight: 500;
 }
-
-.separator.two {
-  background-color: #3bb300;
+.trusted-image{
+  display: flex;
 }
-
-@media (max-width: 900px) {
-  .activity-page {
-    margin-top: -50px;
+.trusted-image img{
+  width: 23px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-bottom: 25px;
+}
+.trusted-image .activity-img{
+  margin-left: -10px;
+}
+.trusted-image p{
+  font-size: 14px;
+  margin: 3px;
+}
+.activity-foot a button{
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
+  border-color: 1px solid #025496;
+  font-weight: 450;
+  background-color: #025496;
+  color: white;
+  margin-bottom: 0;
+}
+.activity-foot .act-button{
+  text-align: center;
+}
+@media (max-width: 820px) {
+  .Page-activity .p-activity-image{
+    margin-bottom: 20px;
+    width: 100%;
+    height: 55vh;
   }
-}
-@media (max-width: 768px) {
-  .section {
-    font-size: 17px;
+  .activity-body{
+    padding: 0 30px;
   }
-  .activity-body h1 {
+  .activity-body h1{
+    margin-bottom: 0;
     font-size: 20px;
   }
-
+  
+  .Page-activity .p-activity-image.two{
+    position: relative;
+  }
+  .Page-activity{
+    grid-template-columns: 1fr;
+    
+  }
+  
 }

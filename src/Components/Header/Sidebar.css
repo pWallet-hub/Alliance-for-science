@@ -53,6 +53,16 @@
   top: 107px;
   left: 20px;
   z-index: 1002;
+  width: 34x;
+  height: 30px;
+  padding: 2px 5px 0px 5px;
+  background-color: #071C33;
+  border-radius: 2px;
+  transition: .2s ease;
+}
+
+.hamburger.open {
+  background-color: transparent;
 }
 
 .hamburger .bar {
@@ -62,6 +72,7 @@
   margin: 4px 0;
   transition: all 0.3s ease;
 }
+
 
 .hamburger.open .bar1 {
   transform: rotate(45deg) translate(5px, 5px);
@@ -122,11 +133,11 @@
 
 @media (max-width: 540px) {
   .hamburger {
-    top: 133px;
+    top: 126px;
   }
 
   .sidebar {
-    top: 107px;
+    top: 100px;
     width: 250px;
     border-radius: 0;
   }
