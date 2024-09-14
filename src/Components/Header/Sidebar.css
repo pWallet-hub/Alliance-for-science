@@ -40,6 +40,21 @@
   font-family: sans-serif;
   font-size: 16px;
   transition: color 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+.sidebar ul li a::after  {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: white;
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  transition: width 0.3s;
+}
+.sidebar ul li a:hover::after {
+  width: 100%;
 }
 
 .sidebar ul li a:hover {
@@ -93,7 +108,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 778px) {
   .sidebar {
     transform: translateX(0);
     opacity: 1;

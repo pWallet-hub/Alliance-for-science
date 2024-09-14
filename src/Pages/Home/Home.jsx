@@ -83,7 +83,7 @@ function Home() {
       <div className="main-activities">
         <h2>Explore Our Main Activities</h2>
         <div className="activities-container">
-          <div className="activity-item">
+          <div className="activity-item different">
             <div className="activity-icon food-security"><FaBowlFood /></div>
             <h3>FOOD SECURITY</h3>
             <p>Alliance for science Rwanda has been incorporated</p>
@@ -93,12 +93,12 @@ function Home() {
             <h3>CLIMATE CHANGE</h3>
             <p>Alliance for science Rwanda has been incorporated</p>
           </div>
-          <div className="activity-item">
+          <div className="activity-item different">
             <div className="activity-icon research-innovation"><MdOutlineScience /></div>
             <h3>RESEARCH INNOVATION</h3>
             <p>Alliance for science Rwanda has been incorporated</p>
           </div>
-          <div className="activity-item">
+          <div className="activity-item last">
             <div className="activity-icon policy-advocacy"><GrDocumentText /></div>
             <h3>POLICY ADVOCACY</h3>
             <p>Alliance for science Rwanda has been incorporated</p>
