@@ -54,7 +54,7 @@
 .about-content1 p {
   margin-bottom: 1rem;
   color: #000000;
-  font-size: 18px;
+  font-size: 17px;
   margin-right: 5rem;
   text-align: justify;
 }
@@ -134,7 +134,7 @@
 }
 
 .mission p {
-  font-size: 20px;
+  font-size: 17px;
   line-height: 1.5;
 }
 
@@ -153,7 +153,7 @@
 .goal ul{
   list-style-type: circle;
   color: #000000;
-  font-size: 20px;
+  font-size: 17px;
   margin-left: 2rem;
 }
 
@@ -196,7 +196,7 @@
   .about-content1 p {
     margin-right: 1rem;
     margin-left: 2rem;
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .about-content1 h1 {
@@ -211,7 +211,7 @@
   }
   .goal li,
   .mission p {
-    font-size: 17px;
+    font-size: 15px;
   }
 }
 

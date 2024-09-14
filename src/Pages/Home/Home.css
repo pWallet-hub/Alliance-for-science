@@ -225,10 +225,9 @@
 }
 
 .activity-item {
-  margin: 2rem;
-  max-width: 280px;
+  margin: 20px;
+  max-width: 330px;
   text-align: justify;
-  margin-bottom: 50px;
 }
 
 .activity-icon {
@@ -248,7 +247,7 @@
 }
 
 .activity-item p {
-  font-size: 18px;
+  font-size: 17px;
   text-align: justify;
 }
 
@@ -285,7 +284,23 @@
   height: 120px;
   object-fit: contain;
 }
+@media (max-width: 1480px) {
+  .activity-item.different{
+    margin-top: 150px;
+  }
+  .activity-item.last{
+    margin-top: -100px;
+  }
 
+}
+@media (max-width: 1125px) {
+  .activity-item.different{
+    margin-top: 0;
+  }
+  .activity-item.last{
+    margin-top: 0;
+  }
+}
 @media (max-width: 1010px) {
   .card-container {
     display: flex;
@@ -316,6 +331,7 @@
   .card-content h1 {
     font-size: 1.5em;
   }
+  
 }
 
 @media (max-width: 768px) {
