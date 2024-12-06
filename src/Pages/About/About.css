@@ -135,8 +135,10 @@
 }
 
 .mission p {
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.5;
+  text-align: justify;
+  text-transform: capitalize;
 }
 
 .goal {
@@ -154,8 +156,10 @@
 .goal ul{
   list-style-type: circle;
   color: #000000;
-  font-size: 17px;
+  font-size: 20px;
+  text-align: justify;
   margin-left: 2rem;
+  text-transform: capitalize;
 }
 
 .goal ul li {
@@ -175,7 +179,9 @@
 @media (max-width: 900px) {
   .about1 {
     margin-top: -50px;
+ 
   }
+ 
 }
 
 
@@ -197,7 +203,7 @@
   .about-content1 p {
     margin-right: 1rem;
     margin-left: 2rem;
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .about-content1 h1 {
@@ -212,7 +218,7 @@
   }
   .goal li,
   .mission p {
-    font-size: 15px;
+    font-size: 18px;
   }
 }
 
