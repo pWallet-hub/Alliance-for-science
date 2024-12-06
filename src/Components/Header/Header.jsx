@@ -18,7 +18,7 @@ function Header() {
         </div>
         <div className="contact-item">
           <FaPhone className="icon" />
-          <span>+1234567890</span>
+          <span>+250 788 667 469</span>
         </div>
       </div>
     </div>

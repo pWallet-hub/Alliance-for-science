@@ -1,6 +1,6 @@
 import React from 'react';
 import './About.css';
-import aboutImage from '../../assets/image/aboutimage.jpg';
+import aboutImage from '../../assets/image/4.jpg';
 import { GoDotFill } from "react-icons/go";
 
 

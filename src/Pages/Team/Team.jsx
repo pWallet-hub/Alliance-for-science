@@ -1,7 +1,7 @@
 import React from 'react';
 import './Team.css';
-import image1 from '../../assets/image/habiman.jpeg';
-import image2 from '../../assets/image/_72A2686.jpg';
+import image1 from '../../assets/image/habib.png';
+import image2 from '../../assets/image/DGT_7871 copy.jpg';
 import image3 from '../../assets/image/DSC_1823.jpg';
 import aboutImage from '../../assets/image/pacc.jpg';
 import { FaFacebook, FaTwitter, FaLinkedin ,FaPhone} from 'react-icons/fa';
@@ -46,7 +46,7 @@ function Team() {
             >
               <div className='card-content'>
                 <h1>Jean Claude Habimana</h1>
-                <p>Chief Operations Officer</p>
+                <p>Program Manager</p>
                 <div className='icons'>
                   <a href='#'><FaFacebook /></a>
                   <a href='#'><FaTwitter /></a>
@@ -69,7 +69,7 @@ function Team() {
             >
               <div className='card-content'>
                 <h1>Gisele Ndizeye</h1>
-                <p>Head of Marketing</p>
+                <p>Communication Manager</p>
                 <div className='icons'>
                   <a href='#'><FaFacebook /></a>
                   <a href='#'><FaTwitter /></a>
@@ -91,7 +91,7 @@ function Team() {
             >
               <div className='card-content'>
                 <h1>Agape Nduwamungu</h1>
-                <p>Head of Marketing</p>
+                <p>IT Service Officer</p>
                 <div className='icons'>
                   <a href='#'><FaFacebook /></a>
                   <a href='#'><FaTwitter /></a>
