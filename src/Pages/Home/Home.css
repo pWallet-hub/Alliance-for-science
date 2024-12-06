@@ -25,11 +25,13 @@
   color: #FCFEFF;
   font-size: 45px;
   margin-bottom: 1rem;
+  text-transform: capitalize;
 }
 
 .home-content p {
   font-size: 45px;
   text-align: center;
+  text-transform: capitalize;
 }
 
 .card-container {
@@ -233,7 +235,7 @@
 .activity-icon {
   width: 80px;
   border-radius: 50%;
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   font-size: 50px;
