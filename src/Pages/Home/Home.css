@@ -17,7 +17,6 @@
   text-align: center;
   height: 100%;
   padding-top: 850px;
-  text-transform: capitalize;
   background: #00000043;
 }
 
@@ -25,13 +24,11 @@
   color: #FCFEFF;
   font-size: 45px;
   margin-bottom: 1rem;
-  text-transform: capitalize;
 }
 
 .home-content p {
   font-size: 45px;
   text-align: center;
-  text-transform: capitalize;
 }
 
 .card-container {

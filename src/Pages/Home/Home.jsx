@@ -22,7 +22,7 @@ function Home() {
     <div className='home-container'>
       <div className='home-content'>
         <div className='text-content'>
-          <h1>alliance for science RWANDA</h1>
+          <h1>Alliance for Science RWANDA</h1>
           <p>Alliance for Science  Rwanda is all about 
             creating a poverty  free world .</p>
         </div>

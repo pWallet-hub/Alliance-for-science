@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="footer">
+      <div className="footer-separator"></div>
       <div className="footer-container">
         <div className="footer-left">
           <div className="logo">

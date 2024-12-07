@@ -4,9 +4,15 @@
   padding-left: 1rem;
   padding-right: 1rem;
   width: 100%;
-
+  display: block;
 }
-
+.footer-separator{
+  width: 30%;
+  border-radius: 20px;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin: 20px auto;
+}
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
