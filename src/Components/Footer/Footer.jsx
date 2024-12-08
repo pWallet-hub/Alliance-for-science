@@ -33,30 +33,7 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="footer-right">
-          <div className="footer-links">
-            <div className="footer-col">
-              <h4>Our Services</h4>
-              <ul>
-                <li>
-                  <IoChevronForward style={{ color: '#025496' }} />
-                  <a href="#">Food Security</a>
-                </li>
-                <li>
-                  <IoChevronForward style={{ color: '#025496' }} />
-                  <a href="#">Climate Change</a>
-                </li>
-                <li>
-                  <IoChevronForward style={{ color: '#025496' }} />
-                  <a href="#">Research Innovation</a>
-                </li>
-                <li>
-                  <IoChevronForward style={{ color: '#025496' }} />
-                  <a href="#">Policy Advocacy</a>
-                </li>
-              </ul>
-            </div>
-            <div className="footer-col">
+        <div className="footer-col">
               <h4>Pages</h4>
               <ul>
               <li>
@@ -80,8 +57,8 @@ const Footer = () => {
                   <Link to="/team" >Our Team</Link>
                 </li>
               </ul>
-            </div>
-            <div className="footer-col">
+        </div>
+        <div className="footer-col">
               <h4>Contact</h4>
               <ul>
                 <li>
@@ -91,8 +68,6 @@ const Footer = () => {
                   <MdOutlineEmail style={{ color: '#025496' }} /> rwandaafs@gmail.com
                 </li>
               </ul>
-            </div>
-          </div>
         </div>
       </div>
     </footer>

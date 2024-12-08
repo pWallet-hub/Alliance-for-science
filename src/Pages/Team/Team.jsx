@@ -44,7 +44,7 @@ function Team() {
 
           <div className='team-card'>
             <div 
-              className='card-image' 
+              className='card-image unique' 
               style={{ backgroundImage: `url(${image1})` }}
             >
               <div className='card-content'>
@@ -66,7 +66,7 @@ function Team() {
 
           <div className='team-card'>
             <div 
-              className='card-image' 
+              className='card-image unique' 
               style={{ backgroundImage: `url(${image2})` }}
             >
               <div className='card-content'>
