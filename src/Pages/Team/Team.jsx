@@ -5,7 +5,7 @@ import image2 from '../../assets/image/DGT_7871 copy.jpg';
 import image3 from '../../assets/image/DSC_1823.jpg';
 import aboutImage from '../../assets/image/pacc.jpg';
 import { FaFacebook, FaTwitter, FaLinkedin ,FaInstagram} from 'react-icons/fa';
-import { IoMdClose } from "react-icons/io";
+import { FaXTwitter } from "react-icons/fa6";
 
 function Team() {
   return (
@@ -27,7 +27,7 @@ function Team() {
                 <p>Executive Director</p>
                 <div className='icons'>
                   <a href='https://www.facebook.com/pacifique.nshimiyimana/' target="_blank" rel="noreferrer"><FaFacebook /></a>
-                  <a href="https://x.com/scienceally_rw?lang=en" target="_blank" rel="noreferrer"><IoMdClose /></a>
+                  <a href="https://x.com/scienceally_rw?lang=en" target="_blank" rel="noreferrer"><FaXTwitter /></a>
                   <a href='https://www.linkedin.com/in/pacifique-nshimiyimana-69996581/?originalSubdomain=rw' target="_blank" rel="noreferrer"><FaLinkedin /></a>
                 </div>
               </div>
@@ -35,7 +35,7 @@ function Team() {
             <div className='tsocial-icons'>
               <a href='https://www.facebook.com/pacifique.nshimiyimana/' target="_blank" rel="noreferrer"><FaFacebook /></a>
               <a href="https://x.com/scienceally_rw?lang=en" target="_blank" rel="noreferrer">
-            <IoMdClose />
+              <FaXTwitter />
             </a>
               <a href='https://www.instagram.com/pacifiquens/' target="_blank" rel="noreferrer"><FaInstagram /></a>
               <a href='https://www.linkedin.com/in/pacifique-nshimiyimana-69996581/?originalSubdomain=rw' target="_blank" rel="noreferrer"><FaLinkedin /></a>
@@ -52,14 +52,14 @@ function Team() {
                 <p>Program Manager</p>
                 <div className='icons'>
                   <a href='https://www.facebook.com/habimana.jeanclaude.370/' target="_blank" rel="noreferrer"><FaFacebook /></a>
-                  <a href='https://x.com/habimana_jclaud?lang=en' target="_blank" rel="noreferrer"> <IoMdClose /></a>
+                  <a href='https://x.com/habimana_jclaud?lang=en' target="_blank" rel="noreferrer"> <FaXTwitter /></a>
                   <a href='https://www.linkedin.com/in/habimana-jean-claude-416ab6107/' target="_blank" rel="noreferrer"><FaLinkedin /></a>
                 </div>
               </div>
             </div>
             <div className='tsocial-icons'>
             <a href='https://www.facebook.com/habimana.jeanclaude.370/' target="_blank" rel="noreferrer"><FaFacebook /></a>
-                  <a href='https://x.com/habimana_jclaud?lang=en' target="_blank" rel="noreferrer"> <IoMdClose /></a>
+                  <a href='https://x.com/habimana_jclaud?lang=en' target="_blank" rel="noreferrer"> <FaXTwitter /></a>
                   <a href='https://www.linkedin.com/in/habimana-jean-claude-416ab6107/' target="_blank" rel="noreferrer"><FaLinkedin /></a>
             </div>
           </div>
@@ -74,14 +74,14 @@ function Team() {
                 <p>Communication Manager</p>
                 <div className='icons'>
                   <a href='https://www.facebook.com/gisele.ndizeye/' target="_blank" rel="noreferrer"><FaFacebook /></a>
-                  <a href='https://x.com/gisele_ndizeye?lang=en' target="_blank" rel="noreferrer"> <IoMdClose /></a>
+                  <a href='https://x.com/gisele_ndizeye?lang=en' target="_blank" rel="noreferrer"> <FaXTwitter /></a>
                   <a href='https://www.linkedin.com/in/ndizeye-gisele-ba549a1a3/?original_referer=https%3A%2F%2Fwww%2Egoogle%2Ecom%2F&originalSubdomain=rw' target="_blank" rel="noreferrer"><FaLinkedin /></a>
                 </div>
               </div>
             </div>
             <div className='tsocial-icons'>
             <a href='https://www.facebook.com/gisele.ndizeye/' target="_blank" rel="noreferrer"><FaFacebook /></a>
-                  <a href='https://x.com/gisele_ndizeye?lang=en' target="_blank" rel="noreferrer"> <IoMdClose /></a>
+                  <a href='https://x.com/gisele_ndizeye?lang=en' target="_blank" rel="noreferrer"> <FaXTwitter /></a>
                   <a href='https://www.linkedin.com/in/ndizeye-gisele-ba549a1a3/?original_referer=https%3A%2F%2Fwww%2Egoogle%2Ecom%2F&originalSubdomain=rw' target="_blank" rel="noreferrer"><FaLinkedin /></a>
             </div>
           </div>
