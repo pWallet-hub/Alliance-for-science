@@ -1,5 +1,6 @@
 import React from 'react';
 import './Activities.css';
+import { Link } from 'react-router-dom';
 
 function Activities() {
   return (
@@ -64,8 +65,10 @@ function Activities() {
           <p> +10,000 Trusted Alliance as the first Choice</p>
         </div>
         <div className='act-button'>
-        <a href=""><button>Get in touch</button></a>
+        <Link to="/about"><button>Get in touch</button></Link>
+        
         </div>
+        
       </div>
       </div>
     </>
