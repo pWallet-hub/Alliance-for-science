@@ -69,8 +69,7 @@ function Home() {
           <p>Alliance for science Rwanda
             has been incorporated as a
             social enterprise with mission
-            to seek food security, sustana
-            bility through education and
+            to seek food security, sustanability through education and
             advocacy of innovative farming
             technologies in Rwanda by
             mitigating effects of climate
