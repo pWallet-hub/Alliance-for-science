@@ -42,7 +42,7 @@ function Team() {
             </div>
           </div>
 
-          <div className='team-card'>
+          {/* <div className='team-card'>
             <div 
               className='card-image' 
               style={{ backgroundImage: `url(${image1})` }}
@@ -62,7 +62,7 @@ function Team() {
                   <a href='https://x.com/habimana_jclaud?lang=en' target="_blank" rel="noreferrer"> <FaXTwitter /></a>
                   <a href='https://www.linkedin.com/in/habimana-jean-claude-416ab6107/' target="_blank" rel="noreferrer"><FaLinkedin /></a>
             </div>
-          </div>
+          </div> */}
 
           <div className='team-card'>
             <div 
