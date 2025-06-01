@@ -10,6 +10,8 @@ import ofab from '../../assets/image/OFAB-logo-removebg-preview.png'
 import rab from '../../assets/image/Rab.jpg'
 import aatf from '../../assets/image/AATF.jpg'
 import rmc from '../../assets/image/rmc.jpg'
+import audience from '../../assets/image/Audience.jpg'
+import award from '../../assets/image/award.jpg'
 import virca from '../../assets/image/virca.jpg'
 import { BiSolidCloudRain } from "react-icons/bi";
 
@@ -63,7 +65,7 @@ function Home() {
         </div>
       </div>
       <div className='about'>
-        <img src={aboutimage} alt="image" className='image1' />
+        <img src={award} alt="image" className='image1' />
         <div className='about-content'>
           <h1>about us</h1>
           <p>Alliance for science Rwanda

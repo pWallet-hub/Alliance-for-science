@@ -1,6 +1,6 @@
 import React from 'react';
 import './About.css';
-import aboutImage from '../../assets/image/4.jpg';
+import audience from '../../assets/image/Audience.jpg';
 import { GoDotFill } from "react-icons/go";
 
 
@@ -13,7 +13,7 @@ function About() {
                 </div>
             </div>
             <div className='about2'>
-                <img src={aboutImage} alt="image" className='image2' />
+                <img src={audience} alt="image" className='image2' />
                 <div className='about-content1'>
                     <h1>About Us</h1>
                     <p>Alliance for Science Rwanda has been incorporated 
