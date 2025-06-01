@@ -8,7 +8,7 @@ function Activities() {
       <div className='activity-page'>
       <div className='activity-content1'> 
         <h1>activity page</h1>
-        </div>
+      </div>
       </div>
       <div className='activity-body'>
         <h1>The top three principal activities of Alliance for Science Rwanda (AfS-Rwanda) based on the provided content are</h1>
@@ -30,7 +30,7 @@ function Activities() {
         <div className="Page-activity">
           <div className="p-activity-image two"></div>
           <div className="p-activity-content">
-            <h3>Science communication capacity building</h3>
+          <h3>Science communication capacity building</h3>
           <p>
           AFS-Rwanda focuses on building the capacity of various groups,
            including media personnel, students and farmers, through training sessions.
