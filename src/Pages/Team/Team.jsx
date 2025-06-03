@@ -3,7 +3,7 @@ import './Team.css';
 import image1 from '../../assets/image/habib.png';
 import image2 from '../../assets/image/DGT_7871 copy.jpg';
 import image3 from '../../assets/image/DSC_1823.jpg';
-import aboutImage from '../../assets/image/pacc.jpg';
+import aboutImage from '../../assets/image/pacific.jpg';
 import { FaFacebook, FaTwitter, FaLinkedin ,FaInstagram} from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
 
