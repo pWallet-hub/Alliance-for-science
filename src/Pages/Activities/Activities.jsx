@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 
 // Import images
 import activityImage1 from '../../assets/image/teck.jpg';
-
+import activityImage2 from '../../assets/image/pacifique.jpg';
+import activityImage3 from '../../assets/image/bg-image.jpg';
 import trustedImage from '../../assets/image/trusted.png';
-import bg from '../../assets/image/bg-image.jpg';
-import pacy from '../../assets/image/pacifique.jpg';
 
 function Activities() {
   const activities = [
@@ -20,13 +19,13 @@ function Activities() {
     {
       id: 2,
       title: "Science Communication Capacity Building",
-      image: pacy,
+      image: activityImage2,
       description: "AFS-Rwanda focuses on building the capacity of various groups, including media personnel, students and farmers, through training sessions. These events aim to create effective communication and advocates for agricultural science and technology, enabling these groups to become speakers and writers on issues related to agricultural innovation and climate resilience. Over the past three years, they have trained over 265 individuals."
     },
     {
       id: 3,
       title: "Policy Advocacy",
-      image: bg,
+      image: activityImage3,
       description: "AFS-Rwanda engages in policy advocacy by organizing events, roundtables discussions, and strategic collaborations to promote the implementation of science-based agricultural policies. Their efforts aim to influence policymakers, researchers, and business professionals to support the adoption of innovative agricultural practices that enhance food security and climate resilience in Rwanda."
     }
   ];
@@ -44,8 +43,8 @@ function Activities() {
         <h1>The Top Three Principal Activities of Alliance for Science Rwanda (AfS-Rwanda)</h1>
         
         {activities.map((activity, index) => (
-          <div key={activity.id} className={`page-activity ${index === 2 ? 'last-activity' : ''}`}>
-            <div className={`activity-image-container ${index % 2 === 1 ? 'reverse' : ''}`}>
+          <div key={activity.id} className={`page-activity ${index === 2 ? 'last-activity' : ''} ${index === 1 ? 'reverse' : ''}`}>
+            <div className="activity-image-container">
               <img 
                 src={activity.image} 
                 alt={activity.title}
@@ -78,7 +77,7 @@ function Activities() {
           
           <div className='action-button'>
             <Link to="/about">
-              <button>Explore who we are</button>
+              <button>Get in Touch</button>
             </Link>
           </div>
         </div>
