@@ -15,20 +15,16 @@ import award from '../../assets/image/award.jpg'
 import virca from '../../assets/image/virca.jpg'
 import { BiSolidCloudRain } from "react-icons/bi";
 
-
-
 function Home() {
-
-
   return (
     <div className='home-container'>
       <div className='home-content'>
         <div className='text-content'>
           <h1>Alliance for Science RWANDA</h1>
-          <p>Alliance for Science  Rwanda is all about 
-            creating a poverty  free world .</p>
+          <p>Alliance for Science Rwanda is all about creating a poverty free world.</p>
         </div>
       </div>
+
       <div className='card-container'>
         <div className='card first'>
           <div className='card1'>
@@ -64,6 +60,7 @@ function Home() {
           </div>
         </div>
       </div>
+
       <div className='about'>
         <img src={award} alt="image" className='image1' />
         <div className='about-content'>
@@ -76,11 +73,11 @@ function Home() {
             technologies in Rwanda by
             mitigating effects of climate
             change , pests and diseases.
-
           </p>
           <button>read more</button>
         </div>
       </div>
+
       <div className="main-activities">
         <h2>Explore Our Main Activities</h2>
         <div className="activities-container">
@@ -104,21 +101,40 @@ function Home() {
             <h3>POLICY ADVOCACY</h3>
             <p>Alliance for science Rwanda has been incorporated</p>
           </div>
+        </div>
+      </div>
 
-        </div>
-      </div>
+      {/* ── Partners Section ── */}
       <div className='parterner'>
-        <h2>OUR PARTNERS</h2>
-        <div className='image4'>
-         
-          <img src={rab} alt="image" />
-          <img src={ofab} alt="image" />
-          <img src={aatf} alt="image" />
-          <img src={rmc} alt="image" />
-          <img src={virca} alt="image" />
-         
+        <div className='parterner-header'>
+          <span className='parterner-eyebrow'>Trusted Collaborators</span>
+          <h2>OUR PARTNERS</h2>
+          <div className='parterner-rule'>
+            <span className='rule-line' />
+            <span className='rule-dot' />
+            <span className='rule-line' />
+          </div>
+        </div>
+
+        <div className='partner-grid'>
+          <div className='partner-card'>
+            <img src={rab} alt="RAB" />
+          </div>
+          <div className='partner-card'>
+            <img src={ofab} alt="OFAB" />
+          </div>
+          <div className='partner-card'>
+            <img src={aatf} alt="AATF" />
+          </div>
+          <div className='partner-card'>
+            <img src={rmc} alt="RMC" />
+          </div>
+          <div className='partner-card'>
+            <img src={virca} alt="VIRCA" />
+          </div>
         </div>
       </div>
+
     </div>
   );
 }
