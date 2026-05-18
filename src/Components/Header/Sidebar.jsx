@@ -20,9 +20,9 @@ function Sidebar() {
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <ul>
           <li><Link to="/" onClick={toggleSidebar}>Home</Link></li>
-          <li><Link to="/news" onClick={toggleSidebar}>News & Viewer</Link></li>
           <li><Link to="/about" onClick={toggleSidebar}>About Us</Link></li>
           <li><Link to="/activities" onClick={toggleSidebar}>Activities</Link></li>
+          <li><Link to="/news" onClick={toggleSidebar}>News & Viewer</Link></li>
           <li><Link to="/team" onClick={toggleSidebar}>Our Team</Link></li>
         </ul>
       </div>
