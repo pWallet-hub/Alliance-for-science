@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import './Home.css';
 import image from '../../assets/image/bd image.jpg';
-import aboutimage from '../../assets/image/DSC_2232.jpg';
+import aboutimage from '../../assets/image/6.jpg';
 import { FaBowlFood, FaChevronRight, FaPlay, FaRegComments } from "react-icons/fa6";
 import { TiWeatherCloudy } from "react-icons/ti";
 import { MdOutlineScience, MdKeyboardDoubleArrowRight } from "react-icons/md";
