@@ -2,10 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Home.css';
 import image from '../../assets/image/bd image.jpg';
 import aboutimage from '../../assets/image/DSC_2232.jpg';
-import { FaBowlFood } from "react-icons/fa6";
+import { FaBowlFood, FaChevronRight, FaPlay, FaRegComments } from "react-icons/fa6";
 import { TiWeatherCloudy } from "react-icons/ti";
-import { MdOutlineScience } from "react-icons/md";
+import { MdOutlineScience, MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { GrDocumentText } from "react-icons/gr";
+import { BiSolidCloudRain, BiTargetLock, BiSupport } from "react-icons/bi";
+import { FiUsers, FiAward, FiPieChart, FiMapPin, FiPhoneCall } from "react-icons/fi";
+
 import ofab from '../../assets/image/OFAB-logo-removebg-preview.png';
 import rab from '../../assets/image/Rab.jpg';
 import aatf from '../../assets/image/AATF.jpg';
@@ -13,7 +16,6 @@ import rmc from '../../assets/image/rmc.jpg';
 import audience from '../../assets/image/Audience.jpg';
 import award from '../../assets/image/award.jpg';
 import virca from '../../assets/image/virca.jpg';
-import { BiSolidCloudRain } from "react-icons/bi";
 
 function Home() {
   const [scrollY, setScrollY] = useState(0);
@@ -40,7 +42,7 @@ function Home() {
           if (entry.target === partnersRef.current && entry.isIntersecting) setPartnersVisible(true);
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
     if (aboutRef.current) observer.observe(aboutRef.current);
     if (activitiesRef.current) observer.observe(activitiesRef.current);
@@ -62,109 +64,169 @@ function Home() {
   ];
 
   const partners = [
-    { src: rab, alt: 'RAB' },
-    { src: ofab, alt: 'OFAB' },
-    { src: aatf, alt: 'AATF' },
-    { src: rmc, alt: 'RMC' },
-    { src: virca, alt: 'VIRCA' },
+    { src: rab, alt: 'RAB', url: 'https://www.rab.gov.rw/' },
+    { src: ofab, alt: 'OFAB', url: 'https://ofabafrica.org/' },
+    { src: aatf, alt: 'AATF', url: 'https://www.aatf-africa.org/' },
+    { src: rmc, alt: 'RMC', url: 'https://rmc.rw/' },
+    { src: virca, alt: 'VIRCA', url: 'https://www.aatf-africa.org/virca/' },
   ];
 
   return (
     <div className='home-container'>
 
-      {/* ── HERO ── */}
+      {/* ── SECTION 1: HERO BANNER ── */}
       <section className='home-content'>
-        <div
-          className='hero-parallax'
-          style={{ transform: `translateY(${scrollY * 0.35}px)` }}
-        />
+        <div className='hero-parallax' style={{ transform: `translateY(${scrollY * 0.35}px)` }} />
         <div className='hero-overlay' />
         <div className='text-content'>
           <span className='hero-eyebrow'>Science · Innovation · Sustainability</span>
           <h1>Alliance for Science <span className='hero-accent'>RWANDA</span></h1>
           <p>Alliance for Science Rwanda is all about creating a poverty free world.</p>
           <div className='hero-cta-row'>
-            <button className='hero-cta primary'>Discover More</button>
+            <button className='hero-cta primary'>Discover More <FaChevronRight className="btn-arrow" /></button>
             <button className='hero-cta secondary'>Our Work</button>
           </div>
         </div>
-        <div className='hero-scroll-hint'>
-          <span className='scroll-line' />
-          <span className='scroll-label'>Scroll</span>
+      </section>
+
+      {/* ── SECTION 2: INTRO & CAPABILITIES ── */}
+      <section className="intro-capabilities-section">
+        <div className="section-inner-content grid-2-col">
+          <div className="capabilities-left-images">
+            <div className="image-box-main" style={{ backgroundImage: `url(${award})` }} />
+            <div className="image-box-floating" style={{ backgroundImage: `url(${aboutimage})` }} />
+          </div>
+          <div className="capabilities-right-text">
+            <span className="section-eyebrow">About Our Organisation</span>
+            <h2>Bringing values &amp; insights to scientific research</h2>
+            <p className="section-desc-para">
+              Uniting farmers, scientists, media, businesses and policymakers for a better and sustainable future.
+            </p>
+            <div className="capabilities-features-list">
+              <div className="feature-inline-item">
+                <div className="feature-icon-box"><BiTargetLock /></div>
+                <div>
+                  <h4>Our Core Focus</h4>
+                  <p>Advancing sustainable practices by aligning knowledge resources effectively.</p>
+                </div>
+              </div>
+              <div className="feature-inline-item">
+                <div className="feature-icon-box"><BiSupport /></div>
+                <div>
+                  <h4>Community Connection</h4>
+                  <p>Connecting regional agricultural systems directly with research discoveries.</p>
+                </div>
+              </div>
+            </div>
+            <button className="theme-solid-btn">Discover More <FaChevronRight className="btn-arrow" /></button>
+          </div>
         </div>
       </section>
 
-      {/* ── EVENT CARDS ── */}
-      <section className='card-container'>
-        {events.map((ev, i) => (
-  <div
-    key={i}
-    className={`card ${activeCard === i ? 'card-active' : ''}`}
-    onMouseEnter={() => setActiveCard(i)}
-    onMouseLeave={() => setActiveCard(null)}
-    style={{ animationDelay: `${i * 0.12}s` }}
-  >
-    <div className='card-num-col'>
-      <span className='card-big-num'>{ev.num}</span>
-    </div>
-    <div className='card-body'>
-      <div className='card-date-pill'>
-        <span className='dot' />
-        <span>{ev.month} {ev.year}</span>
-      </div>
-      <h2 className='card-title'>{ev.title}</h2>
-      <p className='card-subtitle'>Community outreach · Northern Province</p>
-    </div>
-    <div className='card-arrow'>
-      <div className='arrow-circle'>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </div>
-    </div>
-    <div className='card-bar' />
-  </div>
-))}
+      {/* ── SECTION 3: SERVICES EXTRACTION GRID ── */}
+      <section className="interventions-dark-section">
+        <div className="section-inner-content">
+          <div className="section-header-centered text-white">
+            <span className="section-eyebrow light">Strategic Directions</span>
+            <h2>Key impact paths for global issues</h2>
+          </div>
+          <div className="interventions-triple-grid">
+            {activities.slice(0, 3).map((act, idx) => (
+              <div className="intervention-box-card" key={idx}>
+                <div className="int-card-icon">{act.icon}</div>
+                <h3>{act.label} Interventions</h3>
+                <p>{act.desc} to support structural transformation scales.</p>
+                <a href="#more" className="int-card-link">Read More <MdKeyboardDoubleArrowRight /></a>
+              </div>
+            ))}
+          </div>
+          <p className="interventions-footer-note">
+            🔬 Delivering impactful outcomes. <a href="#explore">Find out more about our directions</a>
+          </p>
+        </div>
       </section>
 
-    {/* ── ABOUT — Image 1 layout + Image 2 content ── */}
-      <section
-        className={`about ${aboutVisible ? 'about-visible' : ''}`}
-        ref={aboutRef}
-      >
-        {/* LEFT: stacked images with floating card */}
-        <div className='about-image-wrap'>
-          <div className='about-img-stack'>
-            <img src={award} alt="Alliance for Science Rwanda" className='image1' />
-            <div className='about-img-overlay-card'>
-              <div className='about-overlay-badge'>
-                <span className='about-overlay-badge-dot' />
-                24/7 Emergency Support
+      {/* ── SECTION 5: MEDIA AREA WORKSPACE ── */}
+      <section className="lab-gallery-section">
+        <div className="section-inner-content">
+          <div className="gallery-layout-split">
+            <div className="gallery-left-info">
+              <span className="section-eyebrow light">Inside Our Mission</span>
+              <h2>Discover systemic values across our workspace layouts</h2>
+              <div className="info-pill-stat">
+                <FiPieChart className="p-icon" />
+                <div>
+                  <h3>Empowered</h3>
+                  <p>Advocacy Systems &amp; Action Layers</p>
+                </div>
               </div>
-              <img src={aboutimage} alt="Team" className='image2' />
-              <div className='about-overlay-play'>
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <div className="video-trigger-thumb" style={{ backgroundImage: `url(${award})` }}>
+                <div className="video-play-btn-circle"><FaPlay /></div>
+              </div>
+            </div>
+            <div className="gallery-right-images-grid">
+              <div className="gallery-grid-img img-wide" style={{ backgroundImage: `url(${aboutimage})` }} />
+              <div className="gallery-grid-img" style={{ backgroundImage: `url(${virca})` }} />
+              <div className="gallery-grid-img-card">
+                <h4>Alliance for Science</h4>
+                <p>Engaging communities to foster knowledge ecosystems.</p>
+                <a href="#visit" className="arrow-icon-btn-link"><FaChevronRight /></a>
               </div>
             </div>
           </div>
-          <div className='about-image-badge'>Est.<br />2023</div>
         </div>
+      </section>
 
-        {/* RIGHT: eyebrow, heading, desc, mission/vision icon cards, CTA */}
-        <div className='about-content'>
-          <span className='section-eyebrow'>About Our Organisation</span>
-          <h1>Our Mission &amp; <span className='accent-text'>Vision Statement</span></h1>
-          <div className='about-divider' />
-          <p>
-            Uniting farmers, scientists, media, businesses and policymakers
-            for a better and sustainable future.
-          </p>
+      {/* ── SECTION 6: EVENT HORIZONTAL TIMELINE ROW ── */}
+      <section className="card-section">
+        <div className="card-section-header">
+          <span className="section-eyebrow">Upcoming Gatherings</span>
+          <h2>Explore our latest events updates and timeline sessions</h2>
+        </div>
+        <div className="card-container-stack">
+          {events.map((ev, i) => (
+            <div
+              key={i}
+              className={`card ${activeCard === i ? 'card-active' : ''}`}
+              onMouseEnter={() => setActiveCard(i)}
+              onMouseLeave={() => setActiveCard(null)}
+            >
+              <div className='card-num-col'>
+                <span className='card-big-num'>{ev.num}</span>
+              </div>
+              <div className='card-body'>
+                <div className='card-date-pill'>
+                  <span className='pill-dot' />
+                  <span>{ev.month} {ev.year}</span>
+                </div>
+                <h2 className='card-title'>{ev.title}</h2>
+                <div className="card-meta-row">
+                  <span className="card-location"><FiMapPin /> Community outreach · Northern Province</span>
+                </div>
+              </div>
+              <div className='card-arrow'>
+                <div className='arrow-circle'>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </div>
+              <div className='card-bar' />
+            </div>
+          ))}
+        </div>
+      </section>
 
-          {/* Mission + Vision icon cards — matches Image 1 layout */}
-          <div className='about-mv-grid'>
-            <div className='about-mv-card'>
-              <div className='about-mv-icon'>
-                {/* target/mission icon */}
+      {/* ── SECTION 7: MISSION & VISION INSIGHT CORES ── */}
+      <section ref={aboutRef} className={`about ${aboutVisible ? 'about-visible' : ''}`}>
+        <div className="section-inner-content">
+          <div className="section-header-centered">
+            <span className="section-eyebrow">Core Statements</span>
+            <h1>Our Mission &amp; <span className="accent-text">Vision Statement</span></h1>
+          </div>
+          <div className="about-mv-grid">
+            <div className="about-mv-card">
+              <div className="about-mv-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                   <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
                 </svg>
@@ -176,9 +238,8 @@ function Home() {
                 climate change, pests and diseases.
               </p>
             </div>
-            <div className='about-mv-card'>
-              <div className='about-mv-icon'>
-                {/* vision/diamond icon */}
+            <div className="about-mv-card">
+              <div className="about-mv-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                   <path d="M2.7 7.5L12 3l9.3 4.5L12 21z"/><path d="M2.7 7.5h18.6M8 7.5L12 3l4 4.5"/>
                 </svg>
@@ -191,28 +252,11 @@ function Home() {
               </p>
             </div>
           </div>
-
-          <div className='about-cta-row'>
-            <button className='about-btn'>
-              <span>More About Us</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-            <div className='about-team-pill'>
-              <div className='about-team-avatar'>JM</div>
-              <div>
-                <strong>Pacifique Nshimiyimana</strong>
-                <span>Executive Director</span>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* ── ACTIVITIES ── */}
-      <section
-        className={`main-activities ${activitiesVisible ? 'activities-visible' : ''}`}
-        ref={activitiesRef}
-      >
+      {/* ── SECTION 8: OBJECTIVES STRIP ACTIVITIES ── */}
+      <section className="main-activities activities-visible" ref={activitiesRef}>
         <div className='activities-bg-shape' />
         <span className='section-eyebrow light'>What We Do</span>
         <h2>Explore Our Main Activities</h2>
@@ -221,11 +265,7 @@ function Home() {
         </div>
         <div className="activities-container">
           {activities.map((act, i) => (
-            <div
-              className="activity-item"
-              key={i}
-              style={{ animationDelay: `${i * 0.1 + 0.2}s` }}
-            >
+            <div className="activity-item" key={i}>
               <div className='activity-icon-wrap'>
                 <div className="activity-icon">{act.icon}</div>
                 <div className='activity-icon-ring' />
@@ -238,11 +278,64 @@ function Home() {
         </div>
       </section>
 
-      {/* ── PARTNERS ── */}
-      <section
-        className={`parterner ${partnersVisible ? 'partners-visible' : ''}`}
-        ref={partnersRef}
-      >
+
+      {/* ── SECTION 10: FAQS DROPDOWNS MODULE ── */}
+      <section className="faq-interactive-section">
+        <div className="section-inner-content grid-2-col">
+          <div className="faq-left-promo">
+            <div className="faq-promo-badge-card">
+              <FaRegComments className="faq-badge-icon" />
+              <h3>Have any question? Ask our experts</h3>
+            </div>
+          </div>
+          <div className="faq-right-accordion">
+            <span className="section-eyebrow">Frequently Asked Questions</span>
+            <h2>Answers to your values &amp; research questions</h2>
+            <div className="accordion-item-box">
+              <div className="accordion-header">
+                <h4>What technologies are focused on?</h4>
+                <span>+</span>
+              </div>
+            </div>
+            <div className="accordion-item-box">
+              <div className="accordion-header">
+                <h4>How can I join the Alliance network?</h4>
+                <span>+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 11: CONTACT ACTION FORM BLOCK ── */}
+      <section className="action-contact-form-section">
+        <div className="section-inner-content contact-form-grid-card">
+          <div className="contact-card-sidebar-info">
+            <span className="section-eyebrow light">Contact Us</span>
+            <h2>Get in touch with us for more information</h2>
+            <div className="sidebar-info-row-item">
+              <FiPhoneCall className="s-icon" />
+              <div>
+                <p>Office Direct Line</p>
+                <strong>Inquire Locally</strong>
+              </div>
+            </div>
+          </div>
+          <div className="contact-card-main-inputs">
+            <form className="home-embedded-form" onSubmit={(e)=>e.preventDefault()}>
+              <div className="form-double-inputs">
+                <input type="text" placeholder="Your Name" required />
+                <input type="email" placeholder="Email Address" required />
+              </div>
+              <textarea placeholder="Write Message..." rows="4" required />
+              <button type="submit" className="form-submit-theme-btn">Get In Touch</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 12: PARTNERS INBOUND LINKS GRID ── */}
+      <section className={`parterner ${partnersVisible ? 'partners-visible' : ''}`} ref={partnersRef}>
         <div className='parterner-header'>
           <span className='section-eyebrow'>Trusted Collaborators</span>
           <h2>Our <span className='accent-text'>Partners</span></h2>
@@ -254,16 +347,18 @@ function Home() {
         </div>
         <div className='partner-grid'>
           {partners.map((p, i) => (
-            <div
-              className='partner-card'
+            <a 
+              href={p.url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className='partner-card' 
               key={i}
-              style={{ animationDelay: `${i * 0.08}s` }}
             >
               <div className='partner-card-inner'>
                 <img src={p.src} alt={p.alt} />
               </div>
               <span className='partner-label'>{p.alt}</span>
-            </div>
+            </a>
           ))}
         </div>
       </section>
