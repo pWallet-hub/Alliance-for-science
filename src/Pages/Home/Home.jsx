@@ -75,10 +75,10 @@ function Home() {
   ];
 
   const partners = [
-    { src: rab,   alt: 'RAB',   url: 'https://www.rab.gov.rw/' },
-    { src: ofab,  alt: 'OFAB',  url: 'https://ofabafrica.org/' },
-    { src: aatf,  alt: 'AATF',  url: 'https://www.aatf-africa.org/' },
-    { src: rmc,   alt: 'RMC',   url: 'https://rmc.rw/' },
+    { src: rab,   alt: 'RAB',   url: 'https://www.rab.gov.rw/'            },
+    { src: ofab,  alt: 'OFAB',  url: 'https://ofabrwanda.rw/'             },
+    { src: aatf,  alt: 'AATF',  url: 'https://www.aatf-africa.org/'       },
+    { src: rmc,   alt: 'RMC',   url: 'https://rmc.rw/'                    },
     { src: virca, alt: 'VIRCA', url: 'https://www.aatf-africa.org/virca/' },
   ];
 

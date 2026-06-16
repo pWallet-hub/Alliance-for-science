@@ -219,8 +219,7 @@ function Team() {
                 <h3>Opening hours</h3>
               </div>
               <p className="hours-days">Monday - Friday: {current.hours.monFri}</p>
-              <p className="hours-days">Saturday: {current.hours.sat}</p>
-              <p className="hours-days closed">Sunday - Closed</p>
+              <p className="hours-days closed">Saturday-Sunday: Closed</p>
             </div>
             <a href={`tel:${current.phone}`} className="sidebar-phone-btn">
               <FaPhoneAlt /> Call Direct Office

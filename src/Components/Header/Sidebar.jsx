@@ -24,6 +24,7 @@ function Sidebar() {
           <li><Link to="/activities" onClick={toggleSidebar}>Activities</Link></li>
           <li><Link to="/news" onClick={toggleSidebar}>News & Viewer</Link></li>
           <li><Link to="/team" onClick={toggleSidebar}>Our Team</Link></li>
+          <li><Link to="/Gallery" onClick={toggleSidebar}>Gallery</Link></li>
         </ul>
       </div>
     </>

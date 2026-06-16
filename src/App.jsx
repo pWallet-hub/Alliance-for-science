@@ -7,6 +7,7 @@ import About from './Pages/About/About';
 import News from './Pages/News/News';
 import Team from './Pages/Team/Team';
 import Activities from './Pages/Activities/Activities';
+import Gallery from './Pages/Gallery/Gallery';  
 import Footer from './Components/Footer/Footer';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="/news" element={<News />} />
               <Route path="/team" element={<Team />} />
               <Route path="/activities" element={<Activities />} />
+              <Route path="/gallery"    element={<Gallery />}    />
             </Routes>
           </div>
           <Footer />
