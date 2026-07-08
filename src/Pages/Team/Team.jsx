@@ -4,7 +4,8 @@ import './Team.css';
 // Import all your asset profiles
 import image1 from '../../assets/image/pacific.jpg'; // Pacifique Nshimiyimana
 import image2 from '../../assets/image/DGT_7871 copy.jpg'; // Gisele Ndizeye
-import image3 from '../../assets/image/DSC_1823.jpg'; // Agape Nduwamungu
+import image3 from '../../assets/image/DSC_1823.jpg';
+import rugangazi from '../../assets/image/rugangazi.jpg' // Agape Nduwamungu
 
 // Component Icon Helpers
 import { 
@@ -114,7 +115,40 @@ function Team() {
         twitter: "#",
         linkedin: "https://www.linkedin.com/in/agape-nduwamungu-bba7ba174/"
       }
-    }
+    },
+    {
+  name: "Felix Bikorimana",
+  role: "Software Engineer",
+  tag: "Technology",
+  avatar: rugangazi, // TODO: replace with Felix's own imported photo, e.g. import image4 from '../../assets/image/felix.jpg';
+  phone: "+250 780 941 222",
+  email: "bikofelix2020@gmail.com",
+  location: "Kigali, Rwanda",
+  skills: [
+    { label: "Python & Flask/FastAPI", value: "94%" },
+    { label: "Full Stack Development (React/Next.js)", value: "90%" },
+    { label: "AI/ML Integration", value: "88%" }
+  ],
+  hours: { monFri: "08:30 AM - 05:30 PM", sat: "Closed" },
+  aboutMe: "Felix is a Python-proficient Full Stack Engineer with 3+ years of experience building scalable web applications and AI-integrated systems. He specializes in Flask and FastAPI backends, RESTful API design, and connecting machine learning models to production dashboards — with an award-winning AI web app to his name from the NISR Hackathon.",
+  stats: { impact: "3+ Years", projects: "6+ Delivered", expertise: "AI/ML Enthusiast" },
+  points: [
+    "Built scalable trade management platforms with Python backends and React.js/Next.js frontends",
+    "Designed and shipped NutriVision AI, an award-winning FastAPI predictive nutrition app at the NISR Hackathon",
+    "Exposed ML model predictions via FastAPI/Flask endpoints consumed by React and Flutter frontends",
+    "Automated ETL pipelines, data validation, and KPI dashboards using Python and Pandas"
+  ],
+education: [
+  { year: "2021 – 2025", certificate: "B.Sc. In Computer Engineering", institution: "University of Rwanda" },
+  { year: "2025", certificate: "NISR AI Hackathon Winner — NutriVision AI", institution: "National Institute of Statistics of Rwanda" },
+  { year: "Certification", certificate: "Cisco Networking Certification", institution: "Cisco Networking Academy" }
+],
+  socials: {
+    facebook: "#",
+    twitter: "#",
+    linkedin: "https://www.linkedin.com/in/felix-bikorimana"
+  }
+}
   ];
 
   const current = teamData[activeMemberIndex];
