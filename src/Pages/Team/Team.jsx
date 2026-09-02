@@ -33,7 +33,7 @@ function Team() {
         { label: "Science Communication", value: "90%" },
         { label: "Project Innovation", value: "92%" }
       ],
-      hours: { monFri: "08:00 AM - 05:00 PM", sat: "09:00 AM - 01:00 PM" },
+      hours: { monFri: "09:00 AM - 05:00 PM", sat: "09:00 AM - 01:00 PM" },
       aboutMe: "Our team brings together expertise in leadership, communications, and technology — united by a shared passion for making science accessible and impactful for every community. We are a dedicated group of professionals committed to advancing science communication and innovation across Rwanda and beyond.",
       stats: { impact: "10+ Years", projects: "50+ Delivered", expertise: "Core Leader" },
       points: [
@@ -65,7 +65,7 @@ function Team() {
         { label: "Public Relations", value: "88%" },
         { label: "Digital Strategy", value: "91%" }
       ],
-      hours: { monFri: "09:00 AM - 06:00 PM", sat: "10:00 AM - 02:00 PM" },
+      hours: { monFri: "09:00 AM - 05:00 PM", sat: "10:00 AM - 02:00 PM" },
       aboutMe: "Specializing in high-impact media strategies and regional outreach frameworks, Gisele manages the comprehensive internal and external public communication systems. She ensures that research paradigms are seamlessly translated into public advocacy milestones.",
       stats: { impact: "6+ Years", projects: "35+ Campaigns", expertise: "PR Master" },
       points: [
@@ -97,7 +97,7 @@ function Team() {
         { label: "Cloud Infrastructure", value: "89%" },
         { label: "Network Security", value: "95%" }
       ],
-      hours: { monFri: "08:30 AM - 05:30 PM", sat: "Closed" },
+      hours: { monFri: "09:00 AM - 05:00 PM", sat: "Closed" },
       aboutMe: "Agape anchors the computational infrastructure, data center pipelines, and platform tooling solutions across Genlab. He ensures highly operational, zero-downtime server setups for intricate bio-informatics applications.",
       stats: { impact: "5+ Years", projects: "40+ Deployments", expertise: "SysOps Specialist" },
       points: [
@@ -129,7 +129,7 @@ function Team() {
     { label: "Full Stack Development (React/Next.js)", value: "90%" },
     { label: "AI/ML Integration", value: "88%" }
   ],
-  hours: { monFri: "08:30 AM - 05:30 PM", sat: "Closed" },
+  hours: { monFri: "09:00 AM - 05:00 PM", sat: "Closed" },
   aboutMe: "Felix is a Python-proficient Full Stack Engineer with 3+ years of experience building scalable web applications and AI-integrated systems. He specializes in Flask and FastAPI backends, RESTful API design, and connecting machine learning models to production dashboards — with an award-winning AI web app to his name from the NISR Hackathon.",
   stats: { impact: "3+ Years", projects: "6+ Delivered", expertise: "AI/ML Enthusiast" },
   points: [
