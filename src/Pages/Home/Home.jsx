@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Home.css';
-import image from '../../assets/image/bd image.jpg';
 import aboutimage from '../../assets/image/6.jpg';
 import { FaBowlFood, FaChevronRight, FaPlay, FaRegComments } from "react-icons/fa6";
-import { TiWeatherCloudy } from "react-icons/ti";
 import { MdOutlineScience, MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { GrDocumentText } from "react-icons/gr";
 import { BiSolidCloudRain, BiTargetLock, BiSupport } from "react-icons/bi";
@@ -13,7 +11,6 @@ import ofab from '../../assets/image/OFAB-logo-removebg-preview.png';
 import rab from '../../assets/image/Rab.jpg';
 import aatf from '../../assets/image/AATF.jpg';
 import rmc from '../../assets/image/rmc.jpg';
-import audience from '../../assets/image/Audience.jpg';
 import award from '../../assets/image/award.jpg';
 import virca from '../../assets/image/virca.jpg';
 
@@ -31,7 +28,7 @@ function useReveal(options = {}) {
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [options.rootMargin, options.threshold]);
 
   return [ref, visible];
 }
@@ -56,7 +53,6 @@ function Home() {
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // trigger hero entrance
     const t = setTimeout(() => setHeroLoaded(true), 80);
     return () => { window.removeEventListener('scroll', handleScroll); clearTimeout(t); };
   }, []);
@@ -68,17 +64,17 @@ function Home() {
   ];
 
   const activities = [
-    { icon: <FaBowlFood />,      label: 'Food Security',      desc: 'Alliance for science Rwanda has been incorporated' },
+    { icon: <FaBowlFood />,       label: 'Food Security',      desc: 'Alliance for science Rwanda has been incorporated' },
     { icon: <BiSolidCloudRain />,label: 'Climate Change',     desc: 'Alliance for science Rwanda has been incorporated' },
     { icon: <MdOutlineScience />,label: 'Research Innovation',desc: 'Alliance for science Rwanda has been incorporated' },
     { icon: <GrDocumentText />,  label: 'Policy Advocacy',    desc: 'Alliance for science Rwanda has been incorporated' },
   ];
 
   const partners = [
-    { src: rab,   alt: 'RAB',   url: 'https://www.rab.gov.rw/'            },
-    { src: ofab,  alt: 'OFAB',  url: 'https://ofabrwanda.rw/'             },
-    { src: aatf,  alt: 'AATF',  url: 'https://www.aatf-africa.org/'       },
-    { src: rmc,   alt: 'RMC',   url: 'https://rmc.rw/'                    },
+    { src: rab,   alt: 'RAB',   url: 'https://www.rab.gov.rw/'             },
+    { src: ofab,  alt: 'OFAB',  url: 'https://ofabrwanda.rw/'              },
+    { src: aatf,  alt: 'AATF',  url: 'https://www.aatf-africa.org/'        },
+    { src: rmc,   alt: 'RMC',   url: 'https://rmc.rw/'                     },
     { src: virca, alt: 'VIRCA', url: 'https://www.aatf-africa.org/virca/' },
   ];
 
@@ -89,7 +85,6 @@ function Home() {
       <section className='home-content'>
         <div className='hero-parallax' style={{ transform: `translateY(${scrollY * 0.35}px)` }} />
         <div className='hero-overlay' />
-        {/* animated particles */}
         <div className='hero-particles'>
           {[...Array(6)].map((_, i) => <span key={i} className={`particle p-${i+1}`} />)}
         </div>
@@ -225,7 +220,7 @@ function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 6: EVENTS TIMELINE ── */}
+      {/* ── SECTION 6: EVENTS TIMELINE (REDESIGNED) ── */}
       <section className={`card-section reveal-section ${evtVis ? 'is-visible' : ''}`} ref={evtRef}>
         <div className="card-section-header fade-up stagger-1">
           <span className="section-eyebrow">Upcoming Gatherings</span>
@@ -239,19 +234,28 @@ function Home() {
               onMouseEnter={() => setActiveCard(i)}
               onMouseLeave={() => setActiveCard(null)}
             >
+              {/* Vertical Large Number Column */}
               <div className='card-num-col'>
                 <span className='card-big-num'>{ev.num}</span>
               </div>
+
+              {/* Main Event Body */}
               <div className='card-body'>
                 <div className='card-date-pill'>
                   <span className='pill-dot' />
-                  <span>{ev.month} {ev.year}</span>
+                  <div className='date-pill-text'>
+                    <strong>{ev.month}</strong>
+                    <span>{ev.year}</span>
+                  </div>
                 </div>
                 <h2 className='card-title'>{ev.title}</h2>
                 <div className="card-meta-row">
-                  <span className="card-location"><FiMapPin /> Community outreach · Northern Province</span>
+                  <FiMapPin className="pin-icon" />
+                  <span className="card-location">Community outreach · Northern Province</span>
                 </div>
               </div>
+
+              {/* Navigation Action Arrow */}
               <div className='card-arrow'>
                 <div className='arrow-circle'>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
