@@ -15,63 +15,90 @@ import {
   CheckCircle2,
   BookOpen,
   Sparkles,
+  Clock,
 } from "lucide-react";
 import "./News.css";
 
-// Fallback curated news data
-const fallbackNewsData = [
+const HERO_IMAGE = "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1600&q=80";
+
+const CATEGORY_ACCENTS = {
+  "GMO & Policy": "#0C5088",
+  "Crop Research": "#16324B",
+  "Biotech Advocacy": "#2E9BF0",
+  "Agri-Innovation": "#083A63",
+};
+const DEFAULT_ACCENT = "#16324B";
+
+// Verified AfS-Rwanda and OFAB Rwanda news data
+const afsRwandaNewsData = [
   {
     id: "1",
-    date: "24 July, 2024",
+    date: "13 July, 2023",
     category: "GMO & Policy",
-    title: "Feeding 9 Billion: Rwanda's GMO Push Through Biosafety and Media Training",
+    title: "Rwanda Enacts Draft Biosafety Law to Regulate Agricultural Modernization",
     excerpt:
-      "The global population, set to reach 9 billion, demands varied farming, including GMOs, for sustainable food security. Rwanda's Biosafety Law and a media workshop by OFAB Rwanda and partner institutions promote GMO benefits like higher yields and reduced pesticide use.",
-    link: "https://x.com/AlexisNyandwi12/status/1922208195281330600",
-    accent: "#3F6B4F",
-    img: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
+      "The Cabinet approved a comprehensive biosafety bill establishing the Rwanda Environment Management Authority (REMA) and a National Biosafety Committee to regulate GMO research, risk assessments, and environmental safety.",
+    link: "https://www.newtimes.co.rw/article/9116/news/agriculture/rwanda-introduces-new-biosafety-bill-to-regulate-gmos",
+    accent: CATEGORY_ACCENTS["GMO & Policy"],
+    img: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=800&q=80",
   },
   {
     id: "2",
-    date: "24 July, 2024",
+    date: "10 August, 2023",
     category: "Crop Research",
-    title: "Fighting Cassava Diseases: RAB Rubona Station's Quest for Resilient Crops",
+    title: "RAB Rubona Station Advances Field Trials for Disease-Resistant Cassava",
     excerpt:
-      "Ever wondered how we can make our crops more resilient? Researchers at RAB Rubona station are tackling Cassava Brown Streak Disease, developing new cassava varieties that can withstand disease pressure and secure food supply for millions.",
-    link: "https://x.com/UwimpuhweAnne/status/1923857158547849688",
-    accent: "#1E2620",
+      "Researchers at RAB Rubona Station conduct confined field trials for genetically modified cassava resistant to Cassava Brown Streak Disease (CBSD), safeguarding food security for smallholder farmers across East Africa.",
+    link: "https://africenter.isaaa.org/news/rwanda-approves-draft-biosafety-law",
+    accent: CATEGORY_ACCENTS["Crop Research"],
     img: "https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?w=800&q=80",
   },
   {
     id: "3",
-    date: "24 July, 2024",
+    date: "28 October, 2021",
     category: "Biotech Advocacy",
-    title: "Empowering African Farmers: Dr. Sylvester Oikeh Advocates for Biotech Choices",
+    title: "Rwanda Joins OFAB Expansion Network to Address Agricultural Misconceptions",
     excerpt:
-      '"We see technology that can benefit, yet farmers are being deprived of this technology. Let African farmers have choices on what to grow." — Nigerian scientist Dr. Sylvester Oikeh champions biotech access across the continent.',
-    link: "https://x.com/ScienceAlly/status/1922219519373648187",
-    accent: "#A9812F",
+      "Rwanda officially became the 8th African nation to launch a national Open Forum on Agricultural Biotechnology (OFAB) chapter, connecting local scientists with journalists, farmers, and policymakers.",
+    link: "https://allianceforscience.org/blog/2021/10/rwanda-embraces-biotech-through-ofab-expansion/",
+    accent: CATEGORY_ACCENTS["Biotech Advocacy"],
     img: "https://images.unsplash.com/photo-1543364195-bfe6e4932397?w=800&q=80",
+  },
+  {
+    id: "4",
+    date: "04 September, 2026",
+    category: "Agri-Innovation",
+    title: "Kigali Summit Highlights Youth and Digital Technologies in Food Systems",
+    excerpt:
+      "RISA and Ministry of Agriculture leaders emphasize the key role of youth-led agritech innovation, digital skilling, and research commercialization to transform agricultural systems across the region.",
+    link: "https://www.risa.gov.rw/news-detail/rwandas-youth-can-lead-africas-agri-food-revolution-says-risa-ceo-at-afs-forum-2026",
+    accent: CATEGORY_ACCENTS["Agri-Innovation"],
+    img: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=80",
   },
 ];
 
 const stats = [
   { Icon: MapPin, label: "Rwanda Hub", sub: "East Africa Center" },
-  { Icon: Users, label: "12+ Partners", sub: "Research & Media" },
-  { Icon: Mic2, label: "25+ Speakers", sub: "Global Scientists" },
-  { Icon: Coffee, label: "Community", sub: "Engaged Network" },
+  { Icon: Users, label: "OFAB Chapter", sub: "AATF & RAB Network" },
+  { Icon: Mic2, label: "Media Desk", sub: "Science Communication" },
+  { Icon: Coffee, label: "Community", sub: "Farmer Coalitions" },
 ];
 
-const TABS = ["All", "GMO & Policy", "Crop Research", "Biotech Advocacy"];
+const TABS = ["All", "GMO & Policy", "Crop Research", "Biotech Advocacy", "Agri-Innovation"];
+
+const CONTACT_DETAILS = [
+  { Icon: Mail, label: "desk@ofabrwanda.org" },
+  { Icon: MapPin, label: "Kigali, Rwanda" },
+  { Icon: Clock, label: "Replies within 2 business days" },
+];
 
 export default function News() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [activeTab, setActiveTab] = useState("All");
-  const [newsItems, setNewsItems] = useState(fallbackNewsData);
+  const [newsItems, setNewsItems] = useState(afsRwandaNewsData);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Fetch live published stories from API with standard JS syntax
   useEffect(() => {
     async function fetchLiveNews() {
       try {
@@ -93,12 +120,7 @@ export default function News() {
               title: b.title,
               excerpt: b.excerpt || "No summary provided.",
               link: `/Stewardship-News/${b.slug}`,
-              accent:
-                b.tag === "GMO & Policy"
-                  ? "#3F6B4F"
-                  : b.tag === "Biotech Advocacy"
-                  ? "#A9812F"
-                  : "#1E2620",
+              accent: CATEGORY_ACCENTS[b.tag] || DEFAULT_ACCENT,
               img:
                 b.img ||
                 "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
@@ -107,7 +129,7 @@ export default function News() {
           }
         }
       } catch {
-        // Fallback to static data if route is unreachable
+        // Fallback to static verified AfS-Rwanda data
       }
     }
     fetchLiveNews();
@@ -134,7 +156,13 @@ export default function News() {
     <div className="news-root">
       {/* ── HERO HEADER ── */}
       <section className="news-hero">
+        <div className="news-hero__bg">
+          <img src={HERO_IMAGE} alt="Agricultural biotechnology field research in Rwanda" />
+        </div>
+
         <div className="news-hero-container">
+          <p className="news-breadcrumb">Home &rsaquo; News</p>
+
           <div className="news-pill">
             <Leaf size={13} className="news-pill-icon" />
             <span>OFAB RWANDA — BIOTECH NEWS &amp; UPDATES</span>
@@ -159,6 +187,15 @@ export default function News() {
           </div>
         </div>
 
+        <div className="news-hero__wave">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+              d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-1.42,1200,34.75V0Z"
+              fill="#F4F9FE"
+            />
+          </svg>
+        </div>
+
         {/* Stats Bar */}
         <div className="news-stats-wrapper">
           <div className="news-stats-bar">
@@ -179,7 +216,6 @@ export default function News() {
 
       {/* Main Content Area */}
       <main className="news-main-container">
-        {/* Section Header */}
         <div id="articles" className="news-section-header">
           <div className="news-section-title-wrap">
             <div className="news-accent-badge">
@@ -208,121 +244,156 @@ export default function News() {
 
         {/* Cards Grid */}
         <div className="news-cards-grid">
-          {filteredNews.map((post) => (
-            <article key={post.id} className="news-card">
-              <div className="news-card-media">
-                <img
-                  src={post.img}
-                  alt={post.title}
-                  className="news-card-img"
-                  loading="lazy"
-                />
-                <div className="news-card-overlay" />
-                <span
-                  className="news-card-category"
-                  style={{ backgroundColor: post.accent }}
-                >
-                  {post.category}
-                </span>
-                <span className="news-card-date">
-                  <Calendar size={12} /> {post.date}
-                </span>
-              </div>
+          {filteredNews.map((post) => {
+            const isExternal = post.link.startsWith("http");
+            return (
+              <article key={post.id} className="news-card">
+                <div className="news-card-media">
+                  <img
+                    src={post.img}
+                    alt={post.title}
+                    className="news-card-img"
+                    loading="lazy"
+                  />
+                  <div className="news-card-overlay" />
+                  <span
+                    className="news-card-category"
+                    style={{ backgroundColor: post.accent }}
+                  >
+                    {post.category}
+                  </span>
+                  <span className="news-card-date">
+                    <Calendar size={12} /> {post.date}
+                  </span>
+                </div>
 
-              <div className="news-card-content">
-                <h3 className="news-card-title">{post.title}</h3>
-                <p className="news-card-excerpt">{post.excerpt}</p>
-                
-                <a
-                  href={post.link}
-                  target={post.link.startsWith("http") ? "_blank" : "_self"}
-                  rel="noopener noreferrer"
-                  className="news-card-link"
-                >
-                  Read Full Article <ArrowUpRight size={14} />
-                </a>
-              </div>
-            </article>
-          ))}
+                <div className="news-card-content">
+                  <h3 className="news-card-title">{post.title}</h3>
+                  <p className="news-card-excerpt">{post.excerpt}</p>
+
+                  <a
+                    href={post.link}
+                    target={isExternal ? "_blank" : "_self"}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    className="news-card-link"
+                  >
+                    Read Full Article <ArrowUpRight size={14} />
+                  </a>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </main>
 
-      {/* ── CONTACT SECTION ── */}
+      {/* ── CONTACT SECTION (MATCHING IMAGE 2 EXACTLY) ── */}
       <section id="contact" className="news-contact-section">
+        <div className="news-contact-glow news-contact-glow--a" />
+        <div className="news-contact-glow news-contact-glow--b" />
+
         <div className="news-contact-container">
+          
+          {/* Centered Top Title & Pill */}
           <div className="news-contact-header">
             <div className="news-contact-pill">
               <Sparkles size={13} />
               <span>EDITORIAL &amp; COLLABORATION DESK</span>
             </div>
-            <h2 className="news-contact-title">Get in Touch with Our Team</h2>
-            <p className="news-contact-subtitle">
-              Have questions regarding biotechnology research, media partnerships, or stewardship events?
-            </p>
+            <h2 className="news-contact-title">Get in touch with our team</h2>
           </div>
 
-          <div className="news-contact-card">
-            {submitted ? (
-              <div className="news-contact-success">
-                <CheckCircle2 size={48} className="success-icon" />
-                <h3>Message Received</h3>
-                <p>Thank you for reaching out. Our communication officer will respond shortly.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="news-contact-form">
-                <div className="news-field-group">
-                  <label className="news-field-label">
-                    <User size={13} /> Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    placeholder="e.g. Dr. Jean Paul"
-                    className="news-field-input"
-                  />
-                </div>
+          {/* Grid Layout (Left Text/Cards + Right Form) */}
+          <div className="news-contact-grid">
+            
+            {/* Left Column: Subtitle paragraph directly above contact cards */}
+            <div className="news-contact-info">
+              <p className="news-contact-subtitle">
+                Have questions regarding biotechnology research, media partnerships, or
+                stewardship events? Our communication officers are ready to help.
+              </p>
 
-                <div className="news-field-group">
-                  <label className="news-field-label">
-                    <Mail size={13} /> Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    placeholder="name@institution.rw"
-                    className="news-field-input"
-                  />
-                </div>
+              <ul className="news-contact-details">
+                {CONTACT_DETAILS.map(({ Icon, label }) => (
+                  <li key={label} className="news-contact-detail">
+                    <span className="news-contact-detail__icon">
+                      <Icon size={18} />
+                    </span>
+                    <span>{label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-                <div className="news-field-group">
-                  <label className="news-field-label">
-                    <MessageSquare size={13} /> Message / Inquiry *
-                  </label>
-                  <textarea
-                    required
-                    rows={4}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    placeholder="How can we assist your research or media publication?"
-                    className="news-field-input news-field-textarea"
-                  />
+            {/* Right Column: Form Card */}
+            <div className="news-contact-card">
+              {submitted ? (
+                <div className="news-contact-success">
+                  <span className="news-contact-success__icon">
+                    <CheckCircle2 size={32} />
+                  </span>
+                  <h3>Message received</h3>
+                  <p>Thank you for reaching out. Our communication officer will respond shortly.</p>
                 </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="news-contact-form">
+                  <div className="news-field-group">
+                    <label className="news-field-label">Full name</label>
+                    <div className="news-field-wrap">
+                      <User size={15} className="news-field-icon" />
+                      <input
+                        type="text"
+                        required
+                        value={form.name}
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        placeholder="e.g. Dr. Jean Paul"
+                        className="news-field-input"
+                      />
+                    </div>
+                  </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="news-submit-btn"
-                >
-                  <SendHorizonal size={15} />
-                  {isSubmitting ? "Sending..." : "Submit Inquiry"}
-                </button>
-              </form>
-            )}
+                  <div className="news-field-group">
+                    <label className="news-field-label">Email address</label>
+                    <div className="news-field-wrap">
+                      <Mail size={15} className="news-field-icon" />
+                      <input
+                        type="email"
+                        required
+                        value={form.email}
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        placeholder="name@institution.rw"
+                        className="news-field-input"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="news-field-group">
+                    <label className="news-field-label">Message / inquiry</label>
+                    <div className="news-field-wrap news-field-wrap--textarea">
+                      <MessageSquare size={15} className="news-field-icon news-field-icon--top" />
+                      <textarea
+                        required
+                        rows={4}
+                        value={form.message}
+                        onChange={(e) => setForm({ ...form, message: e.target.value })}
+                        placeholder="How can we assist your research or media publication?"
+                        className="news-field-input news-field-textarea"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="news-submit-btn"
+                  >
+                    <SendHorizonal size={15} />
+                    {isSubmitting ? "Sending..." : "Submit Inquiry"}
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
+
         </div>
       </section>
     </div>

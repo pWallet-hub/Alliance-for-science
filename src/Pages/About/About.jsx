@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './About.css';
 import audience from '../../assets/image/Audience.jpg';
+import aboutBg from '../../assets/image/about-bg.jpg';
 import { GiPublicSpeaker } from "react-icons/gi";
 import { MdOutlineTrackChanges } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import { MdOutlineCampaign, MdOutlineHub } from "react-icons/md";
+import { Sparkles, ArrowRight, Target, Compass, BookOpen } from "lucide-react";
 
 function About() {
-  const [scrollY, setScrollY]       = useState(0);
   const [heroLoaded, setHeroLoaded] = useState(false);
   const aboutRef   = useRef(null);
   const missionRef = useRef(null);
@@ -18,9 +19,6 @@ function About() {
 
   useEffect(() => {
     setHeroLoaded(true);
-    const onScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
@@ -30,7 +28,7 @@ function About() {
         if (target === missionRef.current && isIntersecting) setMissionVis(true);
         if (target === goalRef.current    && isIntersecting) setGoalVis(true);
       }),
-      { threshold: 0.12 }
+      { threshold: 0.15 }
     );
     [aboutRef, missionRef, goalRef].forEach(r => r.current && io.observe(r.current));
     return () => io.disconnect();
@@ -41,7 +39,7 @@ function About() {
       num: '01',
       label: 'Community',
       icon: <HiOutlineUserGroup />,
-      color: 'goal-step--teal',
+      colorClass: 'goal-theme--navy',
       title: 'Build Communities',
       text: 'Empower farming communities by bridging the gap between innovative technology developers, farmers, and local government units.',
       position: 'top',
@@ -50,7 +48,7 @@ function About() {
       num: '02',
       label: 'Advocacy',
       icon: <MdOutlineCampaign />,
-      color: 'goal-step--sky',
+      colorClass: 'goal-theme--blue',
       title: 'Drive Advocacy',
       text: 'Engage key stakeholders including local government through strategic information sharing and high-impact roundtable discussions.',
       position: 'bottom',
@@ -59,7 +57,7 @@ function About() {
       num: '03',
       label: 'Network',
       icon: <MdOutlineHub />,
-      color: 'goal-step--green',
+      colorClass: 'goal-theme--sky',
       title: 'Grow the Network',
       text: 'Establish a national consortium of agricultural technology practitioners and food security enthusiasts across Rwanda.',
       position: 'top',
@@ -67,171 +65,193 @@ function About() {
   ];
 
   return (
-    <div className='about-page'>
+    <div className='about-root'>
 
-      {/* ── HERO ── */}
-      <section className='about1'>
-        <div className='hero-bg' style={{ transform: `translateY(${scrollY * 0.3}px)` }} />
-        <div className='hero-gradient' />
-        <div className={`about-text ${heroLoaded ? 'hero-loaded' : ''}`}>
-          <span className='hero-eyebrow'>Alliance for Science</span>
-          <h1>About <em>Us</em></h1>
-          <div className='hero-rule'>
-            <span /><span className='hero-gem' /><span />
+      {/* ── HERO SECTION ── */}
+      <section className='about-hero'>
+        <div className='about-hero__bg'>
+          <img src={aboutBg} alt="Alliance for Science Rwanda background" />
+        </div>
+
+        <div className={`about-hero-container ${heroLoaded ? 'hero-loaded' : ''}`}>
+          <p className='about-hero-breadcrumb'>HOME &rsaquo; ABOUT US</p>
+
+          <div className='about-hero-pill'>
+            <Sparkles size={13} className='about-hero-pill-icon' />
+            <span>ALLIANCE FOR SCIENCE RWANDA</span>
           </div>
+
+          <h1 className='about-hero-title'>
+            <em>About</em> <span>Us</span>
+          </h1>
+
+          <p className='about-hero-subtitle'>
+            Advancing agricultural biotechnology, food security, and climate-resilient farming 
+            solutions through education, advocacy, and collaborative partnerships across Rwanda.
+          </p>
+        </div>
+
+        {/* Curved Wave Divider */}
+        <div className='about-hero__wave'>
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+              d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-1.42,1200,34.75V0Z"
+              fill="#F4F9FE"
+            />
+          </svg>
         </div>
       </section>
 
       {/* ── ABOUT STORY BLOCK ── */}
       <section
-        className={`about2 ${aboutVis ? 'section-visible' : ''}`}
+        className={`about-story-section ${aboutVis ? 'section-visible' : ''}`}
         ref={aboutRef}
       >
-        <div className='about2-image-wrap'>
-          <img src={audience} alt="Audience" className='image2' />
-          <div className='about2-image-decor' />
-        </div>
-        <div className='about-content1'>
-          <span className='section-eyebrow'>Who We Are</span>
-          <h1>About <span className='accent'>Us</span></h1>
-          <div className='content-divider' />
-          <p>
-            Alliance for Science Rwanda has been incorporated as a social enterprise with a mission
-            to seek food security, sustainability through education and advocacy of innovative farming
-            technologies in Rwanda by mitigating effects of climate change, pests, and diseases.
-          </p>
-          <button className='read-more-btn'>
-            <span>Read More</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </button>
+        <div className='about-story-grid'>
+          <div className='about-story-image-column'>
+            <div className='about-image-card'>
+              <img src={audience} alt="Audience engagement" className='about-story-img' />
+              <div className='about-image-badge'>
+                <Compass size={18} />
+                <span>Empowering Farmers</span>
+              </div>
+            </div>
+          </div>
+
+          <div className='about-story-text-column'>
+            <span className='about-eyebrow'>Who We Are</span>
+            <h2 className='about-section-heading'>
+              Pioneering Sustainable <span className='accent-text'>Agriculture</span>
+            </h2>
+            <div className='about-heading-divider' />
+            
+            <p className='about-story-description'>
+              Alliance for Science Rwanda has been incorporated as a social enterprise with a mission
+              to seek food security and sustainability through education and advocacy of innovative farming
+              technologies in Rwanda, actively mitigating the adverse effects of climate change, pests, and diseases.
+            </p>
+
+            <button className='about-primary-btn'>
+              <span>Explore Our Initiatives</span>
+              <ArrowRight size={16} />
+            </button>
+          </div>
         </div>
       </section>
 
       {/* ── MISSION & VISION ── */}
       <section
-        className={`mv-section ${missionVis ? 'section-visible' : ''}`}
+        className={`about-mv-section ${missionVis ? 'section-visible' : ''}`}
         ref={missionRef}
       >
-        <div className='mv-left'>
-          <div className='mv-left-content'>
-            <h2>Our Mission &amp;<br />Vision Statement</h2>
-            <p>
-              Uniting farmers, scientists, media, businesses and policymakers
-              for a better and sustainable future.
+        <div className='about-mv-container'>
+          <div className='about-mv-header'>
+            <span className='about-eyebrow-light'>Core Purpose</span>
+            <h2 className='about-mv-title'>Our Mission &amp; Vision</h2>
+            <p className='about-mv-subtitle'>
+              Uniting farmers, scientists, media, businesses, and policymakers for a food-secure and sustainable future.
             </p>
           </div>
-          <div className='mv-left-image'>
-            <img src={audience} alt="Team collaboration" />
-            <div className='mv-image-overlay' />
-          </div>
-        </div>
 
-        <div className='mv-right'>
-          <div className='mv-cards'>
-            <div className='mv-card mv-card--vision'>
-              <div className='mv-card-icon-wrap'>
-                <MdOutlineTrackChanges />
+          <div className='about-mv-cards-grid'>
+            {/* Vision Card */}
+            <div className='about-mv-card'>
+              <div className='about-mv-card-header'>
+                <div className='about-mv-icon-box'>
+                  <MdOutlineTrackChanges size={28} />
+                </div>
+                <span className='about-mv-tag'>Vision</span>
               </div>
-              <div className='mv-card-label'>Vision</div>
-              <p className='mv-card-text'>
-                To become a leading force in Rwanda's agricultural transformation
-                by emphasizing innovative farming technologies and establishing
-                a nationwide network of food security advocates.
+              <h3 className='about-mv-card-heading'>Agricultural Transformation</h3>
+              <p className='about-mv-card-text'>
+                To become a leading force in Rwanda's agricultural transformation by emphasizing innovative farming 
+                technologies and establishing a nationwide network of food security advocates.
               </p>
             </div>
-            <div className='mv-card mv-card--mission'>
-              <div className='mv-card-icon-wrap'>
-                <GiPublicSpeaker />
+
+            {/* Mission Card */}
+            <div className='about-mv-card'>
+              <div className='about-mv-card-header'>
+                <div className='about-mv-icon-box'>
+                  <GiPublicSpeaker size={28} />
+                </div>
+                <span className='about-mv-tag'>Mission</span>
               </div>
-              <div className='mv-card-label'>Mission</div>
-              <p className='mv-card-text'>
-                To seek food security and sustainability through education
-                and advocacy of innovative farming technologies in Rwanda
-                by mitigating effects of climate change, pests and diseases.
+              <h3 className='about-mv-card-heading'>Advocacy & Education</h3>
+              <p className='about-mv-card-text'>
+                To achieve food security and sustainability through targeted education and advocacy for innovative 
+                farming solutions, mitigating the threats posed by climate change, pests, and diseases.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── GOALS — Target Timeline ── */}
+      {/* ── GOALS & TIMELINE ── */}
       <section
-        className={`goal-section ${goalVis ? 'section-visible' : ''}`}
+        className={`about-goals-section ${goalVis ? 'section-visible' : ''}`}
         ref={goalRef}
       >
-        <div className='goals-header-row'>
-          <div className='goals-header-text'>
-            <span className='section-eyebrow'>What We Aim For</span>
-            <h2 className='goals-title'>Our <span className='accent'>Goals</span></h2>
-          </div>
-          <span className='goals-count-badge'>3 Objectives</span>
-        </div>
-
-        {/* ── TIMELINE TRACK ── */}
-        <div className='goal-timeline'>
-
-          {goals.map((g, i) => (
-            <div
-              className={`goal-step ${g.color}`}
-              key={i}
-              style={{ animationDelay: `${i * 0.18}s` }}
-            >
-              {/* Connector bar leading into this step */}
-              {i > 0 && <div className={`goal-connector goal-connector--${i}`} />}
-
-              {/* Top text box (for odd positions: 0, 2) */}
-              {g.position === 'top' && (
-                <div className='goal-label-box goal-label-box--top'>
-                  <span className={`goal-label-num goal-label-num--${g.color.split('--')[1]}`}>{g.title}</span>
-                  <p className='goal-label-text'>{g.text}</p>
-                  <div className='goal-label-arrow goal-label-arrow--down' />
-                </div>
-              )}
-
-              {/* Step circle */}
-              <div className='goal-step-axis'>
-                <div className={`goal-step-num-vertical`}>Step {g.num}</div>
-                <div className='goal-circle'>
-                  <span className='goal-circle-icon'>{g.icon}</span>
-                </div>
-                <span className='goal-circle-tag'>{g.label}</span>
-              </div>
-
-              {/* Bottom text box (for even position: 1) */}
-              {g.position === 'bottom' && (
-                <div className='goal-label-box goal-label-box--bottom'>
-                  <div className='goal-label-arrow goal-label-arrow--up' />
-                  <span className={`goal-label-num goal-label-num--${g.color.split('--')[1]}`}>{g.title}</span>
-                  <p className='goal-label-text'>{g.text}</p>
-                </div>
-              )}
+        <div className='about-goals-container'>
+          <div className='about-goals-header'>
+            <div>
+              <span className='about-eyebrow'>Strategic Roadmap</span>
+              <h2 className='about-section-heading'>Our Key <span className='accent-text'>Goals</span></h2>
             </div>
-          ))}
+            <span className='about-badge-pill'>3 Objectives</span>
+          </div>
 
-          {/* Final connector to bullseye */}
-          <div className='goal-connector goal-connector-final' />
+          {/* Interactive Timeline Track */}
+          <div className='goals-timeline-track'>
+            {goals.map((g, i) => (
+              <div key={i} className={`goal-timeline-item ${g.colorClass}`}>
+                
+                {/* Connector Line */}
+                {i > 0 && <div className='goal-line-connector' />}
 
-          {/* Bullseye Target */}
-          <div className='goal-target'>
-            <div className='goal-target-inner'>
-              <div className='target-ring target-ring--1'>
-                <div className='target-ring target-ring--2'>
-                  <div className='target-ring target-ring--3'>
-                    <div className='target-bull'>
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className='target-arrow-icon'>
-                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13"/>
-                      </svg>
-                    </div>
+                {/* Top Content Box */}
+                {g.position === 'top' && (
+                  <div className='goal-card-box goal-card-box--top'>
+                    <span className='goal-card-title'>{g.title}</span>
+                    <p className='goal-card-text'>{g.text}</p>
+                    <div className='goal-card-arrow arrow--down' />
                   </div>
+                )}
+
+                {/* Axis Node */}
+                <div className='goal-node-axis'>
+                  <span className='goal-step-label'>Step {g.num}</span>
+                  <div className='goal-node-circle'>
+                    <span className='goal-node-icon'>{g.icon}</span>
+                  </div>
+                  <span className='goal-node-tag'>{g.label}</span>
+                </div>
+
+                {/* Bottom Content Box */}
+                {g.position === 'bottom' && (
+                  <div className='goal-card-box goal-card-box--bottom'>
+                    <div className='goal-card-arrow arrow--up' />
+                    <span className='goal-card-title'>{g.title}</span>
+                    <p className='goal-card-text'>{g.text}</p>
+                  </div>
+                )}
+
+              </div>
+            ))}
+
+            {/* Target Node */}
+            <div className='goal-timeline-item goal-target-item'>
+              <div className='goal-line-connector' />
+              <div className='goal-target-circle'>
+                <div className='goal-target-ring'>
+                  <Target size={22} className='target-icon' />
                 </div>
               </div>
+              <span className='goal-node-tag target-tag'>Target</span>
             </div>
-            <span className='goal-target-label'>Target</span>
-          </div>
 
-        </div>{/* end .goal-timeline */}
+          </div>
+        </div>
       </section>
 
     </div>
