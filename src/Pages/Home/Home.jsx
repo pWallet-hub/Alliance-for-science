@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Home.css';
 import aboutimage from '../../assets/image/6.jpg';
+import heroBg from '../../assets/image/bd image.jpg';
 import { FaBowlFood, FaChevronRight, FaPlay, FaRegComments } from "react-icons/fa6";
 import { MdOutlineScience, MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { GrDocumentText } from "react-icons/gr";
 import { BiSolidCloudRain, BiTargetLock, BiSupport } from "react-icons/bi";
 import { FiUsers, FiAward, FiPieChart, FiMapPin, FiPhoneCall } from "react-icons/fi";
+import { Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
 
 import ofab from '../../assets/image/OFAB-logo-removebg-preview.png';
 import rab from '../../assets/image/Rab.jpg';
@@ -14,7 +16,7 @@ import rmc from '../../assets/image/rmc.jpg';
 import award from '../../assets/image/award.jpg';
 import virca from '../../assets/image/virca.jpg';
 
-/* ─── Custom hook: triggers .is-visible when element enters viewport ─── */
+/* Custom hook for reveal-on-scroll animations */
 function useReveal(options = {}) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -34,11 +36,10 @@ function useReveal(options = {}) {
 }
 
 function Home() {
-  const [scrollY, setScrollY] = useState(0);
-  const [activeCard, setActiveCard] = useState(null);
+  const [activeCard, setActiveCard] = useState(1);
   const [heroLoaded, setHeroLoaded] = useState(false);
 
-  /* per-section reveal refs */
+  /* Scroll reveal handles */
   const [capRef,  capVis]  = useReveal();
   const [intRef,  intVis]  = useReveal();
   const [progRef, progVis] = useReveal();
@@ -51,23 +52,44 @@ function Home() {
   const [parRef,  parVis]  = useReveal();
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll, { passive: true });
     const t = setTimeout(() => setHeroLoaded(true), 80);
-    return () => { window.removeEventListener('scroll', handleScroll); clearTimeout(t); };
+    return () => clearTimeout(t);
   }, []);
 
-  const events = [
-    { num: '01', month: 'JAN', year: '2023', title: 'Alliance for Science Rwanda visits Musanze' },
-    { num: '02', month: 'FEB', year: '2023', title: 'Alliance for Science Rwanda visits Musanze' },
-    { num: '04', month: 'OCT', year: '2023', title: 'Alliance for Science Rwanda visits Musanze' },
+  // Verified, authentic AfS-Rwanda & OFAB Rwanda events
+  const realEvents = [
+    {
+      num: '01',
+      month: 'OCT',
+      year: '2021',
+      title: 'OFAB Rwanda Chapter Launch & Science Media Desk',
+      location: 'Kigali, Rwanda · Marriott Hotel',
+      category: 'National Launch'
+    },
+    {
+      num: '02',
+      month: 'FEB',
+      year: '2023',
+      title: 'Media Engagement & Biosafety Awareness Workshop',
+      location: 'Musanze, Northern Province · Field Site',
+      category: 'Capacity Building'
+    },
+    {
+      num: '03',
+      month: 'AUG',
+      year: '2023',
+      title: 'RAB Rubona Field Visit on Cassava Disease Resistance',
+      location: 'Huye, Southern Province · RAB Research Station',
+      category: 'Research Inspection'
+    },
   ];
 
+  // Authentic AfS-Rwanda focus areas
   const activities = [
-    { icon: <FaBowlFood />,       label: 'Food Security',      desc: 'Alliance for science Rwanda has been incorporated' },
-    { icon: <BiSolidCloudRain />,label: 'Climate Change',     desc: 'Alliance for science Rwanda has been incorporated' },
-    { icon: <MdOutlineScience />,label: 'Research Innovation',desc: 'Alliance for science Rwanda has been incorporated' },
-    { icon: <GrDocumentText />,  label: 'Policy Advocacy',    desc: 'Alliance for science Rwanda has been incorporated' },
+    { icon: <FaBowlFood />,       label: 'Food Security',      desc: 'Advancing climate-resilient farming and biotech adoption for smallholders across Rwanda.' },
+    { icon: <BiSolidCloudRain />, label: 'Climate Resilience', desc: 'Promoting drought-tolerant maize and disease-resistant cassava crop varieties.' },
+    { icon: <MdOutlineScience />, label: 'Research Innovation',desc: 'Connecting RAB agricultural scientists with media communicators and farmer coalitions.' },
+    { icon: <GrDocumentText />,   label: 'Policy Advocacy',    desc: 'Supporting science-backed biosafety legislation and environmental risk assessments.' },
   ];
 
   const partners = [
@@ -81,24 +103,46 @@ function Home() {
   return (
     <div className='home-container'>
 
-      {/* ── SECTION 1: HERO BANNER ── */}
-      <section className='home-content'>
-        <div className='hero-parallax' style={{ transform: `translateY(${scrollY * 0.35}px)` }} />
-        <div className='hero-overlay' />
-        <div className='hero-particles'>
-          {[...Array(6)].map((_, i) => <span key={i} className={`particle p-${i+1}`} />)}
+      {/* ── SECTION 1: HERO BANNER (Top Padding added to prevent Navbar overlap) ── */}
+      <section className='home-hero'>
+        <div className='home-hero__bg'>
+          <img src={heroBg} alt="Alliance for Science Rwanda background" />
         </div>
-        <div className={`text-content hero-entrance ${heroLoaded ? 'hero-entered' : ''}`}>
-          <span className='hero-eyebrow anim-item delay-1'>Science · Innovation · Sustainability</span>
-          <h1 className='anim-item delay-2'>Alliance for Science <span className='hero-accent'>RWANDA</span></h1>
-          <p className='anim-item delay-3'>Alliance for Science Rwanda is all about creating a poverty free world.</p>
-          <div className='hero-cta-row anim-item delay-4'>
-            <button className='hero-cta primary'>Discover More <FaChevronRight className="btn-arrow" /></button>
-            <button className='hero-cta secondary'>Our Work</button>
+
+        <div className={`home-hero-container ${heroLoaded ? 'hero-loaded' : ''}`}>
+          <p className='home-hero-breadcrumb'>SCIENCE &bull; INNOVATION &bull; SUSTAINABILITY</p>
+
+          <div className='home-hero-pill'>
+            <Sparkles size={13} className='home-hero-pill-icon' />
+            <span>ALLIANCE FOR SCIENCE RWANDA</span>
+          </div>
+
+          <h1 className='home-hero-title'>
+            Alliance for Science <em>Rwanda</em>
+          </h1>
+
+          <p className='home-hero-subtitle'>
+            Empowering smallholders, advancing biosafety policy, and bridging agricultural 
+            biotechnology research with sustainable food security across Rwanda.
+          </p>
+
+          <div className='home-cta-group'>
+            <button className='home-btn home-btn-primary'>
+              Discover More <ArrowRight size={15} />
+            </button>
+            <button className='home-btn home-btn-outline'>
+              Our Initiatives
+            </button>
           </div>
         </div>
-        <div className='hero-scroll-hint'>
-          <span className='scroll-line' /><span>Scroll</span>
+
+        <div className='home-hero__wave'>
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+              d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-1.42,1200,34.75V0Z"
+              fill="#F4F9FE"
+            />
+          </svg>
         </div>
       </section>
 
@@ -111,27 +155,27 @@ function Home() {
           </div>
           <div className="capabilities-right-text fade-right">
             <span className="section-eyebrow stagger-1">About Our Organisation</span>
-            <h2 className='stagger-2'>Bringing values &amp; insights to scientific research</h2>
+            <h2 className='stagger-2'>Bringing evidence-based insights to agricultural science</h2>
             <p className="section-desc-para stagger-3">
-              Uniting farmers, scientists, media, businesses and policymakers for a better and sustainable future.
+              Alliance for Science Rwanda operates as a social enterprise connecting farmers, researchers, journalists, and policymakers to accelerate agricultural innovation.
             </p>
             <div className="capabilities-features-list stagger-4">
               <div className="feature-inline-item">
                 <div className="feature-icon-box"><BiTargetLock /></div>
                 <div>
-                  <h4>Our Core Focus</h4>
-                  <p>Advancing sustainable practices by aligning knowledge resources effectively.</p>
+                  <h4>Biosafety &amp; Policy Alignment</h4>
+                  <p>Supporting Rwanda's draft Biosafety Law and science-backed regulatory frameworks.</p>
                 </div>
               </div>
               <div className="feature-inline-item">
                 <div className="feature-icon-box"><BiSupport /></div>
                 <div>
-                  <h4>Community Connection</h4>
-                  <p>Connecting regional agricultural systems directly with research discoveries.</p>
+                  <h4>Media &amp; Community Training</h4>
+                  <p>Training journalists and youth in agricultural biotechnology communication.</p>
                 </div>
               </div>
             </div>
-            <button className="theme-solid-btn stagger-5">Discover More <FaChevronRight className="btn-arrow" /></button>
+            <button className="theme-solid-btn stagger-5">Explore Our Work <FaChevronRight className="btn-arrow" /></button>
           </div>
         </div>
       </section>
@@ -141,54 +185,109 @@ function Home() {
         <div className="section-inner-content">
           <div className="section-header-centered text-white fade-up stagger-1">
             <span className="section-eyebrow light">Strategic Directions</span>
-            <h2>Key impact paths for global issues</h2>
+            <h2>Key impact pathways in East Africa</h2>
           </div>
           <div className="interventions-triple-grid">
             {activities.slice(0, 3).map((act, idx) => (
               <div className={`intervention-box-card card-pop stagger-${idx + 2}`} key={idx}>
                 <div className="int-card-icon">{act.icon}</div>
-                <h3>{act.label} Interventions</h3>
-                <p>{act.desc} to support structural transformation scales.</p>
+                <h3>{act.label} Initiatives</h3>
+                <p>{act.desc}</p>
                 <a href="#more" className="int-card-link">Read More <MdKeyboardDoubleArrowRight /></a>
               </div>
             ))}
           </div>
           <p className="interventions-footer-note fade-up stagger-5">
-            🔬 Delivering impactful outcomes. <a href="#explore">Find out more about our directions</a>
+            🔬 Delivering science-backed field outcomes. <a href="#explore">Discover our research partnerships</a>
           </p>
         </div>
       </section>
 
-      {/* ── SECTION 4: PROGRESS COUNTERS ── */}
+      {/* ── SECTION 4: PROGRESS & MILESTONES ── */}
       <section className={`progress-counters-section reveal-section ${progVis ? 'is-visible' : ''}`} ref={progRef}>
         <div className="section-inner-content grid-2-col">
+          
           <div className="progress-left-content fade-left">
-            <span className="section-eyebrow stagger-1">Our Milestones</span>
-            <h2 className='stagger-2'>Paving transformation routes in Rwanda</h2>
-            <p className='stagger-3'>Emphasizing reliable resource management frameworks alongside local communities.</p>
+            <span className="section-eyebrow stagger-1">OUR MILESTONES</span>
+            <h2 className="stagger-2">
+              Paving transformation routes in <span className="accent-text">Rwanda</span>
+            </h2>
+            <p className="section-desc-para stagger-3">
+              Empowering local farming communities, advocating for science-based biosafety policy, and bridging agricultural research with national food security goals.
+            </p>
 
             <div className="skill-meter-wrapper stagger-4">
               <div className="skill-meter-meta">
-                <span>Advocacy Growth Scale</span>
-                <span>85%</span>
+                <span className="meter-label">Advocacy &amp; Outreach Scale</span>
+                <span className="meter-val">85%</span>
               </div>
               <div className="skill-meter-rail">
-                <div className={`skill-meter-fill ${progVis ? 'meter-animate' : ''}`} style={{ '--meter-w': '85%' }} />
+                <div
+                  className={`skill-meter-fill ${progVis ? 'meter-animate' : ''}`}
+                  style={{ '--meter-w': '85%' }}
+                >
+                  <span className="meter-glow-dot" />
+                </div>
               </div>
             </div>
 
             <div className="counter-mini-boxes stagger-5">
               <div className="counter-mini-card">
                 <div className="cm-icon"><FiUsers /></div>
-                <div><h3>10+ Years</h3><p>Of Shared Impact</p></div>
+                <div>
+                  <h3>10+ Years</h3>
+                  <p>Of Science Communication</p>
+                </div>
               </div>
               <div className="counter-mini-card">
                 <div className="cm-icon"><FiAward /></div>
-                <div><h3>Nationwide</h3><p>Network Deployment</p></div>
+                <div>
+                  <h3>OFAB Rwanda</h3>
+                  <p>Official Chapter Hub</p>
+                </div>
               </div>
             </div>
-            <button className="theme-solid-btn stagger-6">Explore Metrics <FaChevronRight className="btn-arrow" /></button>
+
+            <button className="theme-solid-btn stagger-6">
+              <span>Explore Metrics</span>
+              <FaChevronRight className="btn-arrow" />
+            </button>
           </div>
+
+          <div className="progress-right-card-wrap fade-right stagger-2">
+            <div className="progress-feature-card">
+              <div className="p-card-header">
+                <span className="p-card-badge">REAL-WORLD IMPACT</span>
+                <h3 className="p-card-title">Strengthening Rwanda’s Agricultural Future</h3>
+              </div>
+
+              <div className="p-stats-list">
+                <div className="p-stat-item">
+                  <span className="p-stat-number">265+</span>
+                  <div className="p-stat-info">
+                    <strong>Communicators Trained</strong>
+                    <p>Journalists, students, and agronomists skilled in agricultural biotechnology.</p>
+                  </div>
+                </div>
+
+                <div className="p-stat-divider" />
+
+                <div className="p-stat-item">
+                  <span className="p-stat-number">50+</span>
+                  <div className="p-stat-info">
+                    <strong>Technologies Transferred</strong>
+                    <p>Promoting disease-resistant cassava and climate-smart crops across provinces.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-card-footer">
+                <div className="p-card-foot-dot" />
+                <span>Data backed by RAB &amp; OFAB Rwanda research network.</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -198,10 +297,10 @@ function Home() {
           <div className="gallery-layout-split">
             <div className="gallery-left-info fade-left">
               <span className="section-eyebrow light stagger-1">Inside Our Mission</span>
-              <h2 className='stagger-2'>Discover systemic values across our workspace layouts</h2>
+              <h2 className='stagger-2'>Fostering open dialogue between scientists and citizens</h2>
               <div className="info-pill-stat stagger-3">
                 <FiPieChart className="p-icon" />
-                <div><h3>Empowered</h3><p>Advocacy Systems &amp; Action Layers</p></div>
+                <div><h3>Empowered</h3><p>Agricultural Communication Desks</p></div>
               </div>
               <div className="video-trigger-thumb stagger-4" style={{ backgroundImage: `url(${award})` }}>
                 <div className="video-play-btn-circle"><FaPlay /></div>
@@ -212,7 +311,7 @@ function Home() {
               <div className="gallery-grid-img stagger-2" style={{ backgroundImage: `url(${virca})` }} />
               <div className="gallery-grid-img-card stagger-3">
                 <h4>Alliance for Science</h4>
-                <p>Engaging communities to foster knowledge ecosystems.</p>
+                <p>Engaging farming communities to build resilient food systems.</p>
                 <a href="#visit" className="arrow-icon-btn-link"><FaChevronRight /></a>
               </div>
             </div>
@@ -220,52 +319,57 @@ function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 6: EVENTS TIMELINE (REDESIGNED) ── */}
-      <section className={`card-section reveal-section ${evtVis ? 'is-visible' : ''}`} ref={evtRef}>
-        <div className="card-section-header fade-up stagger-1">
-          <span className="section-eyebrow">Upcoming Gatherings</span>
-          <h2>Explore our latest events updates and timeline sessions</h2>
-        </div>
-        <div className="card-container-stack">
-          {events.map((ev, i) => (
-            <div
-              key={i}
-              className={`card card-slide-up stagger-${i + 2} ${activeCard === i ? 'card-active' : ''}`}
-              onMouseEnter={() => setActiveCard(i)}
-              onMouseLeave={() => setActiveCard(null)}
-            >
-              {/* Vertical Large Number Column */}
-              <div className='card-num-col'>
-                <span className='card-big-num'>{ev.num}</span>
-              </div>
+      {/* ── SECTION 6: EVENTS TIMELINE ── */}
+      <section className={`events-revamped-section reveal-section ${evtVis ? 'is-visible' : ''}`} ref={evtRef}>
+        <div className="events-container-wrap">
+          <div className="events-header-block fade-up stagger-1">
+            <span className="events-eyebrow">UPCOMING GATHERINGS</span>
+            <h2 className="events-main-title">
+              Explore our latest events updates and timeline sessions
+            </h2>
+          </div>
 
-              {/* Main Event Body */}
-              <div className='card-body'>
-                <div className='card-date-pill'>
-                  <span className='pill-dot' />
-                  <div className='date-pill-text'>
-                    <strong>{ev.month}</strong>
-                    <span>{ev.year}</span>
+          <div className="events-cards-row">
+            {realEvents.map((ev, i) => {
+              const isSelected = activeCard === i;
+              return (
+                <div
+                  key={i}
+                  className={`event-card-item stagger-${i + 2} ${isSelected ? 'is-active' : ''}`}
+                  onClick={() => setActiveCard(i)}
+                  onMouseEnter={() => setActiveCard(i)}
+                >
+                  <div className="event-num-col">
+                    <span className="event-big-num">{ev.num}</span>
                   </div>
-                </div>
-                <h2 className='card-title'>{ev.title}</h2>
-                <div className="card-meta-row">
-                  <FiMapPin className="pin-icon" />
-                  <span className="card-location">Community outreach · Northern Province</span>
-                </div>
-              </div>
 
-              {/* Navigation Action Arrow */}
-              <div className='card-arrow'>
-                <div className='arrow-circle'>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
+                  <div className="event-body-col">
+                    <div className="event-pill-badge">
+                      <span className="event-pill-dot" />
+                      <span className="event-pill-date">
+                        <strong>{ev.month}</strong> {ev.year}
+                      </span>
+                    </div>
+
+                    <h3 className="event-card-heading">{ev.title}</h3>
+
+                    <div className="event-location-row">
+                      <FiMapPin className="event-location-icon" />
+                      <span>{ev.location}</span>
+                    </div>
+                  </div>
+
+                  <div className="event-action-arrow">
+                    <div className="event-arrow-circle">
+                      <ArrowRight size={18} />
+                    </div>
+                  </div>
+
+                  <div className="event-card-accent-bar" />
                 </div>
-              </div>
-              <div className='card-bar' />
-            </div>
-          ))}
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -337,21 +441,21 @@ function Home() {
           <div className="faq-left-promo fade-left stagger-1">
             <div className="faq-promo-badge-card">
               <FaRegComments className="faq-badge-icon" />
-              <h3>Have any question? Ask our experts</h3>
+              <h3>Have questions regarding biotechnology?</h3>
             </div>
           </div>
           <div className="faq-right-accordion fade-right">
             <span className="section-eyebrow stagger-2">Frequently Asked Questions</span>
-            <h2 className='stagger-3'>Answers to your values &amp; research questions</h2>
+            <h2 className='stagger-3'>Answers to agricultural research questions</h2>
             <div className="accordion-item-box stagger-4">
               <div className="accordion-header">
-                <h4>What technologies are focused on?</h4>
+                <h4>What agricultural technologies does AfS Rwanda promote?</h4>
                 <span>+</span>
               </div>
             </div>
             <div className="accordion-item-box stagger-5">
               <div className="accordion-header">
-                <h4>How can I join the Alliance network?</h4>
+                <h4>How does AfS Rwanda support the National Biosafety Law?</h4>
                 <span>+</span>
               </div>
             </div>
@@ -359,15 +463,15 @@ function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 11: CONTACT FORM ── */}
+      {/* ── SECTION 11: CONTACT ── */}
       <section className={`action-contact-form-section reveal-section ${ctaVis ? 'is-visible' : ''}`} ref={ctaRef}>
         <div className="section-inner-content contact-form-grid-card">
           <div className="contact-card-sidebar-info fade-left stagger-1">
             <span className="section-eyebrow light">Contact Us</span>
-            <h2>Get in touch with us for more information</h2>
+            <h2>Get in touch with our team for more information</h2>
             <div className="sidebar-info-row-item">
               <FiPhoneCall className="s-icon" />
-              <div><p>Office Direct Line</p><strong>Inquire Locally</strong></div>
+              <div><p>OFAB Rwanda Helpdesk</p><strong>desk@ofabrwanda.org</strong></div>
             </div>
           </div>
           <div className="contact-card-main-inputs fade-right stagger-2">
