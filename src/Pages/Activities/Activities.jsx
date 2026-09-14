@@ -72,16 +72,16 @@ const projects = [
   },
   {
     id: 'p3',
-    title: "National Biosafety Law Outreach",
-    badge: "Regulatory Framework",
+    title: "Rwanda BioCap Project",
+    badge: "Center of Excellence",
     image: activityImage3,
-    shortDesc: "Advocating for science-based biosafety guidelines and public participation frameworks under Rwanda's National Biosafety Law.",
-    fullDesc: "The National Biosafety Framework initiative facilitates transparent public consultation and evidence-based decision-making regarding agricultural biotechnology. Working alongside government regulators, environmental experts, and research bodies, AFS-Rwanda provides factual educational resources to support safe innovation.",
-    websiteUrl: "https://www.rab.gov.rw/",
+    shortDesc: "Building Rwanda's Centre of Excellence in Crop Biotechnology and training RAB scientists in gene editing, biosafety, and molecular breeding.",
+    fullDesc: "The Rwanda BioCap Project is a major national initiative establishing a regional Centre of Excellence in Crop Biotechnology. In collaboration with MINAGRI, RAB, REMA, RICA, CIP, and IITA, BioCap empowers Rwandan scientists with advanced tools like CRISPR gene editing and RNA interference to develop disease-resistant potato (3R gene stack against Late Blight), cassava, and banana varieties. The project also advances transparent, science-based biosafety governance under Rwanda's National Biosafety Law.",
+    websiteUrl: "https://biocap-rwanda.afs-rwanda.org",
     highlights: [
-      "Regulatory risk assessment workshops with policymakers",
-      "Educational publications on biosafety governance in Rwanda",
-      "Fostering public trust in science-backed regulatory policy"
+      "Building Rwanda's Centre of Excellence in Crop Biotechnology",
+      "Developing 3R Late Blight resistant potatoes & CRISPR disease-resistant bananas",
+      "Strengthening science-based biosafety governance with MINAGRI, RAB & REMA"
     ]
   }
 ];
