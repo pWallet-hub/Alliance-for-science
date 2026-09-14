@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, ArrowRight, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowRight, ChevronDown, CheckCircle2, ExternalLink, ArrowLeft } from 'lucide-react';
 import './Activities.css';
 
 // Import images
@@ -8,7 +8,6 @@ import station from '../../assets/image/rubona-field.jpg';
 import activityImage1 from '../../assets/image/teck.jpg';
 import activityImage2 from '../../assets/image/pacifique.jpg';
 import activityImage3 from '../../assets/image/bg-image.jpg';
-
 import trustedImage from '../../assets/image/trusted.jpg';
 
 // Inline Custom SVG Icons
@@ -41,6 +40,53 @@ const PolicyIcon = () => (
   </svg>
 );
 
+// PROJECTS DATASET
+const projects = [
+  {
+    id: 'p1',
+    title: "VIRCA Plus Cassava Project",
+    badge: "Disease-Resistant Cassava",
+    image: station,
+    shortDesc: "Developing VIRCA Cassava varieties engineered for resistance against Cassava Brown Streak Disease (CBSD) and Cassava Mosaic Disease (CMD) across Rwanda.",
+    fullDesc: "The Virus Resistant Cassava for Africa (VIRCA Plus) project is a collaborative initiative working to deliver disease-resistant cassava varieties to smallholder farmers in East Africa. In partnership with the Rwanda Agriculture and Animal Resources Development Board (RAB), AFS-Rwanda supports public engagement, field trials awareness, and regulatory alignment at the Rubona Research Station.",
+    websiteUrl: "https://www.aatf-africa.org/virca-plus/",
+    highlights: [
+      "Field trial evaluation at RAB Rubona Station",
+      "Protects smallholder yields against CBSD & CMD viruses",
+      "Combines genetic resistance with local farmer training"
+    ]
+  },
+  {
+    id: 'p2',
+    title: "OFAB Rwanda Chapter",
+    badge: "RAB & AATF Partner Hub",
+    image: activityImage2,
+    shortDesc: "Open Forum on Agricultural Biotechnology Chapter established under RAB in October 2021 to drive science communication and media desk outreach.",
+    fullDesc: "Launched officially under RAB with funding from AATF, the OFAB Rwanda Chapter creates an open dialogue platform for scientists, regulators, journalists, and farmers. AFS-Rwanda co-hosts media training workshops, roundtables, and the annual OFAB Media Awards recognizing excellence in agricultural journalism.",
+    websiteUrl: "https://ofabrwanda.rw/",
+    highlights: [
+      "Annual OFAB Media Awards honoring top science journalists",
+      "Biotechnology youth ambassador workshops across provinces",
+      "Multi-stakeholder policy dialogue between regulators and scientists"
+    ]
+  },
+  {
+    id: 'p3',
+    title: "National Biosafety Law Outreach",
+    badge: "Regulatory Framework",
+    image: activityImage3,
+    shortDesc: "Advocating for science-based biosafety guidelines and public participation frameworks under Rwanda's National Biosafety Law.",
+    fullDesc: "The National Biosafety Framework initiative facilitates transparent public consultation and evidence-based decision-making regarding agricultural biotechnology. Working alongside government regulators, environmental experts, and research bodies, AFS-Rwanda provides factual educational resources to support safe innovation.",
+    websiteUrl: "https://www.rab.gov.rw/",
+    highlights: [
+      "Regulatory risk assessment workshops with policymakers",
+      "Educational publications on biosafety governance in Rwanda",
+      "Fostering public trust in science-backed regulatory policy"
+    ]
+  }
+];
+
+// THREE PILLARS DATASET
 const activities = [
   {
     id: 1,
@@ -110,10 +156,136 @@ function FAQItem({ faq }) {
 }
 
 function Activities() {
+  const [activeProjectView, setActiveProjectView] = useState(null);
+
+  const handleOpenProject = (proj) => {
+    setActiveProjectView(proj);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToAll = () => {
+    setActiveProjectView(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  /* ─────────────────────────────────────────────────────────────
+     VIEW 1: STANDALONE FULL PROJECT PAGE VIEW
+  ───────────────────────────────────────────────────────────── */
+  if (activeProjectView) {
+    return (
+      <div className="activities-root project-single-page">
+        {/* Project Page Hero Header */}
+        <section className="activities-hero project-hero">
+          <div className="activities-hero__bg">
+            <img src={activeProjectView.image} alt={activeProjectView.title} />
+          </div>
+
+          <div className="activities-hero-container">
+            {/* Flex Container for Spaced, Centered Pill Buttons */}
+            <div className="project-hero-badge-group">
+              <button onClick={handleBackToAll} className="project-back-btn">
+                <ArrowLeft size={16} /> Back to All Activities &amp; Projects
+              </button>
+
+              <div className="activities-pill project-hero-pill">
+                <Sparkles size={13} className="activities-pill-icon" />
+                <span>{activeProjectView.badge.toUpperCase()}</span>
+              </div>
+            </div>
+
+            <h1 className="activities-hero-title">
+              <em>{activeProjectView.title}</em>
+            </h1>
+          </div>
+
+          <div className="activities-hero__wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path
+                d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-1.42,1200,34.75V0Z"
+                fill="#F4F9FE"
+              />
+            </svg>
+          </div>
+        </section>
+
+        {/* Project Page Detail Body */}
+        <section className="project-detail-section">
+          <div className="act-container">
+            <div className="project-detail-grid">
+              
+              {/* Main Content Column */}
+              <div className="project-main-content">
+                <span className="act-eyebrow">PROJECT OVERVIEW</span>
+                <h2 className="project-headline-title">{activeProjectView.title}</h2>
+                
+                <p className="project-paragraph-lead">
+                  {activeProjectView.fullDesc}
+                </p>
+
+                <div className="project-highlights-card">
+                  <h3>Key Deliverables &amp; Milestones</h3>
+                  <div className="project-highlights-list">
+                    {activeProjectView.highlights.map((h, i) => (
+                      <div key={i} className="project-highlight-item">
+                        <CheckCircle2 size={20} className="ph-icon" />
+                        <span>{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="project-actions-row">
+                  <a
+                    href={activeProjectView.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-external-btn"
+                  >
+                    Visit Official Project Website <ExternalLink size={16} />
+                  </a>
+                  
+                  <button onClick={handleBackToAll} className="project-return-btn">
+                    Return to Activities List
+                  </button>
+                </div>
+              </div>
+
+              {/* Sidebar Feature Card */}
+              <aside className="project-sidebar">
+                <div className="project-sidebar-card">
+                  <div className="sidebar-img-wrapper">
+                    <img src={activeProjectView.image} alt={activeProjectView.title} />
+                  </div>
+                  <div className="sidebar-card-body">
+                    <span className="sidebar-badge">{activeProjectView.badge}</span>
+                    <h4>AFS-Rwanda Partner Initiative</h4>
+                    <p>Executing agricultural research, policy dialogue, and science outreach in collaboration with RAB and AATF.</p>
+                    <a
+                      href={activeProjectView.websiteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="sidebar-link-btn"
+                    >
+                      Visit External Link <ExternalLink size={14} />
+                    </a>
+                  </div>
+                </div>
+              </aside>
+
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     VIEW 2: MAIN ACTIVITIES & PROJECTS LIST PAGE
+  ───────────────────────────────────────────────────────────── */
   return (
     <div className="activities-root">
 
-      {/* ── HERO HEADER (Consistent with Gallery & About Pages) ── */}
+      {/* ── HERO HEADER ── */}
       <section className="activities-hero">
         <div className="activities-hero__bg">
           <img src={activityImage3} alt="Agricultural biotechnology activities in Rwanda" />
@@ -128,7 +300,7 @@ function Activities() {
           </div>
 
           <h1 className="activities-hero-title">
-            <em>Our</em> <span>Activities</span>
+            <em>Our</em> <span>Activities &amp; Projects</span>
           </h1>
 
           <p className="activities-hero-subtitle">
@@ -138,7 +310,6 @@ function Activities() {
           </p>
         </div>
 
-        {/* Curved Wave Divider at Bottom */}
         <div className="activities-hero__wave">
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path
@@ -149,8 +320,42 @@ function Activities() {
         </div>
       </section>
 
-      {/* ── ACTIVITY CARDS GRID ── */}
-      <section className="act-cards-section">
+      {/* ── TOP SECTION: FLAGSHIP PROJECTS ── */}
+      <section className="act-cards-section act-projects-top-section">
+        <div className="act-container">
+          <div className="act-header-block">
+            <span className="act-eyebrow">OUR INITIATIVES</span>
+            <h2 className="act-section-title">
+              Key Flagship Projects of <span className="accent-text">AFS-Rwanda</span>
+            </h2>
+          </div>
+
+          <div className="act-cards-grid">
+            {projects.map(proj => (
+              <article key={proj.id} className="act-card project-card">
+                <div className="act-card-media">
+                  <img src={proj.image} alt={proj.title} className="act-card-img" />
+                  <span className="act-card-badge">{proj.badge}</span>
+                </div>
+                <div className="act-card-body">
+                  <h3 className="act-card-title">{proj.title}</h3>
+                  <p className="act-card-desc">{proj.shortDesc}</p>
+                  
+                  <button
+                    onClick={() => handleOpenProject(proj)}
+                    className="act-card-btn-action"
+                  >
+                    Learn More <ArrowRight size={14} />
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── BOTTOM SECTION: THREE PRINCIPAL PILLARS ── */}
+      <section className="act-cards-section act-pillars-bottom-section">
         <div className="act-container">
           <div className="act-header-block">
             <span className="act-eyebrow">WHAT WE DO</span>
@@ -226,7 +431,6 @@ function Activities() {
             </div>
           </div>
 
-          {/* Key facts, not invented percentages */}
           <div className="act-stats-row">
             {[
               { num: '2006', label: 'OFAB founded across Africa by AATF' },
