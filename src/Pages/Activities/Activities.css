@@ -954,7 +954,6 @@
   transform: translateY(-2px);
 }
 
-/* ── RESPONSIVE OVERRIDES ── */
 @media (max-width: 992px) {
   .act-cards-grid,
   .act-impact-grid,
