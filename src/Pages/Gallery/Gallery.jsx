@@ -10,18 +10,90 @@ import {
 } from 'lucide-react';
 import './Gallery.css';
 
-// ─── Gallery data ──────────────────────────────────────────────────────────
-// Replace src/href values with your real image URLs and collection links.
-const HERO_IMAGE = 'https://picsum.photos/seed/alliance-hero/1600/900';
+// ─── Local Image Imports (7 Unique Assets) ─────────────────────────
+import bgHeroImg from '../../assets/image/bg-image.jpg';
+import rubonaImg from '../../assets/image/rubona-field.jpg';
+import teckImg from '../../assets/image/teck.jpg';
+import pacifiqueImg from '../../assets/image/pacifique.jpg';
+import trustedImg from '../../assets/image/trusted.jpg';
+import aboutCoverImg from '../../assets/image/pacifique-ask-image.jpg';
+import placeholderImg from '../../assets/image/pacifique-ask-image.jpg';
 
+// ─── 7 Gallery Collections Data ───────────────────────────────────────────
 const GALLERY_ITEMS = [
-  { id: 1,  src: 'https://picsum.photos/seed/g1/800/600',  category: 'events',     title: 'Annual Conference 2024',    caption: 'Bringing scientists, farmers, and policymakers together for a day of talks and open dialogue.', href: '#', itemCount: 42, date: 'Mar 2024', tall: true },
-  { id: 2,  src: 'https://picsum.photos/seed/g2/600/800',  category: 'team',       title: 'Team Building Day',         caption: 'A day off-site for the team to reconnect outside the lab and office.',                       href: '#', itemCount: 18, date: 'Feb 2024' },
-  { id: 3,  src: 'https://picsum.photos/seed/g3/900/600',  category: 'activities', title: 'Community Outreach',        caption: 'On-the-ground engagement bringing science communication directly to local communities.',     href: '#', itemCount: 25, date: 'Jan 2024', tall: true },
-  { id: 4,  src: 'https://picsum.photos/seed/g4/700/700',  category: 'events',     title: 'Year-End Celebration',      caption: 'Marking a year of progress with the people who made it happen.',                              href: '#', itemCount: 31, date: 'Dec 2023' },
-  { id: 5,  src: 'https://picsum.photos/seed/g5/800/500',  category: 'activities', title: 'Sports Tournament',         caption: 'Friendly competition and team spirit at the annual sports day.',                              href: '#', itemCount: 20, date: 'Nov 2023' },
-  { id: 6,  src: 'https://picsum.photos/seed/g6/600/900',  category: 'team',       title: 'New Members Welcome',       caption: 'Welcoming new colleagues into the fold with an orientation session.',                        href: '#', itemCount: 14, date: 'Oct 2023', tall: true },
-  { id: 7,  src: 'https://picsum.photos/seed/g7/850/600',  category: 'events',     title: 'Workshop Series',           caption: 'Hands-on sessions building skills in science communication and advocacy.',                   href: '#', itemCount: 36, date: 'Sep 2023' },
+  {
+    id: 1,
+    src: rubonaImg,
+    category: 'activities',
+    title: 'RAB Rubona Cassava Field Trials',
+    caption: 'Field research evaluating disease-resistant cassava varieties in Huye District alongside RAB agronomists.',
+    href: '#',
+    itemCount: 42,
+    date: 'Mar 2025',
+    tall: true
+  },
+  {
+    id: 2,
+    src: teckImg,
+    category: 'events',
+    title: 'Agricultural Biotechnology Workshop',
+    caption: 'Hands-on training session covering gene editing, biosafety law, and modern breeding technologies.',
+    href: '#',
+    itemCount: 18,
+    date: 'Feb 2025'
+  },
+  {
+    id: 3,
+    src: pacifiqueImg,
+    category: 'team',
+    title: 'Leadership & Stakeholder Dialogue',
+    caption: 'Executive discussions on strategic partnerships with RAB, MINAGRI, AATF, and the OFAB Rwanda Chapter.',
+    href: '#',
+    itemCount: 25,
+    date: 'Jan 2025',
+    tall: true
+  },
+  {
+    id: 4,
+    src: bgHeroImg,
+    category: 'events',
+    title: 'OFAB Rwanda Media Awards',
+    caption: 'Recognizing outstanding science journalists and agricultural biotechnology reporting in Kigali.',
+    href: '#',
+    itemCount: 31,
+    date: 'Dec 2024'
+  },
+  {
+    id: 5,
+    src: trustedImg,
+    category: 'team',
+    title: 'Field Agronomists & Researchers',
+    caption: 'Our dedicated team working directly alongside smallholder farming communities across Rwanda.',
+    href: '#',
+    itemCount: 20,
+    date: 'Nov 2024'
+  },
+  {
+    id: 6,
+    src: aboutCoverImg,
+    category: 'activities',
+    title: 'BioCap Rwanda Project Launch',
+    caption: 'Capacity building and national biosafety governance sessions under Rwanda’s Biosafety Law framework.',
+    href: '#',
+    itemCount: 28,
+    date: 'Oct 2024',
+    tall: true
+  },
+  {
+    id: 7,
+    src: placeholderImg,
+    category: 'events',
+    title: 'Youth Biotech Ambassadors Forum',
+    caption: 'Empowering young communicators and scholars across provincial universities to engage in science advocacy.',
+    href: '#',
+    itemCount: 36,
+    date: 'Sep 2024'
+  },
 ];
 
 const CATEGORIES = [
@@ -37,7 +109,7 @@ function countFor(key) {
   return key === 'all' ? GALLERY_ITEMS.length : GALLERY_ITEMS.filter((i) => i.category === key).length;
 }
 
-// ─── Card ───────────────────────────────────────────────────────────────────
+// ─── Card Component ─────────────────────────────────────────────────────────
 function GalleryCard({ item }) {
   return (
     <a
@@ -74,7 +146,7 @@ function GalleryCard({ item }) {
   );
 }
 
-// ─── Page ───────────────────────────────────────────────────────────────────
+// ─── Page Component ─────────────────────────────────────────────────────────
 export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -91,7 +163,7 @@ export default function Gallery() {
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="gallery-hero">
         <div className="gallery-hero__bg">
-          <img src={HERO_IMAGE} alt="Alliance for Science photo collections" />
+          <img src={bgHeroImg} alt="Alliance for Science photo collections" />
         </div>
 
         <div className="gallery-hero__content">
@@ -100,7 +172,7 @@ export default function Gallery() {
             Photo <span>Collections</span>
           </h1>
           <p className="gallery-hero__sub">
-            A visual record of our events, team milestones, and community work advancing science communication.
+            A visual record of our research field trials, team milestones, and community work advancing agricultural science in Rwanda.
           </p>
           <div className="gallery-hero__count">
             <Images size={13} /> {GALLERY_ITEMS.length} collections
