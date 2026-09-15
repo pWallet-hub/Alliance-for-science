@@ -15,7 +15,7 @@ import bgHeroImg from '../../assets/image/bg-image.jpg';
 import rubonaImg from '../../assets/image/rubona-field.jpg';
 import teckImg from '../../assets/image/teck.jpg';
 import pacifiqueImg from '../../assets/image/pacifique.jpg';
-import trustedImg from '../../assets/image/trusted.jpg';
+import trustedImg from '../../assets/image/field.jpg';
 import aboutCoverImg from '../../assets/image/pacifique-ask-image.jpg';
 import placeholderImg from '../../assets/image/pacifique-ask-image.jpg';
 
