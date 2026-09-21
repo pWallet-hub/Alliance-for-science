@@ -78,10 +78,10 @@ const afsRwandaNewsData = [
 ];
 
 const stats = [
-  { Icon: MapPin, label: "Rwanda Hub", sub: "East Africa Center" },
+  { Icon: MapPin, label: "RABP-CMP", sub: "Communication and documantation of project" },
   { Icon: Users, label: "OFAB Chapter", sub: "AATF & RAB Network" },
-  { Icon: Mic2, label: "Media Desk", sub: "Science Communication" },
-  { Icon: Coffee, label: "Community", sub: "Farmer Coalitions" },
+  { Icon: Mic2, label: "RMC", sub: "Science Communication" },
+  { Icon: Coffee, label: "BioCap Rwanda", sub: "Biotech communication and stewardship" },
 ];
 
 const TABS = ["All", "GMO & Policy", "Crop Research", "Biotech Advocacy", "Agri-Innovation"];
@@ -182,7 +182,7 @@ export default function News() {
               <BookOpen size={15} /> Explore Articles
             </a>
             <a href="#contact" className="news-btn news-btn-outline">
-              <Mail size={15} /> Contact Desk
+              <Mail size={15} /> Contact
             </a>
           </div>
         </div>
