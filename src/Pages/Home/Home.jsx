@@ -86,10 +86,10 @@ function Home() {
 
   // Authentic AfS-Rwanda focus areas
   const activities = [
-    { icon: <FaBowlFood />,       label: 'Food Security',      desc: 'Advancing climate-resilient farming and biotech adoption for smallholders across Rwanda.' },
-    { icon: <BiSolidCloudRain />, label: 'Climate Resilience', desc: 'Promoting drought-tolerant maize and disease-resistant cassava crop varieties.' },
-    { icon: <MdOutlineScience />, label: 'Research Innovation',desc: 'Connecting RAB agricultural scientists with media communicators and farmer coalitions.' },
-    { icon: <GrDocumentText />,   label: 'Policy Advocacy',    desc: 'Supporting science-backed biosafety legislation and environmental risk assessments.' },
+    { icon: <FaBowlFood />,       label: 'Food Security',      desc: 'Advancing climate-resilient farming and biotech adoption to strengthen sustainable food security for smallholders across Rwanda.' },
+    { icon: <BiSolidCloudRain />, label: 'Climate Resilience', desc: 'Promoting drought-tolerant maize and disease-resistant cassava varieties bred for a changing climate.' },
+    { icon: <MdOutlineScience />, label: 'Research Documentation', desc: 'Following RAB\'s research and laboratory work first-hand, then documenting each stage so evidence-based results reach the public accurately.' },
+    { icon: <GrDocumentText />,   label: 'Policy Advocacy',    desc: 'Championing evidence-based advocacy grounded in REMA\'s biosafety conditions and RICA\'s inspection and certification standards.' },
   ];
 
   const partners = [
@@ -122,8 +122,9 @@ function Home() {
           </h1>
 
           <p className='home-hero-subtitle'>
-            Empowering smallholders, advancing biosafety policy, and bridging agricultural 
-            biotechnology research with sustainable food security across Rwanda.
+            Advancing agricultural biotechnology through science communication, research documentation, 
+            evidence-based advocacy, and responsible stewardship empowering smallholders, strengthening biosafety,
+            and connecting scientific innovation with sustainable food security across Rwanda.
           </p>
 
           <div className='home-cta-group'>
@@ -157,21 +158,21 @@ function Home() {
             <span className="section-eyebrow stagger-1">About Our Organisation</span>
             <h2 className='stagger-2'>Bringing evidence-based insights to agricultural science</h2>
             <p className="section-desc-para stagger-3">
-              Alliance for Science Rwanda operates as a social enterprise connecting farmers, researchers, journalists, and policymakers to accelerate agricultural innovation.
+              Alliance for Science Rwanda works alongside the Rwanda Agriculture Board (RAB), following biotech crops from laboratory research through confined field trials — experiencing first-hand how each new agricultural technology is developed and tested. From that direct research and field experience, we build public communication, advocacy, and documentation for every new release, grounded in the regulatory conditions set by REMA and the inspection and certification standards enforced by RICA.
             </p>
             <div className="capabilities-features-list stagger-4">
               <div className="feature-inline-item">
                 <div className="feature-icon-box"><BiTargetLock /></div>
                 <div>
-                  <h4>Biosafety &amp; Policy Alignment</h4>
-                  <p>Supporting Rwanda's draft Biosafety Law and science-backed regulatory frameworks.</p>
+                  <h4>Biosafety &amp; REMA Compliance</h4>
+                  <p>Following RAB's laboratory and confined field trial research within the risk-assessment and environmental-release conditions set by REMA, in support of Rwanda's Biosafety Law.</p>
                 </div>
               </div>
               <div className="feature-inline-item">
                 <div className="feature-icon-box"><BiSupport /></div>
                 <div>
-                  <h4>Media &amp; Community Training</h4>
-                  <p>Training journalists and youth in agricultural biotechnology communication.</p>
+                  <h4>Documentation &amp; RICA Standards</h4>
+                  <p>Documenting each stage of research against RICA's seed and agro-input inspection and certification standards, then training journalists and communities to share it responsibly.</p>
                 </div>
               </div>
             </div>
@@ -185,7 +186,7 @@ function Home() {
         <div className="section-inner-content">
           <div className="section-header-centered text-white fade-up stagger-1">
             <span className="section-eyebrow light">Strategic Directions</span>
-            <h2>Key impact pathways in East Africa</h2>
+            <h2>Key impact pathways across Rwanda</h2>
           </div>
           <div className="interventions-triple-grid">
             {activities.slice(0, 3).map((act, idx) => (
@@ -198,7 +199,7 @@ function Home() {
             ))}
           </div>
           <p className="interventions-footer-note fade-up stagger-5">
-            🔬 Delivering science-backed field outcomes. <a href="#explore">Discover our research partnerships</a>
+            🔬 From RAB's labs and field trials to REMA-approved releases and RICA-certified inputs — delivering science-backed, evidence-based outcomes. <a href="#explore">Discover our research partnerships</a>
           </p>
         </div>
       </section>
@@ -213,7 +214,7 @@ function Home() {
               Paving transformation routes in <span className="accent-text">Rwanda</span>
             </h2>
             <p className="section-desc-para stagger-3">
-              Empowering local farming communities, advocating for science-based biosafety policy, and bridging agricultural research with national food security goals.
+              Empowering smallholder farmers, advocating for science-based biosafety policy, and bridging agricultural research with national food security goals through responsible stewardship.
             </p>
 
             <div className="skill-meter-wrapper stagger-4">
@@ -266,7 +267,7 @@ function Home() {
                   <span className="p-stat-number">265+</span>
                   <div className="p-stat-info">
                     <strong>Communicators Trained</strong>
-                    <p>Journalists, students, and agronomists skilled in agricultural biotechnology.</p>
+                    <p>Journalists, students, and agronomists equipped to communicate agricultural biotechnology to the public.</p>
                   </div>
                 </div>
 
@@ -276,7 +277,7 @@ function Home() {
                   <span className="p-stat-number">50+</span>
                   <div className="p-stat-info">
                     <strong>Technologies Transferred</strong>
-                    <p>Promoting disease-resistant cassava and climate-smart crops across provinces.</p>
+                    <p>Promoting disease-resistant cassava and climate-smart crops to smallholders across provinces.</p>
                   </div>
                 </div>
               </div>
@@ -297,7 +298,7 @@ function Home() {
           <div className="gallery-layout-split">
             <div className="gallery-left-info fade-left">
               <span className="section-eyebrow light stagger-1">Inside Our Mission</span>
-              <h2 className='stagger-2'>Fostering open dialogue between scientists and citizens</h2>
+              <h2 className='stagger-2'>Fostering open, evidence-based dialogue between scientists and citizens</h2>
               <div className="info-pill-stat stagger-3">
                 <FiPieChart className="p-icon" />
                 <div><h3>Empowered</h3><p>Agricultural Communication Desks</p></div>
@@ -311,7 +312,7 @@ function Home() {
               <div className="gallery-grid-img stagger-2" style={{ backgroundImage: `url(${virca})` }} />
               <div className="gallery-grid-img-card stagger-3">
                 <h4>Alliance for Science</h4>
-                <p>Engaging farming communities to build resilient food systems.</p>
+                <p>Empowering smallholder farmers with science communication and responsible stewardship to build resilient, sustainable food systems.</p>
                 <a href="#visit" className="arrow-icon-btn-link"><FaChevronRight /></a>
               </div>
             </div>
@@ -389,7 +390,7 @@ function Home() {
                   </svg>
                 ),
                 title: 'Our Mission',
-                text: 'To seek food security and sustainability through education and advocacy of innovative farming technologies in Rwanda by mitigating effects of climate change, pests and diseases.',
+                text: 'To advance sustainable food security by following the Rwanda Agriculture Board\'s laboratory and field research first-hand, then transforming that direct experience into science communication, research documentation, and evidence-based advocacy — guided by REMA\'s biosafety conditions and RICA\'s inspection and certification standards — to empower smallholder farmers and strengthen responsible stewardship against climate change, pests, and disease in Rwanda.',
               },
               {
                 icon: (
@@ -398,7 +399,7 @@ function Home() {
                   </svg>
                 ),
                 title: 'Our Vision',
-                text: 'To become a leading force in Rwanda\'s agricultural transformation by emphasizing innovative farming technologies and establishing a nationwide network of food security advocates.',
+                text: 'To become a leading force in Rwanda\'s agricultural transformation by connecting scientific innovation with smallholder communities, and by building a nationwide network of evidence-based, biosafety-conscious food security advocates.',
               },
             ].map((card, i) => (
               <div className={`about-mv-card card-pop stagger-${i + 2}`} key={i}>
@@ -441,7 +442,7 @@ function Home() {
           <div className="faq-left-promo fade-left stagger-1">
             <div className="faq-promo-badge-card">
               <FaRegComments className="faq-badge-icon" />
-              <h3>Have questions regarding biotechnology?</h3>
+              <h3>Have questions regarding agricultural biotechnology or biosafety?</h3>
             </div>
           </div>
           <div className="faq-right-accordion fade-right">
