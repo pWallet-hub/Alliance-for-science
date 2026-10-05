@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Home.css';
-import aboutimage from '../../assets/image/6.jpg';
-import heroBg from '../../assets/image/bd image.jpg';
+import aboutimage from '../../assets/image/communication-induction-01.jpg';
+import heroBg from '../../assets/image/alliance-image-bg.jpg';
 import { FaBowlFood, FaChevronRight, FaPlay, FaRegComments } from "react-icons/fa6";
 import { MdOutlineScience, MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { GrDocumentText } from "react-icons/gr";
@@ -14,9 +14,8 @@ import rab from '../../assets/image/Rab.jpg';
 import aatf from '../../assets/image/AATF.jpg';
 import rmc from '../../assets/image/rmc.jpg';
 import award from '../../assets/image/award.jpg';
-import virca from '../../assets/image/virca.jpg';
+import biocap from '../../assets/image/biocap-logo.png';
 
-/* Custom hook for reveal-on-scroll animations */
 function useReveal(options = {}) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -93,11 +92,12 @@ function Home() {
   ];
 
   const partners = [
-    { src: rab,   alt: 'RAB',   url: 'https://www.rab.gov.rw/'             },
-    { src: ofab,  alt: 'OFAB',  url: 'https://ofabrwanda.rw/'              },
-    { src: aatf,  alt: 'AATF',  url: 'https://www.aatf-africa.org/'        },
-    { src: rmc,   alt: 'RMC',   url: 'https://rmc.rw/'                     },
-    { src: virca, alt: 'VIRCA', url: 'https://www.aatf-africa.org/virca/' },
+    { src: rab,    alt: 'RAB',    url: 'https://www.rab.gov.rw/'      },
+    { src: ofab,   alt: 'OFAB',   url: 'https://ofabrwanda.rw/'       },
+    { src: aatf,   alt: 'AATF',   url: 'https://www.aatf-africa.org/' },
+    { src: rmc,    alt: 'RMC',    url: 'https://rmc.rw/'              },
+    // TODO: replace the url below with the real BioCap website address
+    { src: biocap, alt: 'BioCap', url: 'https://YOUR-BIOCAP-WEBSITE'  },
   ];
 
   return (
@@ -292,28 +292,128 @@ function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 5: GALLERY ── */}
+      {/* ── SECTION 5: GALLERY (mosaic layout: every photo shown large, uncropped faces, no dark overlay) ── */}
       <section className={`lab-gallery-section reveal-section ${galVis ? 'is-visible' : ''}`} ref={galRef}>
+        <style>{`
+          .lgx-head { max-width: 820px; margin-bottom: 36px; }
+          .lgx-head h2 { margin: 10px 0 24px; }
+
+          .lgx-grid {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            grid-auto-rows: 230px;
+            gap: 18px;
+          }
+          .lgx-tile {
+            position: relative;
+            margin: 0;
+            overflow: hidden;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+            background: #0b3a66;
+          }
+          .lgx-tile img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+          }
+          .lgx-tile:hover img { transform: scale(1.04); }
+
+          /* Large portrait: keep faces in view */
+          .lgx-a { grid-column: 1 / span 6; grid-row: 1 / span 2; }
+          .lgx-a img { object-position: center top; }
+
+          /* Award photo with play badge */
+          .lgx-b { grid-column: 7 / span 6; grid-row: 1; }
+          .lgx-b img { object-position: center 25%; }
+          .lgx-play {
+            position: absolute; left: 50%; top: 50%;
+            transform: translate(-50%, -50%);
+            width: 64px; height: 64px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: #1d8bf1; color: #fff; font-size: 1.1rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            transition: transform 0.25s ease;
+          }
+          .lgx-b:hover .lgx-play { transform: translate(-50%, -50%) scale(1.08); }
+
+          /* BioCap logo: whole logo on a clean white card */
+          .lgx-c { grid-column: 7 / span 3; grid-row: 2; background: #ffffff; }
+          .lgx-c img { object-fit: contain; padding: 20px; box-sizing: border-box; }
+
+          /* Text card */
+          .lgx-d {
+            grid-column: 10 / span 3; grid-row: 2;
+            display: flex; flex-direction: column; justify-content: space-between; gap: 10px;
+            padding: 22px;
+            background: linear-gradient(135deg, #0f5aa0 0%, #0a4175 100%);
+          }
+          .lgx-d h4 { margin: 0; color: #fff; font-size: 1.15rem; line-height: 1.25; }
+          .lgx-d p  { margin: 0; color: rgba(255, 255, 255, 0.88); font-size: 0.88rem; line-height: 1.55; }
+          .lgx-d-foot { display: flex; justify-content: flex-end; }
+
+          /* Tablet: two columns, big photos on top */
+          @media (max-width: 1000px) {
+            .lgx-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; }
+            .lgx-a, .lgx-b, .lgx-c, .lgx-d { grid-column: auto; grid-row: auto; }
+            .lgx-a { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
+            .lgx-b { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+            .lgx-c { aspect-ratio: 4 / 3; }
+            .lgx-d { min-height: 220px; }
+          }
+          /* Phone: single column */
+          @media (max-width: 560px) {
+            .lgx-grid { grid-template-columns: 1fr; }
+            .lgx-a, .lgx-b, .lgx-c, .lgx-d { grid-column: 1 / -1; }
+          }
+        `}</style>
+
         <div className="section-inner-content">
-          <div className="gallery-layout-split">
-            <div className="gallery-left-info fade-left">
-              <span className="section-eyebrow light stagger-1">Inside Our Mission</span>
-              <h2 className='stagger-2'>Fostering open, evidence-based dialogue between scientists and citizens</h2>
-              <div className="info-pill-stat stagger-3">
-                <FiPieChart className="p-icon" />
-                <div><h3>Empowered</h3><p>Agricultural Communication Desks</p></div>
-              </div>
-              <div className="video-trigger-thumb stagger-4" style={{ backgroundImage: `url(${award})` }}>
-                <div className="video-play-btn-circle"><FaPlay /></div>
-              </div>
+          <div className="lgx-head">
+            <span className="section-eyebrow light stagger-1">Inside Our Mission</span>
+            <h2 className='stagger-2'>Fostering open, evidence-based dialogue between scientists and citizens</h2>
+            <div className="info-pill-stat stagger-3">
+              <FiPieChart className="p-icon" />
+              <div><h3>Empowered</h3><p>Agricultural Communication Desks</p></div>
             </div>
-            <div className="gallery-right-images-grid fade-right">
-              <div className="gallery-grid-img img-wide stagger-1" style={{ backgroundImage: `url(${aboutimage})` }} />
-              <div className="gallery-grid-img stagger-2" style={{ backgroundImage: `url(${virca})` }} />
-              <div className="gallery-grid-img-card stagger-3">
+          </div>
+
+          <div className="lgx-grid">
+            <figure className="lgx-tile lgx-a card-pop stagger-2">
+              <img
+                src={aboutimage}
+                alt="Participants at an Alliance for Science Rwanda event"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+
+            <figure className="lgx-tile lgx-b card-pop stagger-3">
+              <img
+                src={award}
+                alt="Award presentation at an Alliance for Science event"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="lgx-play" aria-hidden="true"><FaPlay /></span>
+            </figure>
+
+            <figure className="lgx-tile lgx-c card-pop stagger-4">
+              <img src={biocap} alt="BioCap logo" loading="lazy" decoding="async" />
+            </figure>
+
+            <div className="lgx-tile lgx-d card-pop stagger-5">
+              <div>
                 <h4>Alliance for Science</h4>
                 <p>Empowering smallholder farmers with science communication and responsible stewardship to build resilient, sustainable food systems.</p>
-                <a href="#visit" className="arrow-icon-btn-link"><FaChevronRight /></a>
+              </div>
+              <div className="lgx-d-foot">
+                <a href="#visit" className="arrow-icon-btn-link" aria-label="Learn more"><FaChevronRight /></a>
               </div>
             </div>
           </div>
