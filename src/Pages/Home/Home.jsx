@@ -10,7 +10,7 @@ import { FiUsers, FiAward, FiPieChart, FiMapPin, FiPhoneCall } from "react-icons
 import { Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
 
 import ofab from '../../assets/image/OFAB-logo-removebg-preview.png';
-import rab from '../../assets/image/Rab.jpg';
+import rab from '../../assets/image/Rab.png';
 import aatf from '../../assets/image/AATF.jpg';
 import rmc from '../../assets/image/rmc.jpg';
 import award from '../../assets/image/award.jpg';
