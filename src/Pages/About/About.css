@@ -432,10 +432,10 @@
 
 .about-mv-section .about-mv-card .about-mv-card-text {
   font-family: var(--font-sans);   /* same as story paragraph */
-  font-size: 15px;
+  font-size: 12.5px;               /* matched to the reference card */
   font-weight: 400;
-  line-height: 1.8;
-  color: #F2F8FF;                  /* light version of the story paragraph color, readable on dark */
+  line-height: 1.5;
+  color: var(--g-sky);             /* #BEE0FC, matched to the reference card */
   opacity: 1;
   text-align: justify;
   text-justify: inter-word;

@@ -44,7 +44,6 @@ function Home() {
   const [progRef, progVis] = useReveal();
   const [galRef,  galVis]  = useReveal();
   const [evtRef,  evtVis]  = useReveal();
-  const [mvRef,   mvVis]   = useReveal();
   const [actRef,  actVis]  = useReveal();
   const [faqRef,  faqVis]  = useReveal();
   const [ctaRef,  ctaVis]  = useReveal();
@@ -473,45 +472,7 @@ function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 7: MISSION & VISION ── */}
-      <section className={`about reveal-section ${mvVis ? 'is-visible' : ''}`} ref={mvRef}>
-        <div className="section-inner-content">
-          <div className="section-header-centered fade-up stagger-1">
-            <span className="section-eyebrow">Core Statements</span>
-            <h1>Our Mission &amp; <span className="accent-text">Vision Statement</span></h1>
-          </div>
-          <div className="about-mv-grid">
-            {[
-              {
-                icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
-                  </svg>
-                ),
-                title: 'Our Mission',
-                text: 'To advance sustainable food security by following the Rwanda Agriculture Board\'s laboratory and field research first-hand, then transforming that direct experience into science communication, research documentation, and evidence-based advocacy — guided by REMA\'s biosafety conditions and RICA\'s inspection and certification standards — to empower smallholder farmers and strengthen responsible stewardship against climate change, pests, and disease in Rwanda.',
-              },
-              {
-                icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <path d="M2.7 7.5L12 3l9.3 4.5L12 21z"/><path d="M2.7 7.5h18.6M8 7.5L12 3l4 4.5"/>
-                  </svg>
-                ),
-                title: 'Our Vision',
-                text: 'To become a leading force in Rwanda\'s agricultural transformation by connecting scientific innovation with smallholder communities, and by building a nationwide network of evidence-based, biosafety-conscious food security advocates.',
-              },
-            ].map((card, i) => (
-              <div className={`about-mv-card card-pop stagger-${i + 2}`} key={i}>
-                <div className="about-mv-icon">{card.icon}</div>
-                <h4>{card.title}</h4>
-                <p>{card.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 8: ACTIVITIES ── */}
+      {/* ── SECTION 7: ACTIVITIES ── */}
       <section className={`main-activities reveal-section ${actVis ? 'is-visible' : ''}`} ref={actRef}>
         <div className='activities-bg-shape' />
         <div className='activities-bg-shape shape-2' />
