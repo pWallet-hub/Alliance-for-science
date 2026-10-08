@@ -14,7 +14,7 @@ import rab from '../../assets/image/Rab.png';
 import aatf from '../../assets/image/AATF.jpg';
 import rmc from '../../assets/image/rmc.jpg';
 import award from '../../assets/image/award.jpg';
-import biocap from '../../assets/image/biocap-logo.png';
+import biocap from '../../assets/image/labrevolencia.png';
 
 function useReveal(options = {}) {
   const ref = useRef(null);
@@ -96,8 +96,7 @@ function Home() {
     { src: ofab,   alt: 'OFAB',   url: 'https://ofabrwanda.rw/'       },
     { src: aatf,   alt: 'AATF',   url: 'https://www.aatf-africa.org/' },
     { src: rmc,    alt: 'RMC',    url: 'https://rmc.rw/'              },
-    // TODO: replace the url below with the real BioCap website address
-    { src: biocap, alt: 'BioCap', url: 'https://YOUR-BIOCAP-WEBSITE'  },
+    { src: biocap, alt: 'La Benevolencija', url: 'https://www.labenevolencija.org/'  },
   ];
 
   return (
@@ -404,7 +403,7 @@ function Home() {
             </figure>
 
             <figure className="lgx-tile lgx-c card-pop stagger-4">
-              <img src={biocap} alt="BioCap logo" loading="lazy" decoding="async" />
+              <img src={ofab} alt="BioCap logo" loading="lazy" decoding="async" />
             </figure>
 
             <div className="lgx-tile lgx-d card-pop stagger-5">

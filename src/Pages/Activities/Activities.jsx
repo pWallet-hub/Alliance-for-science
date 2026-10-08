@@ -292,7 +292,7 @@ function Activities() {
         </div>
 
         <div className="activities-hero-container">
-          <p className="activities-breadcrumb">HOME &rsaquo; OUR ACTIVITIES</p>
+          <p className="activities-breadcrumb">HOME &rsaquo; OUR Projects</p>
 
           <div className="activities-pill">
             <Sparkles size={13} className="activities-pill-icon" />
@@ -300,7 +300,7 @@ function Activities() {
           </div>
 
           <h1 className="activities-hero-title">
-            <em>Our</em> <span>Activities &amp; Projects</span>
+            <em>Our</em> <span>Projects</span>
           </h1>
 
           <p className="activities-hero-subtitle">
