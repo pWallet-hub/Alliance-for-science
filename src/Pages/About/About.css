@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap');
 
 /* ── DESIGN TOKENS ── */
 :root {
@@ -24,7 +24,7 @@
 
   /* Fonts (single source of truth) */
   --font-sans:  'Poppins', system-ui, -apple-system, sans-serif;
-  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-serif: 'Poppins', system-ui, -apple-system, sans-serif;   /* headings also Poppins */
 
   --radius-lg: 16px;
   --radius-md: 12px;
@@ -133,7 +133,7 @@
 .about-hero-title {
   font-family: var(--font-serif);
   font-size: clamp(38px, 6vw, 58px);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.1;
   margin-bottom: 20px;
   letter-spacing: -0.02em;
@@ -251,6 +251,7 @@
 .about-section-heading {
   font-family: var(--font-serif);
   font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
   color: var(--g-text);
   line-height: 1.2;
 }
@@ -336,7 +337,7 @@
 .about-mv-title {
   font-family: var(--font-serif);
   font-size: clamp(30px, 4vw, 42px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--g-white);
   margin-bottom: 8px;
 }
@@ -696,4 +697,12 @@
   .about-mv-section .about-mv-card:hover {
     transform: none;
   }
+}
+
+/* ── FONT: POPPINS EVERYWHERE ── */
+.about-root,
+.about-root *,
+.about-root *::before,
+.about-root *::after {
+  font-family: var(--font-sans);
 }
