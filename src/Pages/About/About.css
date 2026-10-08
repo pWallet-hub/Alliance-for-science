@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap');
 
 /* ── DESIGN TOKENS ── */
 :root {
@@ -15,7 +15,17 @@
   --g-border:       #D7E6F4;
   --g-border-soft:  #E7F2FC;
   --g-white:        #ffffff;
-  
+
+  /* Mission & Vision card tokens */
+  --mv-card-top:    #1D4A78;
+  --mv-card-bottom: #153A60;
+  --mv-card-border: rgba(143, 199, 240, 0.30);
+  --mv-text:        #E3EEF9;   /* high-contrast body text on card */
+
+  /* Fonts (single source of truth) */
+  --font-sans:  'Poppins', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Poppins', system-ui, -apple-system, sans-serif;   /* headings also Poppins */
+
   --radius-lg: 16px;
   --radius-md: 12px;
   --shadow-sm: 0 4px 20px rgba(12, 80, 136, 0.06);
@@ -30,11 +40,21 @@
 }
 
 .about-root {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--g-bg);
   color: var(--g-text);
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* Make every text element use the page font (overrides global h/p/button rules) */
+:where(.about-root) h1,
+:where(.about-root) h2,
+:where(.about-root) h3,
+:where(.about-root) p,
+:where(.about-root) span,
+:where(.about-root) button {
+  font-family: inherit;   /* low specificity, so the serif title classes still win */
 }
 
 /* ── HERO SECTION ── */
@@ -111,9 +131,9 @@
 }
 
 .about-hero-title {
-  font-family: 'DM Serif Display', serif;
+  font-family: var(--font-serif);
   font-size: clamp(38px, 6vw, 58px);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.1;
   margin-bottom: 20px;
   letter-spacing: -0.02em;
@@ -229,8 +249,9 @@
 }
 
 .about-section-heading {
-  font-family: 'DM Serif Display', serif;
+  font-family: var(--font-serif);
   font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
   color: var(--g-text);
   line-height: 1.2;
 }
@@ -278,11 +299,17 @@
   box-shadow: var(--shadow-md);
 }
 
+.about-primary-btn:focus-visible {
+  outline: 3px solid var(--g-sky-mid);
+  outline-offset: 3px;
+}
+
 /* ── MISSION & VISION ── */
 .about-mv-section {
-  background: linear-gradient(180deg, var(--g-primary-dark) 0%, #05213d 100%);
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, #0C5088 0%, #0A4373 100%);
   color: var(--g-white);
-  padding: 90px 24px;
+  padding: 56px 24px;
 }
 
 .about-mv-container {
@@ -292,94 +319,127 @@
 
 .about-mv-header {
   text-align: center;
-  max-width: 640px;
-  margin: 0 auto 50px;
+  max-width: 680px;
+  margin: 0 auto 32px;
 }
 
 .about-eyebrow-light {
+  font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--g-sky-mid);
+  color: var(--g-sky);
   display: inline-block;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .about-mv-title {
-  font-family: 'DM Serif Display', serif;
+  font-family: var(--font-serif);
   font-size: clamp(30px, 4vw, 42px);
-  margin-bottom: 12px;
+  font-weight: 700;
+  color: var(--g-white);
+  margin-bottom: 8px;
 }
 
-.about-mv-subtitle {
-  font-size: 15px;
-  color: var(--g-sky);
-  line-height: 1.6;
+.about-mv-section .about-mv-subtitle {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: #FFFFFF;
+  opacity: 1;
+  line-height: 1.65;
 }
 
 .about-mv-cards-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
 }
 
-.about-mv-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-lg);
-  padding: 36px;
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s var(--ease-smooth), border-color 0.3s var(--ease-smooth);
+.about-mv-section .about-mv-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 28px;
+  border-radius: 18px;
+  background: #072E52;   /* dark card (unchanged) */
+  border: 1px solid rgba(190, 224, 252, 0.45);
+  box-shadow: 0 16px 36px rgba(2, 16, 34, 0.45);
+  overflow: hidden;
+  transition:
+    transform 0.3s var(--ease-smooth),
+    border-color 0.3s var(--ease-smooth),
+    box-shadow 0.3s var(--ease-smooth);
 }
 
-.about-mv-card:hover {
+/* accent bar on top of each card */
+.about-mv-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--g-accent), var(--g-sky-mid));
+}
+
+.about-mv-section .about-mv-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(190, 224, 252, 0.7);
+  box-shadow: 0 22px 44px rgba(2, 16, 34, 0.55);
 }
 
 .about-mv-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .about-mv-icon-box {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  background: rgba(46, 155, 240, 0.15);
-  color: var(--g-accent);
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--g-accent) 0%, var(--g-accent-dark) 100%);
+  color: var(--g-white);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(46, 155, 240, 0.3);
+  box-shadow: 0 6px 16px rgba(46, 155, 240, 0.4);
 }
 
 .about-mv-tag {
-  font-size: 11px;
+  font-family: var(--font-sans);
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--g-sky-mid);
-  background: rgba(255, 255, 255, 0.08);
-  padding: 4px 12px;
+  color: #E3F2FF;
+  background: rgba(143, 199, 240, 0.18);
+  border: 1px solid rgba(190, 224, 252, 0.5);
+  padding: 7px 16px;
   border-radius: 999px;
 }
 
-.about-mv-card-heading {
-  font-size: 20px;
+.about-mv-section .about-mv-card .about-mv-card-heading {
+  font-family: var(--font-sans);
+  font-size: 1.6rem;
   font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--g-white);
+  line-height: 1.25;
+  margin-bottom: 8px;
+  color: #FFFFFF;
 }
 
-.about-mv-card-text {
-  font-size: 14px;
-  line-height: 1.75;
-  color: var(--g-sky);
+.about-mv-section .about-mv-card .about-mv-card-text {
+  font-family: var(--font-sans);   /* same as story paragraph */
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: #F2F8FF;                  /* light version of the story paragraph color, readable on dark */
+  opacity: 1;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 /* ── GOALS & TIMELINE ── */
@@ -580,6 +640,22 @@
     gap: 40px;
   }
 
+  .about-mv-cards-grid {
+    gap: 16px;
+  }
+
+  .about-mv-section {
+    padding: 44px 16px;
+  }
+
+  .about-mv-section .about-mv-card {
+    padding: 22px 20px;
+  }
+
+  .about-mv-section .about-mv-card .about-mv-card-heading {
+    font-size: 1.4rem;
+  }
+
   .goals-timeline-track {
     flex-direction: column;
     padding: 20px 0;
@@ -605,4 +681,28 @@
   .goal-card-arrow {
     display: none;
   }
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  .about-hero-container,
+  .about-story-section,
+  .about-mv-section,
+  .about-goals-section,
+  .about-mv-section .about-mv-card,
+  .about-story-img {
+    transition: none;
+  }
+
+  .about-mv-section .about-mv-card:hover {
+    transform: none;
+  }
+}
+
+/* ── FONT: POPPINS EVERYWHERE ── */
+.about-root,
+.about-root *,
+.about-root *::before,
+.about-root *::after {
+  font-family: var(--font-sans);
 }
