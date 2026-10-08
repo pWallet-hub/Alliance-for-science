@@ -22,7 +22,7 @@ function Sidebar() {
           <li><Link to="/" onClick={toggleSidebar}>Home</Link></li>
           <li><Link to="/about" onClick={toggleSidebar}>About Us</Link></li>
           <li><Link to="/activities" onClick={toggleSidebar}>Projects</Link></li>
-          <li><Link to="/news" onClick={toggleSidebar}>News & Viewer</Link></li>
+          <li><Link to="/news" onClick={toggleSidebar}>News & Publications</Link></li>
           <li><Link to="/team" onClick={toggleSidebar}>Our Team</Link></li>
           <li><Link to="/Gallery" onClick={toggleSidebar}>Gallery</Link></li>
         </ul>
