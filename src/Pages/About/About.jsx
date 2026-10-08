@@ -154,36 +154,35 @@ function About() {
           </div>
 
           <div className='about-mv-cards-grid'>
-            {/* Vision Card */}
-            <div className='about-mv-card'>
-              <div className='about-mv-card-header'>
-                <div className='about-mv-icon-box'>
-                  <MdOutlineTrackChanges size={28} />
-                </div>
-                <span className='about-mv-tag'>Vision</span>
-              </div>
-              <h3 className='about-mv-card-heading'>Agricultural Transformation</h3>
-              <p className='about-mv-card-text'>
-                To become a leading force in Rwanda's agricultural transformation by emphasizing innovative farming 
-                technologies and establishing a nationwide network of food security advocates.
-              </p>
-            </div>
+  {/* Mission Card */}
+  <div className='about-mv-card'>
+    <div className='about-mv-card-header'>
+      <div className='about-mv-icon-box'>
+        <GiPublicSpeaker size={28} />
+      </div>
+      <span className='about-mv-tag'>Mission</span>
+    </div>
+    <h3 className='about-mv-card-heading'>Advocacy &amp; Education</h3>
+    <p className='about-mv-card-text'>
+      To foster collaboration among farmers, scientists, media, businesses, and policymakers to advance agricultural innovation,
+      strengthen resilience, and promote sustainable development.
+    </p>
+  </div>
 
-            {/* Mission Card */}
-            <div className='about-mv-card'>
-              <div className='about-mv-card-header'>
-                <div className='about-mv-icon-box'>
-                  <GiPublicSpeaker size={28} />
-                </div>
-                <span className='about-mv-tag'>Mission</span>
-              </div>
-              <h3 className='about-mv-card-heading'>Advocacy & Education</h3>
-              <p className='about-mv-card-text'>
-                To achieve food security and sustainability through targeted education and advocacy for innovative 
-                farming solutions, mitigating the threats posed by climate change, pests, and diseases.
-              </p>
-            </div>
-          </div>
+  {/* Vision Card */}
+  <div className='about-mv-card'>
+    <div className='about-mv-card-header'>
+      <div className='about-mv-icon-box'>
+        <MdOutlineTrackChanges size={28} />
+      </div>
+      <span className='about-mv-tag'>Vision</span>
+    </div>
+    <h3 className='about-mv-card-heading'>Agricultural Transformation</h3>
+    <p className='about-mv-card-text'>
+      A thriving and resilient agricultural sector where farmers achieve improved incomes through biotechnology and climate-smart agriculture, overcoming challenges such as drought, pests, and diseases while meeting evolving market demands.
+    </p>
+  </div>
+</div>
         </div>
       </section>
 
