@@ -423,7 +423,7 @@
 
 .about-mv-section .about-mv-card .about-mv-card-heading {
   font-family: var(--font-sans);
-  font-size: 1.6rem;
+  font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.25;
   margin-bottom: 8px;
@@ -653,7 +653,7 @@
   }
 
   .about-mv-section .about-mv-card .about-mv-card-heading {
-    font-size: 1.4rem;
+    font-size: 1.05rem;
   }
 
   .goals-timeline-track {
