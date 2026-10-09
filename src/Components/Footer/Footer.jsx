@@ -113,7 +113,7 @@ const Footer = () => {
                   <span className="contact-icon-box"><MdOutlineLocationOn /></span>
                   <div>
                     <span className="contact-meta">Location</span>
-                    <span className="contact-val">Hall Mark 24X8+GFQ, KG 17 Ave, Kigali, Rwanda</span>
+                    <span className="contact-val">Hallmark 24X8+GFQ, KG 17 Ave, Kigali, Rwanda</span>
                   </div>
                 </li>
               </ul>
