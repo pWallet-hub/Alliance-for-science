@@ -19,7 +19,7 @@ function Team() {
   const teamData = [
     {
       name: "Pacifique Nshimiyimana",
-      role: "Executive Director",
+      role: "Country Director",
       tag: "Leadership",
       avatar: image1,
       phone: "+250 788 123 456",
@@ -42,7 +42,7 @@ function Team() {
     },
     {
       name: "Gisele Ndizeye",
-      role: "Communication Manager",
+      role: "Communication Officer",
       tag: "Communications",
       avatar: image2,
       phone: "+250 788 654 321",
@@ -65,7 +65,7 @@ function Team() {
     },
     {
       name: "Agape Nduwamungu",
-      role: "IT Service Officer",
+      role: "Administration Officer",
       tag: "Technology",
       avatar: image3,
       phone: "+250 788 999 888",
