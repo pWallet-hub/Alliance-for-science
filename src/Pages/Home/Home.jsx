@@ -37,6 +37,44 @@ function useReveal(options = {}) {
 function Home() {
   const [activeCard, setActiveCard] = useState(1);
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const [contactStatus, setContactStatus] = useState('');
+  const [contactSending, setContactSending] = useState(false);
+
+  async function handleContactSubmit(event) {
+    event.preventDefault();
+    setContactSending(true);
+    setContactStatus('');
+
+    try {
+      const form = event.currentTarget;
+      const response = await fetch('https://formsubmit.co/ajax/n.agape@afs-rwanda.org', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      const result = await response.json();
+      const accepted = result.result === 'success'
+        || result.success === true
+        || result.success === 'true';
+
+      if (!response.ok || !accepted) {
+        throw new Error(result.message || 'The email service did not accept the message.');
+      }
+
+      form.reset();
+      setContactStatus('Message sent. Thank you for contacting us.');
+    } catch (error) {
+      const detail = error instanceof TypeError
+        ? 'The email service could not be reached. Check your connection and try again.'
+        : error.message;
+      setContactStatus(`Message could not be sent: ${detail} You can also email n.agape@afs-rwanda.org.`);
+    } finally {
+      setContactSending(false);
+    }
+  }
 
   /* Scroll reveal handles */
   const [capRef,  capVis]  = useReveal();
@@ -532,17 +570,25 @@ function Home() {
             <h2>Get in touch with our team for more information</h2>
             <div className="sidebar-info-row-item">
               <FiPhoneCall className="s-icon" />
-              <div><p>OFAB Rwanda Helpdesk</p><strong>desk@ofabrwanda.org</strong></div>
+              <div><p>AfS Rwanda Helpdesk</p><strong>n.agape@afs-rwanda.org</strong></div>
             </div>
           </div>
           <div className="contact-card-main-inputs fade-right stagger-2">
-            <form className="home-embedded-form" onSubmit={(e) => e.preventDefault()}>
+            <form
+              className="home-embedded-form"
+              onSubmit={handleContactSubmit}
+            >
+              <input type="hidden" name="_subject" value="New message from the AfS Rwanda website" />
+              <input type="hidden" name="_template" value="table" />
               <div className="form-double-inputs">
-                <input type="text" placeholder="Your Name" required />
-                <input type="email" placeholder="Email Address" required />
+                <input type="text" name="name" placeholder="Your Name" required />
+                <input type="email" name="email" placeholder="Email Address" required />
               </div>
-              <textarea placeholder="Write Message..." rows="4" required />
-              <button type="submit" className="form-submit-theme-btn">Get In Touch</button>
+              <textarea name="message" placeholder="Write Message..." rows="4" required />
+              <button type="submit" className="form-submit-theme-btn" disabled={contactSending}>
+                {contactSending ? 'Sending...' : 'Get In Touch'}
+              </button>
+              <p role="status" aria-live="polite">{contactStatus}</p>
             </form>
           </div>
         </div>
