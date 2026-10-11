@@ -6,6 +6,7 @@ import {
   Coffee,
   Calendar,
   ArrowUpRight,
+  Download,
   Leaf,
   Newspaper,
   Mail,
@@ -18,10 +19,15 @@ import {
   Clock,
 } from "lucide-react";
 import "./News.css";
+import posterImage from "../../assets/image/regulatory-image.jpg";
+import introduction from "../../assets/image/lounch-biocap.jpg";
+import posterFile from "../../assets/documents/Pacifique x PosterB_small.pdf";
+
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1600&q=80";
 
 const CATEGORY_ACCENTS = {
+  "Research Poster": "#0C5088",
   "GMO & Policy": "#0C5088",
   "Crop Research": "#16324B",
   "Biotech Advocacy": "#2E9BF0",
@@ -29,51 +35,26 @@ const CATEGORY_ACCENTS = {
 };
 const DEFAULT_ACCENT = "#16324B";
 
-// Verified AfS-Rwanda and OFAB Rwanda news data
+const POSTER_FILE = posterFile;
+
+// Shared poster (downloadable). `sortDate` is used to arrange items, newest first.
 const afsRwandaNewsData = [
   {
-    id: "1",
-    date: "13 July, 2023",
-    category: "GMO & Policy",
-    title: "Rwanda Enacts Draft Biosafety Law to Regulate Agricultural Modernization",
+    id: "poster-msu-2026",
+    date: "09 September, 2026",
+    sortDate: "2026-09-09",
+    category: "Research Poster",
+    title: "Rwanda AgriBioTech Implementation and Capacity Building Program",
     excerpt:
-      "The Cabinet approved a comprehensive biosafety bill establishing the Rwanda Environment Management Authority (REMA) and a National Biosafety Committee to regulate GMO research, risk assessments, and environmental safety.",
-    link: "https://www.newtimes.co.rw/article/9116/news/agriculture/rwanda-introduces-new-biosafety-bill-to-regulate-gmos",
-    accent: CATEGORY_ACCENTS["GMO & Policy"],
-    img: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=800&q=80",
-  },
-  {
-    id: "2",
-    date: "10 August, 2023",
-    category: "Crop Research",
-    title: "RAB Rubona Station Advances Field Trials for Disease-Resistant Cassava",
-    excerpt:
-      "Researchers at RAB Rubona Station conduct confined field trials for genetically modified cassava resistant to Cassava Brown Streak Disease (CBSD), safeguarding food security for smallholder farmers across East Africa.",
-    link: "https://africenter.isaaa.org/news/rwanda-approves-draft-biosafety-law",
-    accent: CATEGORY_ACCENTS["Crop Research"],
-    img: "https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?w=800&q=80",
-  },
-  {
-    id: "3",
-    date: "28 October, 2021",
-    category: "Biotech Advocacy",
-    title: "Rwanda Joins OFAB Expansion Network to Address Agricultural Misconceptions",
-    excerpt:
-      "Rwanda officially became the 8th African nation to launch a national Open Forum on Agricultural Biotechnology (OFAB) chapter, connecting local scientists with journalists, farmers, and policymakers.",
-    link: "https://allianceforscience.org/blog/2021/10/rwanda-embraces-biotech-through-ofab-expansion/",
-    accent: CATEGORY_ACCENTS["Biotech Advocacy"],
-    img: "https://images.unsplash.com/photo-1543364195-bfe6e4932397?w=800&q=80",
-  },
-  {
-    id: "4",
-    date: "04 September, 2026",
-    category: "Agri-Innovation",
-    title: "Kigali Summit Highlights Youth and Digital Technologies in Food Systems",
-    excerpt:
-      "RISA and Ministry of Agriculture leaders emphasize the key role of youth-led agritech innovation, digital skilling, and research commercialization to transform agricultural systems across the region.",
-    link: "https://www.risa.gov.rw/news-detail/rwandas-youth-can-lead-africas-agri-food-revolution-says-risa-ceo-at-afs-forum-2026",
-    accent: CATEGORY_ACCENTS["Agri-Innovation"],
-    img: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=80",
+      "Poster by AfS-Rwanda at Michigan State University, Global Agriculture Biotechnology Symposium 2026, tracing Rwanda's journey from biosafety policy to biotech crop products and the BioCap-powered capacity behind it.",
+    link: POSTER_FILE,
+    download: true,
+    fileLabel: "Download Poster",
+    fileMeta: "PDF · 3.2 MB",
+    fullName:
+      "Rwanda AgriBioTech Implementation and Capacity Building Program - Poster by AfS-Rwanda at Michigan State University - Global Agriculture Biotechnology Symposium 2026",
+    accent: CATEGORY_ACCENTS["Research Poster"],
+    img: posterImage,
   },
 ];
 
@@ -84,19 +65,21 @@ const stats = [
   { Icon: Coffee, label: "BioCap Rwanda", sub: "Biotech communication and stewardship" },
 ];
 
-const TABS = ["All", "GMO & Policy", "Crop Research", "Biotech Advocacy", "Agri-Innovation"];
-
 const CONTACT_DETAILS = [
   { Icon: Mail, label: "desk@ofabrwanda.org" },
   { Icon: MapPin, label: "Kigali, Rwanda" },
   { Icon: Clock, label: "Replies within 2 business days" },
 ];
 
+// Newest first
+const sortByDateDesc = (items) =>
+  [...items].sort((a, b) => new Date(b.sortDate || 0) - new Date(a.sortDate || 0));
+
 export default function News() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [activeTab, setActiveTab] = useState("All");
-  const [newsItems, setNewsItems] = useState(afsRwandaNewsData);
+  const [newsItems, setNewsItems] = useState(sortByDateDesc(afsRwandaNewsData));
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -116,6 +99,7 @@ export default function News() {
                     year: "numeric",
                   })
                 : "Recently",
+              sortDate: b.publishedAt || null,
               category: b.tag || "Crop Research",
               title: b.title,
               excerpt: b.excerpt || "No summary provided.",
@@ -125,11 +109,12 @@ export default function News() {
                 b.img ||
                 "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
             }));
-            setNewsItems(mapped);
+            // Keep the shared poster and add live articles, arranged by date
+            setNewsItems(sortByDateDesc([...afsRwandaNewsData, ...mapped]));
           }
         }
       } catch {
-        // Fallback to static verified AfS-Rwanda data
+        // Fallback to the static poster entry
       }
     }
     fetchLiveNews();
@@ -147,6 +132,9 @@ export default function News() {
     }, 800);
   };
 
+  // Tabs are built from the categories that actually exist
+  const tabs = ["All", ...Array.from(new Set(newsItems.map((p) => p.category)))];
+
   const filteredNews =
     activeTab === "All"
       ? newsItems
@@ -157,7 +145,7 @@ export default function News() {
       {/* ── HERO HEADER ── */}
       <section className="news-hero">
         <div className="news-hero__bg">
-          <img src={HERO_IMAGE} alt="Agricultural biotechnology field research in Rwanda" />
+          <img src={introduction} alt="Agricultural biotechnology field research in Rwanda" />
         </div>
 
         <div className="news-hero-container">
@@ -165,7 +153,7 @@ export default function News() {
 
           <div className="news-pill">
             <Leaf size={13} className="news-pill-icon" />
-            <span>OFAB RWANDA — BIOTECH NEWS &amp; UPDATES</span>
+            <span>AfS RWANDA — BIOTECH NEWS &amp; UPDATES</span>
           </div>
 
           <h1 className="news-hero-title">
@@ -230,7 +218,7 @@ export default function News() {
 
         {/* Categories Tab Selector */}
         <div className="news-tabs-bar">
-          {TABS.map((tab) => (
+          {tabs.map((tab) => (
             <button
               key={tab}
               type="button"
@@ -271,13 +259,31 @@ export default function News() {
                   <h3 className="news-card-title">{post.title}</h3>
                   <p className="news-card-excerpt">{post.excerpt}</p>
 
+                  {post.download && post.fileMeta && (
+                    <p className="news-card-file">{post.fileMeta}</p>
+                  )}
+
                   <a
                     href={post.link}
                     target={isExternal ? "_blank" : "_self"}
                     rel={isExternal ? "noopener noreferrer" : undefined}
                     className="news-card-link"
+                    {...(post.download
+                      ? {
+                          download: post.fullName ? `${post.fullName}.pdf` : true,
+                          title: post.fullName,
+                        }
+                      : {})}
                   >
-                    Read Full Article <ArrowUpRight size={14} />
+                    {post.download ? (
+                      <>
+                        {post.fileLabel || "Download"} <Download size={14} />
+                      </>
+                    ) : (
+                      <>
+                        Read Full Article <ArrowUpRight size={14} />
+                      </>
+                    )}
                   </a>
                 </div>
               </article>
