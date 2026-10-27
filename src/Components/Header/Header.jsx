@@ -34,6 +34,8 @@ function Header() {
         <a
           href={`${DASHBOARD_URL}/auth/login?brand=alliance`}
           className="login-btn"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Login
         </a>
