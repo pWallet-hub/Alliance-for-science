@@ -4,7 +4,7 @@ import './Home.css';
 import aboutimage from '../../assets/image/communication-induction-01.jpg';
 import heroBg from '../../assets/image/alliance-image-bg.jpg';
 import audience from '../../assets/image/Audience.jpg';
-import contactPerson from '../../assets/image/contact-person.png'; /* transparent cut-out: copy contact-person.png into src/assets/image/ */
+import contactPerson from '../../assets/image/pacifique-ask-image.jpg';
 import { FaBowlFood, FaChevronRight, FaPlay, FaQuoteLeft, FaLeaf } from "react-icons/fa6";
 import { MdOutlineScience } from "react-icons/md";
 import { GrDocumentText } from "react-icons/gr";
