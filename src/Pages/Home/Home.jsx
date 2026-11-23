@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 import aboutimage from '../../assets/image/communication-induction-01.jpg';
 import heroBg from '../../assets/image/alliance-image-bg.jpg';
-import { FaBowlFood, FaChevronRight, FaPlay, FaRegComments } from "react-icons/fa6";
-import { MdOutlineScience, MdKeyboardDoubleArrowRight } from "react-icons/md";
+import audience from '../../assets/image/Audience.jpg';
+import contactPerson from '../../assets/image/contact-person.png'; /* transparent cut-out: copy contact-person.png into src/assets/image/ */
+import { FaBowlFood, FaChevronRight, FaPlay, FaQuoteLeft, FaLeaf } from "react-icons/fa6";
+import { MdOutlineScience } from "react-icons/md";
 import { GrDocumentText } from "react-icons/gr";
 import { BiSolidCloudRain, BiTargetLock, BiSupport } from "react-icons/bi";
-import { FiUsers, FiAward, FiPieChart, FiMapPin, FiPhoneCall } from "react-icons/fi";
-import { Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
+import { FiUsers, FiAward, FiPieChart, FiMapPin, FiPhoneCall, FiMail, FiPlus, FiMinus } from "react-icons/fi";
+import { ArrowRight, ArrowLeft, ArrowUpRight, CheckCircle2, ArrowUp } from "lucide-react";
 
 import ofab from '../../assets/image/OFAB-logo-removebg-preview.png';
 import rab from '../../assets/image/Rab.png';
@@ -16,54 +19,131 @@ import rmc from '../../assets/image/rmc.jpg';
 import award from '../../assets/image/award.jpg';
 import biocap from '../../assets/image/labrevolencia.png';
 
-function useReveal(options = {}) {
+/* Line-art doodles (olive sprig, bubble) like the template's pale outlines */
+function Sprig({ className = '' }) {
+  return (
+    <svg className={`doodle ${className}`} viewBox="0 0 180 170" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+      <path d="M30 150C40 100 60 50 85 12C110 50 112 100 92 142" />
+      <path d="M92 142C120 110 150 92 176 90C150 130 120 142 92 142Z" />
+      <circle cx="30" cy="130" r="20" /><circle cx="70" cy="152" r="18" /><circle cx="26" cy="128" r="6" />
+    </svg>
+  );
+}
+function Bubble({ className = '' }) {
+  return (
+    <svg className={`doodle ${className}`} viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden="true">
+      <circle cx="60" cy="60" r="52" /><path d="M30 38C38 28 50 24 64 24" /><path d="M96 70C94 82 88 92 78 98" />
+    </svg>
+  );
+}
+/* Wheat line-art for the contact panel's bottom band */
+function Wheat({ className = '' }) {
+  const ear = (x, y, s = 1) => (
+    <g transform={`translate(${x} ${y}) scale(${s})`}>
+      <path d="M0 0V70" />
+      <path d="M0 0C-6 -8 -6 -16 0 -22C6 -16 6 -8 0 0Z" />
+      <path d="M0 14C-9 8 -12 0 -10 -8C-2 -6 2 2 0 14Z" /><path d="M0 14C9 8 12 0 10 -8C2 -6 -2 2 0 14Z" />
+      <path d="M0 32C-9 26 -12 18 -10 10C-2 12 2 20 0 32Z" /><path d="M0 32C9 26 12 18 10 10C2 12 -2 20 0 32Z" />
+      <path d="M0 50C-9 44 -12 36 -10 28C-2 30 2 38 0 50Z" /><path d="M0 50C9 44 12 36 10 28C2 30 -2 38 0 50Z" />
+    </g>
+  );
+  return (
+    <svg className={`doodle ${className}`} viewBox="0 0 220 120" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {ear(110, 22, 1.25)}{ear(78, 40)}{ear(142, 40)}{ear(48, 56, .85)}{ear(172, 56, .85)}
+      <path d="M10 116C60 106 160 106 210 116" />
+    </svg>
+  );
+}
+
+/* Rotated rubber-stamp badge that sits on the hero wave */
+function Stamp() {
+  return (
+    <svg className="hero-stamp" viewBox="0 0 300 200" aria-hidden="true">
+      <defs>
+        <path id="arcTop" d="M60 100C80 40 220 40 240 100" />
+        <path id="arcBottom" d="M52 112C80 176 220 176 248 112" />
+      </defs>
+      <g transform="rotate(-12 150 100)">
+        <rect x="8" y="26" width="284" height="148" rx="10" fill="var(--g-accent)" />
+        <ellipse cx="150" cy="100" rx="128" ry="60" fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="2 5" />
+        <text fontSize="21" fontWeight="800" fill="#fff" letterSpacing="3"><textPath href="#arcTop" startOffset="50%" textAnchor="middle">EVIDENCE-BASED</textPath></text>
+        <rect x="26" y="78" width="248" height="46" rx="6" fill="#fff" />
+        <text x="150" y="114" textAnchor="middle" fontSize="38" fontWeight="800" fill="var(--g-primary)" letterSpacing="3">SCIENCE</text>
+        <text fontSize="21" fontWeight="800" fill="#fff" letterSpacing="3"><textPath href="#arcBottom" startOffset="50%" textAnchor="middle">RWANDA · 100%</textPath></text>
+      </g>
+    </svg>
+  );
+}
+
+/* Section wrapper: fades in once when scrolled into view */
+function Section({ className = '', id, children }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
-
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold: options.threshold ?? 0.12, rootMargin: options.rootMargin ?? '0px' }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [options.rootMargin, options.threshold]);
-
-  return [ref, visible];
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setVisible(true); io.disconnect(); }
+    }, { threshold: 0.1 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return <section ref={ref} id={id} className={`${className} reveal ${visible ? 'is-visible' : ''}`}>{children}</section>;
 }
 
 function Home() {
-  const [activeCard, setActiveCard] = useState(1);
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const [openFaq, setOpenFaq] = useState(0);
+  const [slide, setSlide] = useState(0);
+  const [heroSlide, setHeroSlide] = useState(0);
+  const [galIdx, setGalIdx] = useState(0);
+  const galleryImgs = [
+    { src: aboutimage, alt: 'Participants at an Alliance for Science Rwanda event' },
+    { src: award, alt: 'Award presentation at an Alliance for Science event', play: true },
+    { src: audience, alt: 'Audience at an Alliance for Science Rwanda session' },
+    { src: heroBg, alt: 'Alliance for Science Rwanda field and research work' },
+  ];
+  /* Rotate the list and repeat it so the strip is always full, with photos peeking in at both edges */
+  const rotated = [...galleryImgs.slice(galIdx), ...galleryImgs.slice(0, galIdx)];
+  const galItems = [...rotated, ...rotated];
+  useEffect(() => {
+    const t = setInterval(() => setGalIdx(i => (i + 1) % galleryImgs.length), 4500);
+    return () => clearInterval(t);
+  }, []);
+  const heroSlides = [heroBg, award, audience];
+  const goHero = (d) => setHeroSlide(s => (s + d + heroSlides.length) % heroSlides.length);
+  useEffect(() => {
+    const t = setInterval(() => setHeroSlide(s => (s + 1) % 3), 7000);
+    return () => clearInterval(t);
+  }, [heroSlide]);
+  const [showTop, setShowTop] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 500);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   const [contactStatus, setContactStatus] = useState('');
   const [contactSending, setContactSending] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setHeroLoaded(true), 80);
+    return () => clearTimeout(t);
+  }, []);
 
   async function handleContactSubmit(event) {
     event.preventDefault();
     setContactSending(true);
     setContactStatus('');
-
     try {
       const form = event.currentTarget;
       const response = await fetch('https://formsubmit.co/ajax/n.agape@afs-rwanda.org', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(Object.fromEntries(new FormData(form))),
       });
       const result = await response.json();
-      const accepted = result.result === 'success'
-        || result.success === true
-        || result.success === 'true';
-
-      if (!response.ok || !accepted) {
-        throw new Error(result.message || 'The email service did not accept the message.');
-      }
-
+      const accepted = result.result === 'success' || result.success === true || result.success === 'true';
+      if (!response.ok || !accepted) throw new Error(result.message || 'The email service did not accept the message.');
       form.reset();
       setContactStatus('Message sent. Thank you for contacting us.');
     } catch (error) {
@@ -76,551 +156,344 @@ function Home() {
     }
   }
 
-  /* Scroll reveal handles */
-  const [capRef,  capVis]  = useReveal();
-  const [intRef,  intVis]  = useReveal();
-  const [progRef, progVis] = useReveal();
-  const [galRef,  galVis]  = useReveal();
-  const [evtRef,  evtVis]  = useReveal();
-  const [actRef,  actVis]  = useReveal();
-  const [faqRef,  faqVis]  = useReveal();
-  const [ctaRef,  ctaVis]  = useReveal();
-  const [parRef,  parVis]  = useReveal();
-
-  useEffect(() => {
-    const t = setTimeout(() => setHeroLoaded(true), 80);
-    return () => clearTimeout(t);
-  }, []);
-
-  // Verified, authentic AfS-Rwanda & OFAB Rwanda events
   const realEvents = [
-    {
-      num: '01',
-      month: 'OCT',
-      year: '2021',
-      title: 'OFAB Rwanda Chapter Launch & Science Media Desk',
-      location: 'Kigali, Rwanda · Marriott Hotel',
-      category: 'National Launch'
-    },
-    {
-      num: '02',
-      month: 'FEB',
-      year: '2023',
-      title: 'Media Engagement & Biosafety Awareness Workshop',
-      location: 'Musanze, Northern Province · Field Site',
-      category: 'Capacity Building'
-    },
-    {
-      num: '03',
-      month: 'AUG',
-      year: '2023',
-      title: 'RAB Rubona Field Visit on Cassava Disease Resistance',
-      location: 'Huye, Southern Province · RAB Research Station',
-      category: 'Research Inspection'
-    },
+    { month: 'OCT', year: '2021', img: award, title: 'OFAB Rwanda Chapter Launch & Science Media Desk', location: 'Kigali, Rwanda · Marriott Hotel', category: 'National Launch' },
+    { month: 'FEB', year: '2023', img: audience, title: 'Media Engagement & Biosafety Awareness Workshop', location: 'Musanze, Northern Province · Field Site', category: 'Capacity Building' },
+    { month: 'AUG', year: '2023', img: heroBg, title: 'RAB Rubona Field Visit on Cassava Disease Resistance', location: 'Huye, Southern Province · RAB Research Station', category: 'Research Inspection' },
   ];
 
-  // Authentic AfS-Rwanda focus areas
   const activities = [
-    { icon: <FaBowlFood />,       label: 'Food Security',      desc: 'Advancing climate-resilient farming and biotech adoption to strengthen sustainable food security for smallholders across Rwanda.' },
-    { icon: <BiSolidCloudRain />, label: 'Climate Resilience', desc: 'Promoting drought-tolerant maize and disease-resistant cassava varieties bred for a changing climate.' },
-    { icon: <MdOutlineScience />, label: 'Research Documentation', desc: 'Following RAB\'s research and laboratory work first-hand, then documenting each stage so evidence-based results reach the public accurately.' },
-    { icon: <GrDocumentText />,   label: 'Policy Advocacy',    desc: 'Championing evidence-based advocacy grounded in REMA\'s biosafety conditions and RICA\'s inspection and certification standards.' },
+    { icon: <FaBowlFood />, label: 'Food Security', img: heroBg, desc: 'Advancing climate-resilient farming and biotech adoption to strengthen sustainable food security for smallholders across Rwanda.' },
+    { icon: <BiSolidCloudRain />, label: 'Climate Resilience', img: aboutimage, desc: 'Promoting drought-tolerant maize and disease-resistant cassava varieties bred for a changing climate.' },
+    { icon: <MdOutlineScience />, label: 'Research Documentation', img: award, desc: 'Following RAB\'s research and laboratory work first-hand, then documenting each stage so evidence-based results reach the public accurately.' },
+    { icon: <GrDocumentText />, label: 'Policy Advocacy', img: audience, desc: 'Championing evidence-based advocacy grounded in REMA\'s biosafety conditions and RICA\'s inspection and certification standards.' },
   ];
 
   const partners = [
-    { src: rab,    alt: 'RAB',    url: 'https://www.rab.gov.rw/'      },
-    { src: ofab,   alt: 'OFAB',   url: 'https://ofabrwanda.rw/'       },
-    { src: aatf,   alt: 'AATF',   url: 'https://www.aatf-africa.org/' },
-    { src: rmc,    alt: 'RMC',    url: 'https://rmc.rw/'              },
-    { src: biocap, alt: 'La Benevolencija', url: 'https://www.labenevolencija.org/'  },
+    { src: rab, alt: 'RAB', url: 'https://www.rab.gov.rw/' },
+    { src: ofab, alt: 'OFAB', url: 'https://ofabrwanda.rw/' },
+    { src: aatf, alt: 'AATF', url: 'https://www.aatf-africa.org/' },
+    { src: rmc, alt: 'RMC', url: 'https://rmc.rw/' },
+    { src: biocap, alt: 'La Benevolencija', url: 'https://www.labenevolencija.org/' },
+  ];
+
+  const faqs = [
+    { q: 'What agricultural technologies does AfS Rwanda promote?', a: 'Disease-resistant cassava, drought-tolerant maize and other climate-smart crops developed with the Rwanda Agriculture Board (RAB).' },
+    { q: 'How does AfS Rwanda support the National Biosafety Law?', a: 'We follow RAB\'s laboratory and confined field trial research within the conditions set by REMA, and document each stage against RICA\'s standards.' },
+  ];
+
+  /* Edit these labels and values to your real figures */
+  const meters = [
+    { label: 'Advocacy & Outreach Scale', value: 85 },
+    { label: 'Research Documentation', value: 90 },
+  ];
+
+  const stats = [
+    { n: '265+', t: 'Communicators Trained', d: 'Journalists, students, and agronomists equipped to communicate agricultural biotechnology to the public.' },
+    { n: '50+', t: 'Technologies Transferred', d: 'Promoting disease-resistant cassava and climate-smart crops to smallholders across provinces.' },
   ];
 
   return (
-    <div className='home-container'>
+    <div className="home-container">
 
-      {/* ── SECTION 1: HERO BANNER (Top Padding added to prevent Navbar overlap) ── */}
-      <section className='home-hero'>
-        <div className='home-hero__bg'>
-          <img src={heroBg} alt="Alliance for Science Rwanda background" />
+      {/* 1. HERO */}
+      <section className="home-hero">
+        <div className="home-hero__bg">
+          {heroSlides.map((src, i) => (
+            <img key={i} src={src} alt={i === 0 ? 'Alliance for Science Rwanda background' : ''} className={i === heroSlide ? 'on' : ''} />
+          ))}
         </div>
-
         <div className={`home-hero-container ${heroLoaded ? 'hero-loaded' : ''}`}>
-          <p className='home-hero-breadcrumb'>SCIENCE &bull; INNOVATION &bull; SUSTAINABILITY</p>
-
-          <div className='home-hero-pill'>
-            <Sparkles size={13} className='home-hero-pill-icon' />
-            <span>ALLIANCE FOR SCIENCE RWANDA</span>
-          </div>
-
-          <h1 className='home-hero-title'>
-            Alliance for Science <em>Rwanda</em>
-          </h1>
-
-          <p className='home-hero-subtitle'>
-            Advancing agricultural biotechnology through science communication, research documentation, 
+          <h1 className="home-hero-title">Alliance for Science Rwanda</h1>
+          <p className="home-hero-subtitle">
+            Advancing agricultural biotechnology through science communication, research documentation,
             evidence-based advocacy, and responsible stewardship empowering smallholders, strengthening biosafety,
             and connecting scientific innovation with sustainable food security across Rwanda.
           </p>
-
-          <div className='home-cta-group'>
-            <button className='home-btn home-btn-primary'>
-              Discover More <ArrowRight size={15} />
-            </button>
-            <button className='home-btn home-btn-outline'>
-              Our Initiatives
-            </button>
+          <div className="home-cta-group">
+            <Link to="/about" className="home-btn home-btn-primary">Discover More <ArrowUpRight size={16} /></Link>
+            <Link to="/activities" className="home-btn home-btn-outline">Our Initiatives</Link>
           </div>
         </div>
-
-        <div className='home-hero__wave'>
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path
-              d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-1.42,1200,34.75V0Z"
-              fill="#F4F9FE"
-            />
+        <div className="hero-arrows">
+          <button type="button" onClick={() => goHero(-1)} aria-label="Previous slide"><ArrowLeft size={22} /></button>
+          <button type="button" onClick={() => goHero(1)} aria-label="Next slide"><ArrowRight size={22} /></button>
+        </div>
+        <div className="home-hero__wave">
+          <svg viewBox="0 0 1440 220" preserveAspectRatio="none">
+            <path d="M0,150C70,70 190,20 300,50C390,75 440,150 540,185C640,215 740,150 880,95C1020,40 1160,20 1290,40C1360,50 1410,66 1440,80L1440,221L0,221Z" fill="#F4F9FE" />
           </svg>
+          <Bubble className="doodle-bubble" /><Sprig className="doodle-sprig" />
+          <Stamp />
         </div>
       </section>
 
-      {/* ── SECTION 2: CAPABILITIES ── */}
-      <section className={`intro-capabilities-section reveal-section ${capVis ? 'is-visible' : ''}`} ref={capRef}>
-        <div className="section-inner-content grid-2-col">
-          <div className="capabilities-left-images fade-left">
-            <div className="image-box-main" style={{ backgroundImage: `url(${award})` }} />
-            <div className="image-box-floating" style={{ backgroundImage: `url(${aboutimage})` }} />
-          </div>
-          <div className="capabilities-right-text fade-right">
-            <span className="section-eyebrow stagger-1">About Our Organisation</span>
-            <h2 className='stagger-2'>Bringing evidence-based insights to agricultural science</h2>
-            <p className="section-desc-para stagger-3">
-              Alliance for Science Rwanda works alongside the Rwanda Agriculture Board (RAB), following biotech crops from laboratory research through confined field trials — experiencing first-hand how each new agricultural technology is developed and tested. From that direct research and field experience, we build public communication, advocacy, and documentation for every new release, grounded in the regulatory conditions set by REMA and the inspection and certification standards enforced by RICA.
-            </p>
-            <div className="capabilities-features-list stagger-4">
-              <div className="feature-inline-item">
-                <div className="feature-icon-box"><BiTargetLock /></div>
-                <div>
-                  <h4>Biosafety &amp; REMA Compliance</h4>
-                  <p>Following RAB's laboratory and confined field trial research within the risk-assessment and environmental-release conditions set by REMA, in support of Rwanda's Biosafety Law.</p>
-                </div>
-              </div>
-              <div className="feature-inline-item">
-                <div className="feature-icon-box"><BiSupport /></div>
-                <div>
-                  <h4>Documentation &amp; RICA Standards</h4>
-                  <p>Documenting each stage of research against RICA's seed and agro-input inspection and certification standards, then training journalists and communities to share it responsibly.</p>
-                </div>
-              </div>
-            </div>
-            <button className="theme-solid-btn stagger-5">Explore Our Work <FaChevronRight className="btn-arrow" /></button>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 3: INTERVENTIONS (DARK) ── */}
-      <section className={`interventions-dark-section reveal-section ${intVis ? 'is-visible' : ''}`} ref={intRef}>
-        <div className="section-inner-content">
-          <div className="section-header-centered text-white fade-up stagger-1">
-            <span className="section-eyebrow light">Strategic Directions</span>
-            <h2>Key impact pathways across Rwanda</h2>
-          </div>
-          <div className="interventions-triple-grid">
-            {activities.slice(0, 3).map((act, idx) => (
-              <div className={`intervention-box-card card-pop stagger-${idx + 2}`} key={idx}>
-                <div className="int-card-icon">{act.icon}</div>
-                <h3>{act.label} Initiatives</h3>
-                <p>{act.desc}</p>
-                <a href="#more" className="int-card-link">Read More <MdKeyboardDoubleArrowRight /></a>
-              </div>
-            ))}
-          </div>
-          <p className="interventions-footer-note fade-up stagger-5">
-            🔬 From RAB's labs and field trials to REMA-approved releases and RICA-certified inputs — delivering science-backed, evidence-based outcomes. <a href="#explore">Discover our research partnerships</a>
-          </p>
-        </div>
-      </section>
-
-      {/* ── SECTION 4: PROGRESS & MILESTONES ── */}
-      <section className={`progress-counters-section reveal-section ${progVis ? 'is-visible' : ''}`} ref={progRef}>
-        <div className="section-inner-content grid-2-col">
-          
-          <div className="progress-left-content fade-left">
-            <span className="section-eyebrow stagger-1">OUR MILESTONES</span>
-            <h2 className="stagger-2">
-              Paving transformation routes in <span className="accent-text">Rwanda</span>
-            </h2>
-            <p className="section-desc-para stagger-3">
-              Empowering smallholder farmers, advocating for science-based biosafety policy, and bridging agricultural research with national food security goals through responsible stewardship.
-            </p>
-
-            <div className="skill-meter-wrapper stagger-4">
-              <div className="skill-meter-meta">
-                <span className="meter-label">Advocacy &amp; Outreach Scale</span>
-                <span className="meter-val">85%</span>
-              </div>
-              <div className="skill-meter-rail">
-                <div
-                  className={`skill-meter-fill ${progVis ? 'meter-animate' : ''}`}
-                  style={{ '--meter-w': '85%' }}
-                >
-                  <span className="meter-glow-dot" />
-                </div>
-              </div>
-            </div>
-
-            <div className="counter-mini-boxes stagger-5">
-              <div className="counter-mini-card">
-                <div className="cm-icon"><FiUsers /></div>
-                <div>
-                  <h3>10+ Years</h3>
-                  <p>Of Science Communication</p>
-                </div>
-              </div>
-              <div className="counter-mini-card">
-                <div className="cm-icon"><FiAward /></div>
-                <div>
-                  <h3>OFAB Rwanda</h3>
-                  <p>Official Chapter Hub</p>
-                </div>
-              </div>
-            </div>
-
-            <button className="theme-solid-btn stagger-6">
-              <span>Explore Metrics</span>
-              <FaChevronRight className="btn-arrow" />
-            </button>
-          </div>
-
-          <div className="progress-right-card-wrap fade-right stagger-2">
-            <div className="progress-feature-card">
-              <div className="p-card-header">
-                <span className="p-card-badge">REAL-WORLD IMPACT</span>
-                <h3 className="p-card-title">Strengthening Rwanda’s Agricultural Future</h3>
-              </div>
-
-              <div className="p-stats-list">
-                <div className="p-stat-item">
-                  <span className="p-stat-number">265+</span>
-                  <div className="p-stat-info">
-                    <strong>Communicators Trained</strong>
-                    <p>Journalists, students, and agronomists equipped to communicate agricultural biotechnology to the public.</p>
-                  </div>
-                </div>
-
-                <div className="p-stat-divider" />
-
-                <div className="p-stat-item">
-                  <span className="p-stat-number">50+</span>
-                  <div className="p-stat-info">
-                    <strong>Technologies Transferred</strong>
-                    <p>Promoting disease-resistant cassava and climate-smart crops to smallholders across provinces.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-card-footer">
-                <div className="p-card-foot-dot" />
-                <span>Data backed by RAB &amp; OFAB Rwanda research network.</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── SECTION 5: GALLERY (mosaic layout: every photo shown large, uncropped faces, no dark overlay) ── */}
-      <section className={`lab-gallery-section reveal-section ${galVis ? 'is-visible' : ''}`} ref={galRef}>
-        <style>{`
-          .lgx-head { max-width: 820px; margin-bottom: 36px; }
-          .lgx-head h2 { margin: 10px 0 24px; }
-
-          .lgx-grid {
-            display: grid;
-            grid-template-columns: repeat(12, minmax(0, 1fr));
-            grid-auto-rows: 230px;
-            gap: 18px;
-          }
-          .lgx-tile {
-            position: relative;
-            margin: 0;
-            overflow: hidden;
-            border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
-            background: #0b3a66;
-          }
-          .lgx-tile img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-          }
-          .lgx-tile:hover img { transform: scale(1.04); }
-
-          /* Large portrait: keep faces in view */
-          .lgx-a { grid-column: 1 / span 6; grid-row: 1 / span 2; }
-          .lgx-a img { object-position: center top; }
-
-          /* Award photo with play badge */
-          .lgx-b { grid-column: 7 / span 6; grid-row: 1; }
-          .lgx-b img { object-position: center 25%; }
-          .lgx-play {
-            position: absolute; left: 50%; top: 50%;
-            transform: translate(-50%, -50%);
-            width: 64px; height: 64px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            background: #1d8bf1; color: #fff; font-size: 1.1rem;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-            transition: transform 0.25s ease;
-          }
-          .lgx-b:hover .lgx-play { transform: translate(-50%, -50%) scale(1.08); }
-
-          /* BioCap logo: whole logo on a clean white card */
-          .lgx-c { grid-column: 7 / span 3; grid-row: 2; background: #ffffff; }
-          .lgx-c img { object-fit: contain; padding: 20px; box-sizing: border-box; }
-
-          /* Text card */
-          .lgx-d {
-            grid-column: 10 / span 3; grid-row: 2;
-            display: flex; flex-direction: column; justify-content: space-between; gap: 10px;
-            padding: 22px;
-            background: linear-gradient(135deg, #0f5aa0 0%, #0a4175 100%);
-          }
-          .lgx-d h4 { margin: 0; color: #fff; font-size: 1.15rem; line-height: 1.25; }
-          .lgx-d p  { margin: 0; color: rgba(255, 255, 255, 0.88); font-size: 0.88rem; line-height: 1.55; }
-          .lgx-d-foot { display: flex; justify-content: flex-end; }
-
-          /* Tablet: two columns, big photos on top */
-          @media (max-width: 1000px) {
-            .lgx-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; }
-            .lgx-a, .lgx-b, .lgx-c, .lgx-d { grid-column: auto; grid-row: auto; }
-            .lgx-a { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
-            .lgx-b { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
-            .lgx-c { aspect-ratio: 4 / 3; }
-            .lgx-d { min-height: 220px; }
-          }
-          /* Phone: single column */
-          @media (max-width: 560px) {
-            .lgx-grid { grid-template-columns: 1fr; }
-            .lgx-a, .lgx-b, .lgx-c, .lgx-d { grid-column: 1 / -1; }
-          }
-        `}</style>
-
-        <div className="section-inner-content">
-          <div className="lgx-head">
-            <span className="section-eyebrow light stagger-1">Inside Our Mission</span>
-            <h2 className='stagger-2'>Fostering open, evidence-based dialogue between scientists and citizens</h2>
-            <div className="info-pill-stat stagger-3">
-              <FiPieChart className="p-icon" />
-              <div><h3>Empowered</h3><p>Agricultural Communication Desks</p></div>
-            </div>
-          </div>
-
-          <div className="lgx-grid">
-            <figure className="lgx-tile lgx-a card-pop stagger-2">
-              <img
-                src={aboutimage}
-                alt="Participants at an Alliance for Science Rwanda event"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-
-            <figure className="lgx-tile lgx-b card-pop stagger-3">
-              <img
-                src={award}
-                alt="Award presentation at an Alliance for Science event"
-                loading="lazy"
-                decoding="async"
-              />
-              <span className="lgx-play" aria-hidden="true"><FaPlay /></span>
-            </figure>
-
-            <figure className="lgx-tile lgx-c card-pop stagger-4">
-              <img src={ofab} alt="BioCap logo" loading="lazy" decoding="async" />
-            </figure>
-
-            <div className="lgx-tile lgx-d card-pop stagger-5">
-              <div>
-                <h4>Alliance for Science</h4>
-                <p>Empowering smallholder farmers with science communication and responsible stewardship to build resilient, sustainable food systems.</p>
-              </div>
-              <div className="lgx-d-foot">
-                <a href="#visit" className="arrow-icon-btn-link" aria-label="Learn more"><FaChevronRight /></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 6: EVENTS TIMELINE ── */}
-      <section className={`events-revamped-section reveal-section ${evtVis ? 'is-visible' : ''}`} ref={evtRef}>
-        <div className="events-container-wrap">
-          <div className="events-header-block fade-up stagger-1">
-            <span className="events-eyebrow">UPCOMING GATHERINGS</span>
-            <h2 className="events-main-title">
-              Explore our latest events updates and timeline sessions
-            </h2>
-          </div>
-
-          <div className="events-cards-row">
-            {realEvents.map((ev, i) => {
-              const isSelected = activeCard === i;
-              return (
-                <div
-                  key={i}
-                  className={`event-card-item stagger-${i + 2} ${isSelected ? 'is-active' : ''}`}
-                  onClick={() => setActiveCard(i)}
-                  onMouseEnter={() => setActiveCard(i)}
-                >
-                  <div className="event-num-col">
-                    <span className="event-big-num">{ev.num}</span>
-                  </div>
-
-                  <div className="event-body-col">
-                    <div className="event-pill-badge">
-                      <span className="event-pill-dot" />
-                      <span className="event-pill-date">
-                        <strong>{ev.month}</strong> {ev.year}
-                      </span>
-                    </div>
-
-                    <h3 className="event-card-heading">{ev.title}</h3>
-
-                    <div className="event-location-row">
-                      <FiMapPin className="event-location-icon" />
-                      <span>{ev.location}</span>
-                    </div>
-                  </div>
-
-                  <div className="event-action-arrow">
-                    <div className="event-arrow-circle">
-                      <ArrowRight size={18} />
-                    </div>
-                  </div>
-
-                  <div className="event-card-accent-bar" />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 7: ACTIVITIES ── */}
-      <section className={`main-activities reveal-section ${actVis ? 'is-visible' : ''}`} ref={actRef}>
-        <div className='activities-bg-shape' />
-        <div className='activities-bg-shape shape-2' />
-        <span className='section-eyebrow light fade-up stagger-1'>What We Do</span>
-        <h2 className='fade-up stagger-2'>Explore Our Main Activities</h2>
-        <div className='activities-rule fade-up stagger-3'>
-          <span /><span className='rule-gem' /><span />
-        </div>
-        <div className="activities-container">
-          {activities.map((act, i) => (
-            <div className={`activity-item card-pop stagger-${i + 4}`} key={i}>
-              <div className='activity-icon-wrap'>
-                <div className="activity-icon">{act.icon}</div>
-                <div className='activity-icon-ring' />
-              </div>
-              <h3>{act.label}</h3>
-              <p>{act.desc}</p>
-              <div className='activity-line' />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── SECTION 10: FAQ ── */}
-      <section className={`faq-interactive-section reveal-section ${faqVis ? 'is-visible' : ''}`} ref={faqRef}>
-        <div className="section-inner-content grid-2-col">
-          <div className="faq-left-promo fade-left stagger-1">
-            <div className="faq-promo-badge-card">
-              <FaRegComments className="faq-badge-icon" />
-              <h3>Have questions regarding agricultural biotechnology or biosafety?</h3>
-            </div>
-          </div>
-          <div className="faq-right-accordion fade-right">
-            <span className="section-eyebrow stagger-2">Frequently Asked Questions</span>
-            <h2 className='stagger-3'>Answers to agricultural research questions</h2>
-            <div className="accordion-item-box stagger-4">
-              <div className="accordion-header">
-                <h4>What agricultural technologies does AfS Rwanda promote?</h4>
-                <span>+</span>
-              </div>
-            </div>
-            <div className="accordion-item-box stagger-5">
-              <div className="accordion-header">
-                <h4>How does AfS Rwanda support the National Biosafety Law?</h4>
-                <span>+</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 11: CONTACT ── */}
-      <section className={`action-contact-form-section reveal-section ${ctaVis ? 'is-visible' : ''}`} ref={ctaRef}>
-        <div className="section-inner-content contact-form-grid-card">
-          <div className="contact-card-sidebar-info fade-left stagger-1">
-            <span className="section-eyebrow light">Contact Us</span>
-            <h2>Get in touch with our team for more information</h2>
-            <div className="sidebar-info-row-item">
-              <FiPhoneCall className="s-icon" />
-              <div><p>AfS Rwanda Helpdesk</p><strong>n.agape@afs-rwanda.org</strong></div>
-            </div>
-          </div>
-          <div className="contact-card-main-inputs fade-right stagger-2">
-            <form
-              className="home-embedded-form"
-              onSubmit={handleContactSubmit}
-            >
-              <input type="hidden" name="_subject" value="New message from the AfS Rwanda website" />
-              <input type="hidden" name="_template" value="table" />
-              <div className="form-double-inputs">
-                <input type="text" name="name" placeholder="Your Name" required />
-                <input type="email" name="email" placeholder="Email Address" required />
-              </div>
-              <textarea name="message" placeholder="Write Message..." rows="4" required />
-              <button type="submit" className="form-submit-theme-btn" disabled={contactSending}>
-                {contactSending ? 'Sending...' : 'Get In Touch'}
-              </button>
-              <p role="status" aria-live="polite">{contactStatus}</p>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 12: PARTNERS ── */}
-      <section className={`parterner reveal-section ${parVis ? 'is-visible' : ''}`} ref={parRef}>
-        <div className='parterner-header fade-up stagger-1'>
-          <span className='section-eyebrow'>Trusted Collaborators</span>
-          <h2>Our <span className='accent-text'>Partners</span></h2>
-          <div className='parterner-rule'>
-            <span className='rule-line' /><span className='rule-dot' /><span className='rule-line' />
-          </div>
-        </div>
-        <div className='partner-grid'>
+      {/* 2. PARTNERS STRIP */}
+      <Section className="partners-strip" id="partners">
+        <p className="strip-caption">Trusted Collaborators across Rwanda’s science, agriculture and media sectors</p>
+        <div className="partner-grid">
           {partners.map((p, i) => (
-            <a
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`partner-card card-pop stagger-${i + 2}`}
-              key={i}
-            >
-              <div className='partner-card-inner'>
-                <img src={p.src} alt={p.alt} />
-              </div>
-              <span className='partner-label'>{p.alt}</span>
+            <a href={p.url} target="_blank" rel="noopener noreferrer" className="partner-card" key={i}>
+              <img src={p.src} alt={p.alt} />
             </a>
           ))}
         </div>
-      </section>
+      </Section>
 
+      {/* 3. ABOUT */}
+      <Section className="about-section">
+        <Sprig className="doodle-sprig-2" />
+        <div className="about-grid">
+          <div className="about-photo" style={{ '--img': `url(${award})` }}><img src={award} alt="Alliance for Science Rwanda award event" loading="lazy" /></div>
+
+          <div className="about-text">
+            <span className="eyebrow-leaf"><FaLeaf /> About Our Organisation</span>
+            <h2>Bringing evidence-based insights to agricultural science</h2>
+            <p className="about-para">
+              Alliance for Science Rwanda works alongside the Rwanda Agriculture Board (RAB), following biotech crops from laboratory research through confined field trials — experiencing first-hand how each new agricultural technology is developed and tested. From that direct research and field experience, we build public communication, advocacy, and documentation for every new release, grounded in the regulatory conditions set by REMA and the inspection and certification standards enforced by RICA.
+            </p>
+            <div className="meters">
+              {meters.map((m, i) => (
+                <div className="meter" key={i}>
+                  <div className="meter-line"><div className="meter-fill" style={{ '--w': `${m.value}%` }} /></div>
+                  <div className="meter-meta"><span>{m.label}</span><strong>{m.value}%</strong></div>
+                </div>
+              ))}
+            </div>
+            <div className="about-actions">
+              <Link to="/activities" className="btn-solid">Explore Our Work <ArrowUpRight size={16} /></Link>
+              <a href="tel:+250788667469" className="about-contact">
+                <span className="round-icon"><FiPhoneCall /></span>
+                <div><small>Phone:</small><strong>+250 788 667 469</strong></div>
+              </a>
+            </div>
+          </div>
+
+          <div className="about-photo" style={{ '--img': `url(${aboutimage})` }}><img src={aboutimage} alt="Participants at an Alliance for Science Rwanda event" loading="lazy" /></div>
+        </div>
+      </Section>
+
+      {/* 4. INTERVENTION CARDS (slider) */}
+      <Section className="cards-section">
+        <div className="container">
+          <div className="section-head">
+            <span className="eyebrow">Strategic Directions</span>
+            <h2>Key impact pathways across Rwanda</h2>
+          </div>
+          <div className="slider-viewport">
+            <div className="slider-track" style={{ transform: `translateX(calc(${slide} * (-50% - 14px)))` }}>
+              {activities.slice(0, 3).map((act, i) => (
+                <article className="pathway-card" key={i}>
+                  <div className="pathway-img" style={{ backgroundImage: `url(${act.img})` }} />
+                  <div className="pathway-body">
+                    <span className="pill-tag">{act.label}</span>
+                    <h3>{act.label} Initiatives</h3>
+                    <p>{act.desc}</p>
+                    <Link to="/activities" className="btn-solid small">Read More <FaChevronRight size={10} /></Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+          <div className="dots">
+            {[0, 1].map(i => (
+              <button key={i} type="button" className={slide === i ? 'on' : ''} onClick={() => setSlide(i)} aria-label={`Slide ${i + 1}`} />
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* 5. MILESTONES */}
+      <Section className="milestones-section">
+        <div className="container">
+          <div className="milestones-head">
+            <div>
+              <span className="eyebrow">Our Milestones</span>
+              <h2>Paving transformation routes in <span className="accent-text">Rwanda</span></h2>
+              <p className="desc">Empowering smallholder farmers, advocating for science-based biosafety policy, and bridging agricultural research with national food security goals through responsible stewardship.</p>
+            </div>
+            <div className="stat-pair">
+              {stats.map((s, i) => (
+                <div className="stat-box" key={i}>
+                  <span className="stat-icon">{i === 0 ? <FiUsers /> : <FiAward />}</span>
+                  <div><strong>{s.n}</strong><small>{s.t}</small></div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="cards-grid-3">
+            {[
+              { tag: 'Experience', t: '10+ Years', p: 'Of Science Communication', img: heroBg },
+              { tag: 'Network', t: 'OFAB Rwanda', p: 'Official Chapter Hub', img: award },
+              { tag: 'Impact', t: 'Empowered', p: 'Agricultural Communication Desks', img: audience },
+            ].map((m, i) => (
+              <article className="mile-card" key={i}>
+                <span className="pill-tag">{m.tag}</span>
+                <h3>{m.t}</h3>
+                <p>{m.p}</p>
+                <div className="mile-img" style={{ backgroundImage: `url(${m.img})` }} />
+              </article>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* 6. FEATURE BANNER (full photo, card overlaid) */}
+      <Section className="feature-banner">
+        <div className="container">
+          <div className="feature-frame">
+            <img className="feature-img" src={aboutimage} alt="Alliance for Science Rwanda team at a research and field event" loading="lazy" />
+            <div className="feature-card">
+              <span className="eyebrow dark">Real-World Impact</span>
+              <h2>Strengthening Rwanda’s Agricultural Future</h2>
+              <p className="desc-dark">🔬 From RAB's labs and field trials to REMA-approved releases and RICA-certified inputs — delivering science-backed, evidence-based outcomes.</p>
+              <ul className="check-list">
+                <li><CheckCircle2 size={18} /><div><strong>Biosafety &amp; REMA Compliance</strong><span>Following RAB's laboratory and confined field trial research within the risk-assessment and environmental-release conditions set by REMA, in support of Rwanda's Biosafety Law.</span></div></li>
+                <li><CheckCircle2 size={18} /><div><strong>Documentation &amp; RICA Standards</strong><span>Documenting each stage of research against RICA's seed and agro-input inspection and certification standards, then training journalists and communities to share it responsibly.</span></div></li>
+              </ul>
+              <Link to="/about" className="btn-dark">Discover our research partnerships <FaChevronRight size={10} /></Link>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* 7. GALLERY (photo strip) */}
+      <Section className="gallery-section">
+        <div className="container">
+          <div className="section-head">
+            <span className="eyebrow">Inside Our Mission</span>
+            <h2>Fostering open, evidence-based dialogue between scientists and citizens</h2>
+            <p className="gallery-sub">Alliance for Science: empowering smallholder farmers with science communication and responsible stewardship to build resilient, sustainable food systems.</p>
+          </div>
+          <div className="gal-viewport">
+          <div className="gal-track" key={galIdx}>
+            {galItems.map((g, i) => (
+              <figure className="gal-item" key={i}>
+                <img src={g.src} alt={g.alt} loading="lazy" />
+                {g.play && <span className="g-play" aria-hidden="true"><FaPlay /></span>}
+              </figure>
+            ))}
+          </div>
+          </div>
+          <div className="dots">
+          {galleryImgs.map((_, i) => (
+            <button key={i} type="button" className={galIdx === i ? 'on' : ''} onClick={() => setGalIdx(i)} aria-label={`Show photo ${i + 1}`} />
+          ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* 8. ACTIVITIES (dark band, white cards) */}
+      <Section className="activities-section" id="activities">
+        <div className="container">
+          <div className="activities-panel">
+            <div className="section-head light">
+              <span className="eyebrow light">What We Do</span>
+              <h2>Explore Our Main Activities</h2>
+            </div>
+            <div className="activities-grid">
+              {activities.map((act, i) => (
+                <article className="activity-card" key={i}>
+                  <div className="activity-icon"><FaQuoteLeft /></div>
+                  <h3>{act.label}</h3>
+                  <p>{act.desc}</p>
+                  <div className="activity-author">
+                    <img src={act.img} alt="" loading="lazy" />
+                    <div>
+                      <small>{act.label}</small>
+                      <strong>AfS Rwanda</strong>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* 9. FAQ + CONTACT INFO */}
+      <Section className="faq-section" id="faq">
+        <div className="container faq-grid">
+          <div className="faq-info">
+            <span className="eyebrow">Frequently Asked Questions</span>
+            <h2>Answers to agricultural research questions</h2>
+            <p className="desc">Have questions regarding agricultural biotechnology or biosafety?</p>
+            <div className="info-card"><span className="round-icon"><FiMail /></span><div><small>Email us</small><strong>n.agape@afs-rwanda.org</strong></div></div>
+            <div className="info-card"><span className="round-icon"><FiMapPin /></span><div><small>Our location</small><strong>Kigali, Rwanda</strong></div></div>
+          </div>
+          <div className="faq-list">
+            {faqs.map((f, i) => (
+              <div className={`faq-item ${openFaq === i ? 'open' : ''}`} key={i}>
+                <button type="button" className="faq-q" onClick={() => setOpenFaq(openFaq === i ? -1 : i)} aria-expanded={openFaq === i}>
+                  <span>{i + 1}. {f.q}</span>{openFaq === i ? <FiMinus /> : <FiPlus />}
+                </button>
+                {openFaq === i && <p className="faq-a">{f.a}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* 10. EVENTS (blog-style cards) */}
+      <Section className="events-section" id="events">
+        <div className="container">
+          <div className="section-head">
+            <span className="eyebrow">Upcoming Gatherings</span>
+            <h2>Explore our latest events updates and timeline sessions</h2>
+          </div>
+          <div className="cards-grid-3">
+            {realEvents.map((ev, i) => (
+              <article className="event-card" key={i}>
+                <div className="event-img" style={{ backgroundImage: `url(${ev.img})` }}>
+                  <span className="event-date"><strong>{ev.month}</strong> {ev.year}</span>
+                </div>
+                <div className="event-body">
+                  <div className="event-loc"><FiMapPin /><span>{ev.location}</span><em>{ev.category}</em></div>
+                  <h3>{ev.title}</h3>
+                  <Link to="/news" className="text-link">More Details <ArrowRight size={14} /></Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* 11. CONTACT CTA */}
+      <Section className="cta-section" id="contact">
+        <div className="container">
+          <div className="cta-panel">
+            {/* Two-tone rounded background with line-art doodles */}
+            <div className="cta-bg" aria-hidden="true">
+              <Wheat className="doodle-wheat" />
+            </div>
+            <Sprig className="doodle-sprig-cta" />
+
+            <div className="cta-content">
+              <span className="cta-eyebrow"><FaLeaf /> Contact Us</span>
+              <h2>Get in touch with our team for more information</h2>
+              <form className="cta-form" onSubmit={handleContactSubmit}>
+                <input type="hidden" name="_subject" value="New message from the AfS Rwanda website" />
+                <input type="hidden" name="_template" value="table" />
+                <div className="form-row">
+                  <input type="text" name="name" placeholder="Your Name" required />
+                  <input type="email" name="email" placeholder="Email Address" required />
+                </div>
+                <textarea name="message" placeholder="Write Message..." rows="2" required />
+                <button type="submit" className="cta-btn" disabled={contactSending}>
+                  {contactSending ? 'Sending...' : 'Contact Us Today'} <ArrowUpRight size={16} />
+                </button>
+                <p role="status" aria-live="polite" className="form-status">{contactStatus}</p>
+              </form>
+            </div>
+
+            <img className="cta-person" src={contactPerson} alt="Speaker at an Alliance for Science Rwanda session" loading="lazy" />
+          </div>
+        </div>
+      </Section>
+
+      <button type="button" className={`to-top ${showTop ? 'show' : ''}`} aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <ArrowUp size={22} />
+      </button>
     </div>
   );
 }
