@@ -22,6 +22,7 @@ import rubonaAnnual from '../../assets/image/rubona-annual.jpg'
 import media from '../../assets/image/media-award.jpg';
 import biocapImage from '../../assets/image/biocap-image.jpg'
 import rmc from '../../assets/image/rmc.jpg';
+import biocapLaunch from '../../assets/image/biocap-launch.jpg';
 import presentation from '../../assets/image/presentation.jpg';
 import award from '../../assets/image/afs-image.jpg';
 import biocap from '../../assets/image/labrevolencia.png';
@@ -349,7 +350,7 @@ function Home() {
 
       {/* 6. FEATURE BANNER: full-width photo, torn top edge, card on the left */}
       <Section className="feature-banner">
-        <img className="feature-bg" src={biocapImage} alt="Alliance for Science Rwanda team at a research and field event" loading="lazy" />
+        <img className="feature-bg" src={biocapLaunch} alt="Alliance for Science Rwanda team at a research and field event" loading="lazy" />
         <svg className="feature-torn" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
           <path d="M0,0 H1440 V40 L1440,40 L1435.2,45.2 L1420.8,24.8 L1404.3,31.8 L1378.4,28.2 L1364.0,43.4 L1339.4,28.3 L1314.7,61.2 L1298.1,25.6 L1291.7,39.1 L1286.4,48.5 L1266.9,54.5 L1251.1,41.7 L1237.2,28.2 L1213.2,30.8 L1203.4,30.4 L1192.2,26.6 L1178.0,36.3 L1171.0,41.9 L1155.2,29.7 L1146.8,40.2 L1121.5,38.0 L1113.2,47.0 L1103.8,22.6 L1089.5,37.9 L1080.2,48.9 L1064.2,43.1 L1048.0,22.3 L1032.4,25.8 L1026.8,50.0 L1016.6,61.7 L1000.7,24.2 L992.7,21.1 L983.9,38.0 L976.2,47.6 L952.3,64.6 L940.5,43.0 L930.2,20.4 L916.1,24.6 L910.6,38.2 L895.7,23.4 L873.7,29.9 L847.9,56.3 L834.5,20.8 L816.2,48.4 L795.4,19.3 L776.9,48.7 L754.3,44.7 L742.2,50.8 L716.4,42.3 L707.4,20.9 L687.0,29.2 L666.5,20.7 L644.9,44.9 L628.6,27.0 L615.9,22.3 L597.4,21.4 L589.3,18.7 L573.4,42.7 L552.7,40.4 L537.9,20.1 L522.9,49.4 L510.0,55.1 L493.8,59.2 L485.4,47.4 L470.3,41.6 L445.3,25.6 L427.3,22.3 L410.4,26.1 L399.5,47.6 L389.6,29.5 L379.7,45.6 L366.0,48.1 L342.5,25.7 L327.0,26.4 L319.3,36.8 L301.5,18.8 L282.5,40.0 L263.9,31.2 L244.2,48.2 L228.8,40.8 L222.2,41.9 L210.0,24.8 L184.4,46.2 L169.0,30.9 L149.3,40.2 L124.9,46.9 L109.5,24.1 L96.7,23.9 L77.4,24.0 L63.6,24.2 L38.1,23.9 L28.4,20.4 L11.8,41.9 L6.0,41.0 L0,49.3 Z" fill="#F4F9FE" />
         </svg>
