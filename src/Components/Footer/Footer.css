@@ -91,35 +91,24 @@
 .footer-links a:hover .chev { color: var(--f-yellow); }
 
 /* ── News ── */
-.footer-news { display: flex; flex-direction: column; gap: 28px; }
-.news-item { display: flex; align-items: center; gap: 18px; }
-.news-item img {
-  width: 124px; height: 116px;
-  border-radius: 14px;
-  object-fit: cover;
-  flex-shrink: 0;
-  transition: transform .4s cubic-bezier(.22,1,.36,1);
-}
-.news-item:hover img { transform: scale(1.04); }
+.footer-news { display: flex; flex-direction: column; gap: 20px; }
+.news-item { display: block; padding-left: 14px; border-left: 2px solid rgba(242, 220, 93, .7); transition: border-color .25s, transform .25s; }
+.news-item:hover { border-color: var(--f-yellow); transform: translateX(3px); }
 .news-item time {
   display: block;
-  font-size: 17px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--f-yellow);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .footer .news-item p {
   margin: 0;
-  font-size: 19px;
+  font-size: 15px;
   font-weight: 700;
-  line-height: 1.4;
+  line-height: 1.45;
   color: #fff;
-  text-align: justify;
-  text-justify: inter-word;
-  text-align-last: left;          /* last line stays natural, no stretched gaps */
-  hyphens: manual;
+  text-align: left;
 }
-.news-item > div { min-width: 0; flex: 1; }
 .news-item:hover p { color: var(--f-yellow); }
 
 /* ── Bottom bar ── */
@@ -157,12 +146,8 @@
   .footer-container { grid-template-columns: 1fr; gap: 40px; }
   .footer-heading { font-size: 24px; margin-bottom: 22px; }
   .footer-links { gap: 16px; }
-  .news-item img { width: 100px; height: 96px; }
-  .footer .news-item p, .footer-contact a, .footer-contact span:not(.contact-circle) { font-size: 17px; }
+  .footer .news-item p { font-size: 15px; }
+  .footer-contact a, .footer-contact span:not(.contact-circle) { font-size: 17px; }
   .footer-bottom { flex-direction: column; text-align: center; }
   .footer-bottom-right { justify-content: center; }
-}
-@media (max-width: 480px) {
-  .news-item { flex-direction: column; align-items: stretch; gap: 12px; }
-  .news-item img { width: 100%; height: 170px; }
 }

@@ -1,8 +1,6 @@
 import React from 'react';
 import './Footer.css';
 import footBg from '../../assets/image/alliance-image-bg.jpg';
-import award from '../../assets/image/award.jpg';
-import audience from '../../assets/image/Audience.jpg';
 import { MdOutlineEmail, MdOutlineLocationOn } from "react-icons/md";
 import { FaFacebook, FaInstagram, FaPhoneAlt } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -26,8 +24,8 @@ const Footer = () => {
   ];
 
   const news = [
-    { img: award,    date: 'October, 2021',  title: 'OFAB Rwanda Chapter Launch & Science Media Desk' },
-    { img: audience, date: 'February, 2023', title: 'Media Engagement & Biosafety Awareness Workshop' },
+    { date: 'October, 2021',  title: 'OFAB Rwanda Chapter Launch & Science Media Desk' },
+    { date: 'February, 2023', title: 'Media Engagement & Biosafety Awareness Workshop' },
   ];
 
   return (
@@ -93,7 +91,6 @@ const Footer = () => {
             {news.map((n, i) => (
               <li key={i}>
                 <Link to="/news" className="news-item">
-                  <img src={n.img} alt="" loading="lazy" />
                   <div>
                     <time>{n.date}</time>
                     <p>{n.title}</p>
