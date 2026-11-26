@@ -45,10 +45,10 @@
 .info-row small { display: block; font-size: 12px; color: var(--g-muted); }
 .info-row strong { font-size: 15px; word-break: break-word; }
 .info-row.light small { color: var(--g-sky); }
-.info-row.light .round-icon { background: rgba(255,255,255,.12); color: var(--g-sky); }
+.info-row.light .round-icon { background: rgba(255,255,255,.12); color: var(--g-sky); } 
 
 /* 1. HERO (layout, wave, stamp and doodles unchanged: only the photo clarity, opacity and colors differ) */
-.home-container .home-hero { position: relative; display: flex; align-items: center; min-height: clamp(580px, 78vw, 780px); padding: 150px 0 clamp(110px, 14vw, 200px); color: var(--g-white); background: var(--g-deep); overflow: hidden; }
+.home-container .home-hero { position: relative; display: flex; align-items: center; min-height: clamp(500px, 68vh, 660px); padding: 130px 0 clamp(80px, 10vh, 120px); color: var(--g-white); background: var(--g-deep); overflow: hidden; }
 .home-hero__bg { position: absolute; inset: 0; }
 .home-hero__bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.04); transition: opacity 1s ease, transform 7s ease-out; }
 .home-hero__bg img.on { opacity: 1; transform: scale(1); }
@@ -257,6 +257,7 @@
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
+  .home-container .home-hero { min-height: clamp(500px, 68vh, 660px); padding: 120px 0 100px; }
   .home-container .feature-banner { min-height: clamp(750px, 98vh, 950px); padding: 72px 0 50px; }
   .feature-card { margin-left: 0; }
   .home-container section { padding: 60px 0; }
@@ -284,7 +285,7 @@
   .home-container .feature-banner { min-height: clamp(680px, 100vh, 980px); min-height: clamp(680px, 100svh, 980px); padding: 72px 0 36px; }
   .feature-card { padding: 30px 22px 28px; border-radius: 22px; }
   .home-hero-title { font-size: 26px; }
-  .home-container .home-hero { padding: 120px 0 130px; min-height: 560px; }
+  .home-container .home-hero { min-height: clamp(500px, 75svh, 620px); padding: 110px 0 100px; }
   .home-hero-container { padding: 0 10px; }
   .hero-arrows { top: auto; bottom: 150px; transform: none; flex-direction: row; gap: 10px; }
   .hero-arrows button { width: 44px; height: 44px; border-radius: 50%; }
