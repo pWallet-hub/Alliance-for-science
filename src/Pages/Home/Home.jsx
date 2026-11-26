@@ -105,12 +105,12 @@ function Home() {
   const [heroSlide, setHeroSlide] = useState(0);
   const [galIdx, setGalIdx] = useState(0);
   const galleryImgs = [
-    { src: aboutimage, alt: 'Participants at an Alliance for Science Rwanda event' },
-    { src: award, alt: 'Award presentation at an Alliance for Science event', play: true },
-    { src: audience, alt: 'Audience at an Alliance for Science Rwanda session' },
-    { src: heroBg, alt: 'Alliance for Science Rwanda field and research work' },
-    { src: media, alt: 'Alliance for Science Rwanda field and parteners' },
-    { src: presentation, alt: 'Alliance for Science Rwanda field and parteners' },
+    { src: aboutimage, alt: 'Participants at an Alliance for Science Rwanda event', title: 'Connecting communities and science' },
+    { src: award, alt: 'Award presentation at an Alliance for Science event', title: 'Recognizing science communication', play: true },
+    { src: audience, alt: 'Audience at an Alliance for Science Rwanda session', title: 'Bringing science to communities' },
+    { src: heroBg, alt: 'Alliance for Science Rwanda field and research work', title: 'Documenting research in the field' },
+    { src: media, alt: 'Alliance for Science Rwanda media engagement', title: 'Strengthening agricultural media' },
+    { src: presentation, alt: 'Alliance for Science Rwanda research presentation', title: 'Sharing evidence-based research' },
   ];
   /* Rotate the list and repeat it so the strip is always full */
   const rotated = [...galleryImgs.slice(galIdx), ...galleryImgs.slice(0, galIdx)];
@@ -377,9 +377,17 @@ function Home() {
           <div className="gal-viewport">
             <div className="gal-track" key={galIdx}>
               {galItems.map((g, i) => (
-                <figure className="gal-item" key={i}>
+                <figure className="gal-item" key={i} style={{ '--img': `url(${g.src})` }}>
                   <img src={g.src} alt={g.alt} loading="lazy" />
                   {g.play && <span className="g-play" aria-hidden="true"><FaPlay /></span>}
+                  <div className="gal-hover-card">
+                    <span>Inside Our Mission</span>
+                    <h3>{g.title}</h3>
+                    <p>Science communication and responsible stewardship in action across Rwanda.</p>
+                    <Link to="/gallery" className="gal-hover-link" aria-label={`View gallery: ${g.title}`}>
+                      <ArrowRight size={18} />
+                    </Link>
+                  </div>
                 </figure>
               ))}
             </div>
