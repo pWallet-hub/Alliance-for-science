@@ -16,6 +16,7 @@ const DASHBOARD_URL = (
 
 function Header() {
   const { pathname } = useLocation();
+  const isHeroPage = pathname === '/' || pathname === '/about';
 
   // Lets Header.css and Sidebar.css both shrink the floating bar after scrolling
   useEffect(() => {
@@ -58,8 +59,8 @@ function Header() {
         </div>
       </div>
 
-      {/* The bar floats over the Home hero; other pages get a spacer so content isn't hidden */}
-      {pathname !== '/' && <div className="header-spacer" />}
+      {/* Hero pages render beneath the floating header; other pages need a spacer. */}
+      {!isHeroPage && <div className="header-spacer" />}
     </>
   );
 }
