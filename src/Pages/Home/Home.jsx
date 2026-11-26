@@ -1,22 +1,29 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
-import aboutimage from '../../assets/image/communication-induction-01.jpg';
+import aboutimage from '../../assets/image/bd-image.jpg';
 import heroBg from '../../assets/image/alliance-image-bg.jpg';
 import audience from '../../assets/image/Audience.jpg';
 import contactPerson from '../../assets/image/pacifique-ask-image.jpg';
 import { FaBowlFood, FaChevronRight, FaPlay, FaQuoteLeft, FaLeaf } from "react-icons/fa6";
 import { MdOutlineScience } from "react-icons/md";
 import { GrDocumentText } from "react-icons/gr";
-import { BiSolidCloudRain, BiTargetLock, BiSupport } from "react-icons/bi";
-import { FiUsers, FiAward, FiPieChart, FiMapPin, FiPhoneCall, FiMail, FiPlus, FiMinus } from "react-icons/fi";
-import { ArrowRight, ArrowLeft, ArrowUpRight, CheckCircle2, ArrowUp } from "lucide-react";
+import { BiSolidCloudRain } from "react-icons/bi";
+import { FiUsers, FiAward, FiMapPin, FiPhoneCall, FiMail, FiPlus, FiMinus } from "react-icons/fi";
+import { ArrowRight, ArrowLeft, ArrowUpRight, Check, ArrowUp } from "lucide-react";
 
 import ofab from '../../assets/image/OFAB-logo-removebg-preview.png';
+import ofabImage from '../../assets/image/ofab-image.jpg';
+import stlouis from '../../assets/image/stlouis.jpg'
 import rab from '../../assets/image/Rab.png';
 import aatf from '../../assets/image/AATF.jpg';
+import annual from '../../assets/image/annual-review.jpg'
+import rubonaAnnual from '../../assets/image/rubona-annual.jpg'
+import media from '../../assets/image/media-award.jpg';
+import biocapImage from '../../assets/image/biocap-image.jpg'
 import rmc from '../../assets/image/rmc.jpg';
-import award from '../../assets/image/award.jpg';
+import presentation from '../../assets/image/presentation.jpg';
+import award from '../../assets/image/afs-image.jpg';
 import biocap from '../../assets/image/labrevolencia.png';
 
 /* Line-art doodles (olive sprig, bubble) like the template's pale outlines */
@@ -102,15 +109,17 @@ function Home() {
     { src: award, alt: 'Award presentation at an Alliance for Science event', play: true },
     { src: audience, alt: 'Audience at an Alliance for Science Rwanda session' },
     { src: heroBg, alt: 'Alliance for Science Rwanda field and research work' },
+    { src: media, alt: 'Alliance for Science Rwanda field and parteners' },
+    { src: presentation, alt: 'Alliance for Science Rwanda field and parteners' },
   ];
-  /* Rotate the list and repeat it so the strip is always full, with photos peeking in at both edges */
+  /* Rotate the list and repeat it so the strip is always full */
   const rotated = [...galleryImgs.slice(galIdx), ...galleryImgs.slice(0, galIdx)];
   const galItems = [...rotated, ...rotated];
   useEffect(() => {
     const t = setInterval(() => setGalIdx(i => (i + 1) % galleryImgs.length), 4500);
     return () => clearInterval(t);
   }, []);
-  const heroSlides = [heroBg, award, audience];
+  const heroSlides = [annual, heroBg, audience];
   const goHero = (d) => setHeroSlide(s => (s + d + heroSlides.length) % heroSlides.length);
   useEffect(() => {
     const t = setInterval(() => setHeroSlide(s => (s + 1) % 3), 7000);
@@ -157,9 +166,9 @@ function Home() {
   }
 
   const realEvents = [
-    { month: 'OCT', year: '2021', img: award, title: 'OFAB Rwanda Chapter Launch & Science Media Desk', location: 'Kigali, Rwanda · Marriott Hotel', category: 'National Launch' },
-    { month: 'FEB', year: '2023', img: audience, title: 'Media Engagement & Biosafety Awareness Workshop', location: 'Musanze, Northern Province · Field Site', category: 'Capacity Building' },
-    { month: 'AUG', year: '2023', img: heroBg, title: 'RAB Rubona Field Visit on Cassava Disease Resistance', location: 'Huye, Southern Province · RAB Research Station', category: 'Research Inspection' },
+    { month: 'NOV', year: '2026', img: stlouis, title: 'St Louis & Donald Danforth Plant Science Center field visit Nemba', location: 'Bugesera, Eastern Province · Field Site', category: 'Capacity Building' },
+    { month: 'OCT', year: '2026', img: rubonaAnnual, title: 'RAB Rubona Field Visit on annual review', location: 'Huye, Southern Province · RAB Research Station', category: 'Research Inspection' },
+    { month: 'OCT', year: '2025', img: ofabImage, title: 'OFAB Rwanda Chapter communication engagement', location: 'Musanze, Rwanda ·Northern province', category: 'Workshop' },
   ];
 
   const activities = [
@@ -324,39 +333,39 @@ function Home() {
           <div className="cards-grid-3">
             {[
               { tag: 'Experience', t: '10+ Years', p: 'Of Science Communication', img: heroBg },
-              { tag: 'Network', t: 'OFAB Rwanda', p: 'Official Chapter Hub', img: award },
+              { tag: 'Network', t: 'OFAB Rwanda', p: 'Official Chapter Hub', img: media },
               { tag: 'Impact', t: 'Empowered', p: 'Agricultural Communication Desks', img: audience },
             ].map((m, i) => (
               <article className="mile-card" key={i}>
                 <span className="pill-tag">{m.tag}</span>
                 <h3>{m.t}</h3>
                 <p>{m.p}</p>
-                <div className="mile-img" style={{ backgroundImage: `url(${m.img})` }} />
+                <div className="mile-img" style={{ '--img': `url(${m.img})` }}><img src={m.img} alt={m.t} loading="lazy" /></div>
               </article>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* 6. FEATURE BANNER (full photo, card overlaid) */}
+      {/* 6. FEATURE BANNER: full-width photo, torn top edge, card on the left */}
       <Section className="feature-banner">
-        <div className="container">
-          <div className="feature-frame">
-            <img className="feature-img" src={aboutimage} alt="Alliance for Science Rwanda team at a research and field event" loading="lazy" />
-            <div className="feature-card">
-              <span className="eyebrow dark">Real-World Impact</span>
-              <h2>Strengthening Rwanda’s Agricultural Future</h2>
-              <p className="desc-dark">🔬 From RAB's labs and field trials to REMA-approved releases and RICA-certified inputs — delivering science-backed, evidence-based outcomes.</p>
-              <ul className="check-list">
-                <li><CheckCircle2 size={18} /><div><strong>Biosafety &amp; REMA Compliance</strong><span>Following RAB's laboratory and confined field trial research within the risk-assessment and environmental-release conditions set by REMA, in support of Rwanda's Biosafety Law.</span></div></li>
-                <li><CheckCircle2 size={18} /><div><strong>Documentation &amp; RICA Standards</strong><span>Documenting each stage of research against RICA's seed and agro-input inspection and certification standards, then training journalists and communities to share it responsibly.</span></div></li>
-              </ul>
-              <Link to="/about" className="btn-dark">Discover our research partnerships <FaChevronRight size={10} /></Link>
-            </div>
+        <img className="feature-bg" src={biocapImage} alt="Alliance for Science Rwanda team at a research and field event" loading="lazy" />
+        <svg className="feature-torn" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0,0 H1440 V40 L1440,40 L1435.2,45.2 L1420.8,24.8 L1404.3,31.8 L1378.4,28.2 L1364.0,43.4 L1339.4,28.3 L1314.7,61.2 L1298.1,25.6 L1291.7,39.1 L1286.4,48.5 L1266.9,54.5 L1251.1,41.7 L1237.2,28.2 L1213.2,30.8 L1203.4,30.4 L1192.2,26.6 L1178.0,36.3 L1171.0,41.9 L1155.2,29.7 L1146.8,40.2 L1121.5,38.0 L1113.2,47.0 L1103.8,22.6 L1089.5,37.9 L1080.2,48.9 L1064.2,43.1 L1048.0,22.3 L1032.4,25.8 L1026.8,50.0 L1016.6,61.7 L1000.7,24.2 L992.7,21.1 L983.9,38.0 L976.2,47.6 L952.3,64.6 L940.5,43.0 L930.2,20.4 L916.1,24.6 L910.6,38.2 L895.7,23.4 L873.7,29.9 L847.9,56.3 L834.5,20.8 L816.2,48.4 L795.4,19.3 L776.9,48.7 L754.3,44.7 L742.2,50.8 L716.4,42.3 L707.4,20.9 L687.0,29.2 L666.5,20.7 L644.9,44.9 L628.6,27.0 L615.9,22.3 L597.4,21.4 L589.3,18.7 L573.4,42.7 L552.7,40.4 L537.9,20.1 L522.9,49.4 L510.0,55.1 L493.8,59.2 L485.4,47.4 L470.3,41.6 L445.3,25.6 L427.3,22.3 L410.4,26.1 L399.5,47.6 L389.6,29.5 L379.7,45.6 L366.0,48.1 L342.5,25.7 L327.0,26.4 L319.3,36.8 L301.5,18.8 L282.5,40.0 L263.9,31.2 L244.2,48.2 L228.8,40.8 L222.2,41.9 L210.0,24.8 L184.4,46.2 L169.0,30.9 L149.3,40.2 L124.9,46.9 L109.5,24.1 L96.7,23.9 L77.4,24.0 L63.6,24.2 L38.1,23.9 L28.4,20.4 L11.8,41.9 L6.0,41.0 L0,49.3 Z" fill="#F4F9FE" />
+        </svg>
+        <div className="feature-inner">
+          <div className="feature-card">
+            <span className="feature-eyebrow"><FaLeaf /> Real-World Impact</span>
+            <h2>Strengthening Rwanda’s Agricultural Future</h2>
+            <p className="feature-desc">From RAB's labs and field trials to REMA-approved releases and RICA-certified inputs, delivering science-backed, evidence-based outcomes.</p>
+            <ul className="feature-list">
+              <li><Check size={18} strokeWidth={2.5} /><div><strong>Biosafety &amp; REMA Compliance</strong><span>Following RAB's laboratory and confined field trial research within the risk-assessment and environmental-release conditions set by REMA, in support of Rwanda's Biosafety Law.</span></div></li>
+              <li><Check size={18} strokeWidth={2.5} /><div><strong>Documentation &amp; RICA Standards</strong><span>Documenting each stage of research against RICA's seed and agro-input inspection and certification standards, then training journalists and communities to share it responsibly.</span></div></li>
+            </ul>
+            <Link to="/about" className="feature-btn">Discover our research partnerships <ArrowUpRight size={16} /></Link>
           </div>
         </div>
       </Section>
-
       {/* 7. GALLERY (photo strip) */}
       <Section className="gallery-section">
         <div className="container">
@@ -366,19 +375,19 @@ function Home() {
             <p className="gallery-sub">Alliance for Science: empowering smallholder farmers with science communication and responsible stewardship to build resilient, sustainable food systems.</p>
           </div>
           <div className="gal-viewport">
-          <div className="gal-track" key={galIdx}>
-            {galItems.map((g, i) => (
-              <figure className="gal-item" key={i}>
-                <img src={g.src} alt={g.alt} loading="lazy" />
-                {g.play && <span className="g-play" aria-hidden="true"><FaPlay /></span>}
-              </figure>
-            ))}
-          </div>
+            <div className="gal-track" key={galIdx}>
+              {galItems.map((g, i) => (
+                <figure className="gal-item" key={i}>
+                  <img src={g.src} alt={g.alt} loading="lazy" />
+                  {g.play && <span className="g-play" aria-hidden="true"><FaPlay /></span>}
+                </figure>
+              ))}
+            </div>
           </div>
           <div className="dots">
-          {galleryImgs.map((_, i) => (
-            <button key={i} type="button" className={galIdx === i ? 'on' : ''} onClick={() => setGalIdx(i)} aria-label={`Show photo ${i + 1}`} />
-          ))}
+            {galleryImgs.map((_, i) => (
+              <button key={i} type="button" className={galIdx === i ? 'on' : ''} onClick={() => setGalIdx(i)} aria-label={`Show photo ${i + 1}`} />
+            ))}
           </div>
         </div>
       </Section>
@@ -462,7 +471,6 @@ function Home() {
       <Section className="cta-section" id="contact">
         <div className="container">
           <div className="cta-panel">
-            {/* Two-tone rounded background with line-art doodles */}
             <div className="cta-bg" aria-hidden="true">
               <Wheat className="doodle-wheat" />
             </div>
