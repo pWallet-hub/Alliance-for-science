@@ -1,239 +1,204 @@
-import React, { useState } from 'react';
-import {
-  ExternalLink,
-  Search,
-  Images,
-  Calendar,
-  Users,
-  Activity,
-  FolderOpen,
-} from 'lucide-react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Search, Images, FolderOpen, ArrowUpRight, Loader2 } from 'lucide-react';
 import './Gallery.css';
+import { galleryApi, getMediaRecords, asRecord } from '../../lib/galleryApi';
 
-// ─── Local Image Imports (7 Unique Assets) ─────────────────────────
 import bgHeroImg from '../../assets/image/bg-image.jpg';
-import rubonaImg from '../../assets/image/rubona-field.jpg';
-import teckImg from '../../assets/image/teck.jpg';
-import pacifiqueImg from '../../assets/image/pacifique.jpg';
-import trustedImg from '../../assets/image/field.jpg';
-import aboutCoverImg from '../../assets/image/pacifique-ask-image.jpg';
-import placeholderImg from '../../assets/image/pacifique-ask-image.jpg';
 
-// ─── 7 Gallery Collections Data ───────────────────────────────────────────
-const GALLERY_ITEMS = [
-  {
-    id: 1,
-    src: rubonaImg,
-    category: 'activities',
-    title: 'RAB Rubona Cassava Field Trials',
-    caption: 'Field research evaluating disease-resistant cassava varieties in Huye District alongside RAB agronomists.',
-    href: '#',
-    itemCount: 42,
-    date: 'Mar 2025',
-    tall: true
-  },
-  {
-    id: 2,
-    src: teckImg,
-    category: 'events',
-    title: 'Agricultural Biotechnology Workshop',
-    caption: 'Hands-on training session covering gene editing, biosafety law, and modern breeding technologies.',
-    href: '#',
-    itemCount: 18,
-    date: 'Feb 2025'
-  },
-  {
-    id: 3,
-    src: pacifiqueImg,
-    category: 'team',
-    title: 'Leadership & Stakeholder Dialogue',
-    caption: 'Executive discussions on strategic partnerships with RAB, MINAGRI, AATF, and the OFAB Rwanda Chapter.',
-    href: '#',
-    itemCount: 25,
-    date: 'Jan 2025',
-    tall: true
-  },
-  {
-    id: 4,
-    src: bgHeroImg,
-    category: 'events',
-    title: 'OFAB Rwanda Media Awards',
-    caption: 'Recognizing outstanding science journalists and agricultural biotechnology reporting in Kigali.',
-    href: '#',
-    itemCount: 31,
-    date: 'Dec 2024'
-  },
-  {
-    id: 5,
-    src: trustedImg,
-    category: 'team',
-    title: 'Field Agronomists & Researchers',
-    caption: 'Our dedicated team working directly alongside smallholder farming communities across Rwanda.',
-    href: '#',
-    itemCount: 20,
-    date: 'Nov 2024'
-  },
-  {
-    id: 6,
-    src: aboutCoverImg,
-    category: 'activities',
-    title: 'BioCap Rwanda Project Launch',
-    caption: 'Capacity building and national biosafety governance sessions under Rwanda’s Biosafety Law framework.',
-    href: '#',
-    itemCount: 28,
-    date: 'Oct 2024',
-    tall: true
-  },
-  {
-    id: 7,
-    src: placeholderImg,
-    category: 'events',
-    title: 'Youth Biotech Ambassadors Forum',
-    caption: 'Empowering young communicators and scholars across provincial universities to engage in science advocacy.',
-    href: '#',
-    itemCount: 36,
-    date: 'Sep 2024'
-  },
-];
+const fmtDate = (value) => {
+  const d = value ? new Date(value) : null;
+  return d && !Number.isNaN(d.getTime())
+    ? d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: '2-digit' })
+    : '';
+};
+const titleCase = (s) => s.replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
-const CATEGORIES = [
-  { key: 'all',        label: 'All Collections', Icon: Images   },
-  { key: 'events',     label: 'Events',          Icon: Calendar },
-  { key: 'team',       label: 'Team',            Icon: Users    },
-  { key: 'activities', label: 'Activities',      Icon: Activity },
-];
+function CollectionCard({ item }) {
+  const [coverSrc, setCoverSrc] = useState(item.cover);
+  const [count, setCount] = useState(item.itemCount);
+  const ref = useRef(null);
 
-const CATEGORY_LABELS = CATEGORIES.reduce((acc, c) => ({ ...acc, [c.key]: c.label }), {});
+  useEffect(() => {
+    let current = true;
+    let observer;
 
-function countFor(key) {
-  return key === 'all' ? GALLERY_ITEMS.length : GALLERY_ITEMS.filter((i) => i.category === key).length;
-}
+    const upgradeCover = async () => {
+      try {
+        const res = await galleryApi.getWebsiteCollectionMedia(item.slug);
+        const records = getMediaRecords(res).map(asRecord).filter(Boolean);
+        const cover = records.find((r) => String(r.id || r._id || '') === item.coverMediaId) || records[0];
+        const urls = asRecord(cover?.urls);
+        const preview = [urls?.preview, urls?.download, urls?.thumbnail].find((u) => typeof u === 'string' && u);
+        if (current) {
+          if (preview) setCoverSrc(preview);
+          const total =
+            res?.total ??
+            res?.totalItems ??
+            res?.count ??
+            res?.pagination?.total ??
+            res?.pagination?.totalItems ??
+            res?.meta?.total ??
+            records.length;
+          const resolvedCount = Number(total) || records.length;
+          if (resolvedCount > 0) setCount(resolvedCount);
+        }
+      } catch { /* keep the small thumbnail */ }
+    };
 
-// ─── Card Component ─────────────────────────────────────────────────────────
-function GalleryCard({ item }) {
+    if (ref.current && 'IntersectionObserver' in window) {
+      observer = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) { observer.disconnect(); upgradeCover(); }
+      }, { rootMargin: '200px' });
+      observer.observe(ref.current);
+    } else {
+      upgradeCover();
+    }
+    return () => { current = false; observer?.disconnect(); };
+  }, [item.slug, item.coverMediaId]);
+
   return (
-    <a
-      href={item.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`gallery-card${item.tall ? ' gallery-card--tall' : ''}`}
-      aria-label={`Open ${item.title}`}
-    >
+    <Link ref={ref} to={`/gallery/${item.slug}`} className="gallery-card" aria-label={`Open ${item.title}`}>
       <div className="gallery-card__img-wrap">
-        <img src={item.src} alt={item.title} className="gallery-card__img" loading="lazy" />
+        {coverSrc ? (
+          <img src={coverSrc} alt={item.title} className="gallery-card__img" loading="lazy" />
+        ) : (
+          <div className="gallery-card__empty"><Images size={22} strokeWidth={1.5} /> No cover image</div>
+        )}
       </div>
 
       <div className="gallery-card__overlay">
         <div className="gallery-card__info">
           <p className="gallery-card__title">{item.title}</p>
           <div className="gallery-card__meta">
-            <span className="gallery-card__count">
-              <FolderOpen size={11} />
-              {item.itemCount} items
-            </span>
-            <span className="gallery-card__dot" />
-            <span className="gallery-card__date">{item.date}</span>
+            <span className="gallery-card__count"><FolderOpen size={11} />{count} {count === 1 ? 'item' : 'items'}</span>
+            {item.date && (<><span className="gallery-card__dot" /><span className="gallery-card__date">{item.date}</span></>)}
           </div>
         </div>
       </div>
 
-      <div className="gallery-card__link-icon">
-        <ExternalLink size={14} />
-      </div>
-
-      <div className="gallery-card__pill">{CATEGORY_LABELS[item.category]}</div>
-    </a>
+      <div className="gallery-card__link-icon"><ArrowUpRight size={14} /></div>
+      {item.categoryLabel && <div className="gallery-card__pill">{item.categoryLabel}</div>}
+    </Link>
   );
 }
 
-// ─── Page Component ─────────────────────────────────────────────────────────
 export default function Gallery() {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filtered = GALLERY_ITEMS.filter((item) => {
+  useEffect(() => {
+    let current = true;
+    (async () => {
+      try {
+        const response = await galleryApi.getWebsiteCollections();
+        if (!current) return;
+        const list = (response.items || getMediaRecords(response))
+          .filter((c) => !c.status || c.status === 'published')
+          .map((c) => ({
+            id: c.id || c.slug,
+            slug: c.slug,
+            title: c.name || c.title || c.slug,
+            caption: c.description || '',
+            category: typeof c.category === 'string' && c.category ? c.category : '',
+            categoryLabel: typeof c.category === 'string' && c.category ? titleCase(c.category) : '',
+            cover: c.coverUrl || '',
+            coverMediaId: c.coverUrl?.match(/\/media\/([^/]+)\/thumbnail/)?.[1],
+            itemCount: c.itemCount ?? c.mediaCount ?? c.totalItems ?? c.count ?? c._count?.media ?? c._count?.items ?? 0,
+            date: fmtDate(c.updatedAt || c.createdAt),
+          }));
+        setItems(list);
+      } catch (e) {
+        console.error(e);
+        if (current) setError('The photo collections could not be loaded right now. Please try again later.');
+      } finally {
+        if (current) setLoading(false);
+      }
+    })();
+    return () => { current = false; };
+  }, []);
+
+  const categories = useMemo(() => {
+    const keys = [...new Set(items.map((i) => i.category).filter(Boolean))];
+    return keys.length > 1 ? keys : [];
+  }, [items]);
+
+  const filtered = items.filter((item) => {
     const matchCat = activeCategory === 'all' || item.category === activeCategory;
     const q = searchQuery.toLowerCase();
-    const matchSearch = !q || item.title.toLowerCase().includes(q) || item.caption.toLowerCase().includes(q);
-    return matchCat && matchSearch;
+    return matchCat && (!q || item.title.toLowerCase().includes(q) || item.caption.toLowerCase().includes(q));
   });
 
   return (
     <div className="gallery-page">
-      {/* ── Hero ─────────────────────────────────────────── */}
+      {/* ── Hero ── */}
       <section className="gallery-hero">
         <div className="gallery-hero__bg">
           <img src={bgHeroImg} alt="Alliance for Science photo collections" />
         </div>
 
         <div className="gallery-hero__content">
-          <p className="gallery-hero__eyebrow">Home &rsaquo; Gallery</p>
-          <h1 className="gallery-hero__title">
-            Photo <span>Collections</span>
-          </h1>
+          <p className="gallery-hero__eyebrow">Home › Gallery</p>
+          <h1 className="gallery-hero__title">Photo <span>Collections</span></h1>
           <p className="gallery-hero__sub">
             A visual record of our research field trials, team milestones, and community work advancing agricultural science in Rwanda.
           </p>
-          <div className="gallery-hero__count">
-            <Images size={13} /> {GALLERY_ITEMS.length} collections
-          </div>
+          <div className="gallery-hero__count"><Images size={13} /> {items.length} collections</div>
         </div>
 
         <div className="gallery-hero__wave">
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path
-              d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-1.42,1200,34.75V0Z"
-              fill="#F4F9FE"
-            />
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-1.42,1200,34.75V0Z" fill="#F4F9FE" />
           </svg>
         </div>
       </section>
 
-      {/* ── Controls ─────────────────────────────────────── */}
+      {/* ── Controls ── */}
       <div className="gallery-controls">
         <div className="filter-tabs">
-          {CATEGORIES.map(({ key, label, Icon }) => (
-            <button
-              key={key}
-              className={`filter-tab${activeCategory === key ? ' active' : ''}`}
-              onClick={() => setActiveCategory(key)}
-            >
-              <Icon size={13} />
-              {label}
-              <span className="filter-tab__count">{countFor(key)}</span>
-            </button>
-          ))}
+          {categories.length > 0 && (
+            <>
+              <button className={`filter-tab${activeCategory === 'all' ? ' active' : ''}`} onClick={() => setActiveCategory('all')}>
+                <Images size={13} /> All Collections <span className="filter-tab__count">{items.length}</span>
+              </button>
+              {categories.map((key) => (
+                <button key={key} className={`filter-tab${activeCategory === key ? ' active' : ''}`} onClick={() => setActiveCategory(key)}>
+                  {titleCase(key)} <span className="filter-tab__count">{items.filter((i) => i.category === key).length}</span>
+                </button>
+              ))}
+            </>
+          )}
         </div>
         <div className="search-wrap">
           <Search size={15} className="search-icon" />
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search collections…"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+          <input type="text" className="search-input" placeholder="Search collections…" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
         </div>
       </div>
 
-      {/* ── Results meta ─────────────────────────────────── */}
-      <p className="results-meta">
-        Showing <span>{filtered.length}</span> of {GALLERY_ITEMS.length} collections
-      </p>
+      <p className="results-meta">Showing <span>{filtered.length}</span> of {items.length} collections</p>
 
-      {/* ── Grid ─────────────────────────────────────────── */}
+      {/* ── Grid ── */}
       <div className="gallery-grid-wrap">
-        <div className="gallery-grid">
-          {filtered.length === 0 ? (
-            <div className="empty-state">
-              <Images size={40} strokeWidth={1.2} />
-              <p className="empty-title">No collections found</p>
-              <p>Try a different category or search term.</p>
-            </div>
-          ) : (
-            filtered.map((item) => <GalleryCard key={item.id} item={item} />)
-          )}
-        </div>
+        {loading ? (
+          <div className="empty-state"><Loader2 className="spin" size={30} /><p>Loading collections…</p></div>
+        ) : error ? (
+          <div className="empty-state"><Images size={40} strokeWidth={1.2} /><p className="empty-title">Something went wrong</p><p>{error}</p></div>
+        ) : (
+          <div className="gallery-grid">
+            {filtered.length === 0 ? (
+              <div className="empty-state">
+                <Images size={40} strokeWidth={1.2} />
+                <p className="empty-title">No collections found</p>
+                <p>Try a different category or search term.</p>
+              </div>
+            ) : (
+              filtered.map((item) => <CollectionCard key={item.id} item={item} />)
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

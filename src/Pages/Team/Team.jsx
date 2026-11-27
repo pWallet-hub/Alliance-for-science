@@ -1,20 +1,76 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Team.css';
 
-// Import asset profile images
+// Team profile images
 import image1 from '../../assets/image/pacific.jpg';
 import image2 from '../../assets/image/DGT_7871 copy.jpg';
 import image3 from '../../assets/image/DSC_1823.jpg';
 import rugangazi from '../../assets/image/rugangazi.jpg';
 
+// Hero / banner / strip images
+import aboutBg from '../../assets/image/about-bg.jpg';
+import heroBg from '../../assets/image/alliance-image-bg.jpg';
+import audience from '../../assets/image/Audience.jpg';
+import award from '../../assets/image/afs-image.jpg';
+import whyBg from '../../assets/image/bd-image.jpg';
+import annual from '../../assets/image/annual-review.jpg';
+import media from '../../assets/image/media-award.jpg';
+
 // Icons
-import { 
-  FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaRegClock, FaGraduationCap 
-} from 'react-icons/fa';
-import { Sparkles, CheckCircle2, Send } from 'lucide-react';
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaRegClock, FaGraduationCap } from 'react-icons/fa';
+import { FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn, FaShareNodes, FaLeaf } from 'react-icons/fa6';
+import { ArrowUpRight, ArrowRight, ArrowLeft, Send, Sparkles } from 'lucide-react';
+
+/* Line-art leaf (bottom-left of the hero) */
+function LeafDoodle({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 120 200" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M58 196C18 150 12 70 58 6C104 70 98 150 58 196Z" />
+      <path d="M58 196V28" />
+      <path d="M58 70C44 62 34 52 28 40M58 100C42 92 30 80 24 66M58 130C44 122 32 110 28 96M58 70C72 62 82 52 88 40M58 100C74 92 86 80 92 66M58 130C72 122 84 110 88 96" />
+      <path d="M62 196C92 176 108 156 118 138C102 172 86 190 62 196Z" />
+    </svg>
+  );
+}
+
+/* Line-art olive sprig (bottom-right of the hero) */
+function SprigDoodle({ className = '' }) {
+  const leaf = (x, y, r) => (
+    <ellipse cx={x} cy={y} rx="15" ry="6" transform={`rotate(${r} ${x} ${y})`} />
+  );
+  return (
+    <svg className={className} viewBox="0 0 200 110" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+      <path d="M8 98C60 92 120 66 188 14" />
+      {leaf(32, 82, -35)}{leaf(48, 100, 20)}
+      {leaf(70, 74, -40)}{leaf(84, 90, 15)}
+      {leaf(108, 62, -45)}{leaf(120, 78, 10)}
+      {leaf(146, 46, -50)}{leaf(156, 62, 5)}
+      {leaf(176, 24, -55)}
+    </svg>
+  );
+}
+
+/* Social icons shown on hover (list) and in the profile (detail). Replace the # links with real profiles. */
+function Socials({ className = '' }) {
+  return (
+    <div className={`team-socials ${className}`}>
+      <a href="#" aria-label="Facebook"><FaFacebookF /></a>
+      <a href="#" aria-label="X"><FaXTwitter /></a>
+      <a href="#" aria-label="LinkedIn"><FaLinkedinIn /></a>
+      <a href="#" aria-label="Instagram"><FaInstagram /></a>
+    </div>
+  );
+}
+
+const PER_PAGE = 4;
 
 function Team() {
-  const [activeMemberIndex, setActiveMemberIndex] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(null);   // null = team list, number = detail view
+  const [page, setPage] = useState(1);
+  const [heroLoaded, setHeroLoaded] = useState(false);
+
+  useEffect(() => { setHeroLoaded(true); }, []);
 
   const teamData = [
     {
@@ -111,222 +167,197 @@ function Team() {
     }
   ];
 
-  const current = teamData[activeMemberIndex];
+  const strip = [audience, award, heroBg, whyBg, annual, media];
+  const totalPages = Math.ceil(teamData.length / PER_PAGE);
+  const pageItems = teamData
+    .map((m, i) => ({ ...m, idx: i }))
+    .slice((page - 1) * PER_PAGE, page * PER_PAGE);
+
+  const open = (i) => { setActiveIdx(i); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const back = () => { setActiveIdx(null); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+
+  const current = activeIdx !== null ? teamData[activeIdx] : null;
 
   return (
     <div className="team-root">
 
-      {/* ── HERO BANNER (Dynamic Person-Specific Subtitle) ── */}
+      {/* ── HERO BANNER (identical to the About page hero) ── */}
       <section className="team-hero">
-        <div className="team-hero-container">
-          <p className="team-breadcrumb">HOME &rsaquo; OUR TEAM</p>
-          
+        <div className="team-hero__bg"><img src={aboutBg} alt="Alliance for Science Rwanda background" /></div>
+        <LeafDoodle className="team-doodle team-doodle--left" />
+        <SprigDoodle className="team-doodle team-doodle--right" />
+        <div className={`team-hero-container ${heroLoaded ? 'hero-loaded' : ''}`}>
+          <h1 className="team-hero-title">{current ? 'Team Details' : 'Our Team Member'}</h1>
+
           <div className="team-hero-pill">
-            <Sparkles size={13} className="team-hero-pill-icon" />
-            <span>EXPERT PROFILE &bull; {current.tag.toUpperCase()}</span>
+            <Sparkles size={13} />
+            <span>ALLIANCE FOR SCIENCE RWANDA</span>
           </div>
 
-          <h1 className="team-hero-title">
-            Meet <em>{current.name}</em>
-          </h1>
-
-          {/* Person-Specific Dynamic Subtitle Paragraph */}
           <p className="team-hero-subtitle">
-            {current.heroBio}
+            {current
+              ? current.heroBio
+              : 'Meet the communicators, researchers and advocates connecting agricultural science with farmers, media and policymakers across Rwanda.'}
           </p>
-        </div>
-
-        {/* Bottom Wave Divider */}
-        <div className="team-hero-wave">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path
-              d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-1.42,1200,34.75V0Z"
-              fill="#F4F9FE"
-            />
-          </svg>
         </div>
       </section>
 
-      {/* ── MEMBER SELECTION TABS ── */}
-      <div className="team-tabs-container">
-        <div className="team-tabs-grid">
-          {teamData.map((member, idx) => (
-            <button 
-              key={idx}
-              className={`team-tab-card ${idx === activeMemberIndex ? 'is-active' : ''}`}
-              onClick={() => setActiveMemberIndex(idx)}
-            >
-              <div 
-                className="team-tab-avatar" 
-                style={{ backgroundImage: `url(${member.avatar})` }}
-              />
-              <div className="team-tab-info">
-                <strong className="team-tab-name">{member.name}</strong>
-                <span className="team-tab-role">{member.role}</span>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* ── MAIN PROFILE GRID ── */}
-      <div className="team-main-wrapper">
-        <div className="team-layout-grid">
-          
-          {/* LEFT SIDEBAR */}
-          <aside className="team-sidebar">
-            
-            {/* Avatar Card */}
-            <div className="sidebar-block profile-avatar-card">
-              <div 
-                className="profile-avatar-img" 
-                style={{ backgroundImage: `url(${current.avatar})` }}
-              />
-              <div className="profile-avatar-body">
-                <span className="profile-tag-badge">{current.tag}</span>
-                <h2 className="profile-name">{current.name}</h2>
-                <p className="profile-role">{current.role}</p>
-              </div>
-            </div>
-
-            {/* Contact Card */}
-            <div className="sidebar-block">
-              <h3 className="sidebar-heading">Contact Details</h3>
-              <ul className="contact-info-list">
-                <li className="contact-info-item">
-                  <div className="contact-icon-box"><FaPhoneAlt /></div>
-                  <div>
-                    <span className="contact-meta-label">Phone</span>
-                    <a href={`tel:${current.phone}`} className="contact-meta-val">{current.phone}</a>
+      {/* ═════════ LIST VIEW ═════════ */}
+      {!current && (
+        <section className="team-list-section">
+          <div className="team-grid">
+            {pageItems.map((m) => (
+              <article className="team-card" key={m.idx}>
+                <div className="team-card-photo">
+                  <button type="button" className="team-card-img" onClick={() => open(m.idx)} aria-label={`View ${m.name}`}>
+                    <img src={m.avatar} alt={m.name} loading="lazy" />
+                  </button>
+                  <div className="team-share-wrap">
+                    <Socials className="team-socials--pop" />
+                    <span className="team-share" aria-hidden="true"><FaShareNodes /></span>
                   </div>
-                </li>
-                <li className="contact-info-item">
-                  <div className="contact-icon-box"><FaEnvelope /></div>
-                  <div>
-                    <span className="contact-meta-label">Email</span>
-                    <a href={`mailto:${current.email}`} className="contact-meta-val">{current.email}</a>
-                  </div>
-                </li>
-                <li className="contact-info-item">
-                  <div className="contact-icon-box"><FaMapMarkerAlt /></div>
-                  <div>
-                    <span className="contact-meta-label">Location</span>
-                    <span className="contact-meta-val">{current.location}</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            {/* Skills Card */}
-            <div className="sidebar-block">
-              <h3 className="sidebar-heading">Core Competencies</h3>
-              <div className="skills-stack">
-                {current.skills.map((skill, index) => (
-                  <div className="skill-row" key={index}>
-                    <div className="skill-labels">
-                      <span>{skill.label}</span>
-                      <span className="skill-val">{skill.value}</span>
-                    </div>
-                    <div className="skill-rail">
-                      <div className="skill-fill" style={{ width: skill.value }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Availability / Hours */}
-            <div className="sidebar-block hours-block">
-              <div className="hours-header">
-                <FaRegClock className="clock-icon" />
-                <h3>Office Hours</h3>
-              </div>
-              <p className="hours-text">Mon - Fri: {current.hours.monFri}</p>
-              <p className="hours-text hours-closed">Sat - Sun: Closed</p>
-              <a href={`tel:${current.phone}`} className="sidebar-call-btn">
-                <FaPhoneAlt /> Direct Call
-              </a>
-            </div>
-
-          </aside>
-
-          {/* RIGHT MAIN CONTENT */}
-          <main className="team-content-area">
-            
-            {/* About Block (Paragraph Form) */}
-            <section className="profile-card-block">
-              <h2 className="block-title">About <span>Me</span></h2>
-              <p className="profile-bio-text">{current.aboutMe}</p>
-              
-              <div className="profile-stats-grid">
-                <div className="stat-card">
-                  <span className="stat-card-num">{current.stats.impact}</span>
-                  <span className="stat-card-label">Experience</span>
                 </div>
-                <div className="stat-card">
-                  <span className="stat-card-num">{current.stats.projects}</span>
-                  <span className="stat-card-label">Key Projects</span>
+                <div className="team-card-info">
+                  <span className="team-card-role">{m.role}</span>
+                  <h3><button type="button" onClick={() => open(m.idx)}>{m.name}</button></h3>
                 </div>
-                <div className="stat-card">
-                  <span className="stat-card-num">{current.stats.expertise}</span>
-                  <span className="stat-card-label">Specialization</span>
-                </div>
-              </div>
-            </section>
+              </article>
+            ))}
+          </div>
 
-            {/* Key Focus Highlights (Paragraph Form) */}
-            <section className="profile-card-block">
-              <h2 className="block-title">Key <span>Highlights &amp; Scope</span></h2>
-              <div className="paragraph-highlight-box">
-                <p className="highlight-paragraph-text">
-                  {current.highlightsParagraph}
-                </p>
-              </div>
-            </section>
-
-            {/* Education & Credentials */}
-            <section className="profile-card-block">
-              <h2 className="block-title">Education &amp; <span>Credentials</span></h2>
-              <div className="education-stack">
-                {current.education.map((edu, index) => (
-                  <div className="education-card" key={index}>
-                    <div className="edu-icon-wrap">
-                      <FaGraduationCap />
-                    </div>
-                    <div className="edu-details">
-                      <span className="edu-year">{edu.year}</span>
-                      <h3 className="edu-cert">{edu.certificate}</h3>
-                      <p className="edu-inst">{edu.institution}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Direct Message Form */}
-            <section className="profile-card-block">
-              <h2 className="block-title">Get In <span>Touch with {current.name.split(' ')[0]}</span></h2>
-              <form className="team-contact-form" onSubmit={(e) => e.preventDefault()}>
-                <div className="form-grid-row">
-                  <input type="text" placeholder="First Name *" required className="form-input" />
-                  <input type="text" placeholder="Last Name" className="form-input" />
-                </div>
-                <div className="form-grid-row">
-                  <input type="tel" placeholder="Phone Number" className="form-input" />
-                  <input type="email" placeholder="Email Address *" required className="form-input" />
-                </div>
-                <textarea placeholder="Write message..." rows={4} className="form-input form-textarea" required />
-                <button type="submit" className="form-submit-btn">
-                  <span>Send Message</span>
-                  <Send size={15} />
+          {totalPages > 1 && (
+            <div className="team-pagination">
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button key={i} type="button" className={page === i + 1 ? 'is-active' : ''} onClick={() => setPage(i + 1)}>
+                  {String(i + 1).padStart(2, '0')}
                 </button>
-              </form>
-            </section>
+              ))}
+              <button type="button" onClick={() => setPage(p => (p % totalPages) + 1)} aria-label="Next page"><ArrowRight size={16} /></button>
+            </div>
+          )}
+        </section>
+      )}
 
-          </main>
+      {/* ═════════ DETAIL VIEW ═════════ */}
+      {current && (
+        <section className="team-detail">
+          <button type="button" className="team-back" onClick={back}><ArrowLeft size={16} /> Back to all team members</button>
 
+          <div className="team-detail-top">
+            <div className="team-detail-photo"><img src={current.avatar} alt={current.name} /></div>
+
+            <div className="team-detail-info">
+              <span className="team-detail-role">{current.role}</span>
+              <h2 className="team-detail-name">{current.name}</h2>
+              <p>{current.heroBio}</p>
+              <p>{current.highlightsParagraph}</p>
+
+              <div className="team-contact-grid">
+                <div className="team-contact-item">
+                  <span className="team-contact-icon"><FaPhoneAlt /></span>
+                  <a href={`tel:${current.phone}`}>{current.phone}</a>
+                </div>
+                <div className="team-contact-item">
+                  <span className="team-contact-icon"><FaEnvelope /></span>
+                  <a href={`mailto:${current.email}`}>{current.email}</a>
+                </div>
+                <div className="team-contact-item">
+                  <span className="team-contact-icon"><FaMapMarkerAlt /></span>
+                  <span>{current.location}</span>
+                </div>
+                <div className="team-contact-item">
+                  <span className="team-contact-icon"><FaShareNodes /></span>
+                  <Socials />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* About + Expertise */}
+          <div className="team-about-row">
+            <div>
+              <h3 className="team-block-title">About Me</h3>
+              <p className="team-about-text">{current.aboutMe}</p>
+            </div>
+            <div>
+              <h3 className="team-block-title">Expertise Area</h3>
+              <div className="team-skills">
+                {current.skills.map((s, i) => (
+                  <div className="team-skill" key={i}>
+                    <div className="team-skill-rail"><div className="team-skill-fill" style={{ width: s.value }} /></div>
+                    <div className="team-skill-labels"><span>{s.label}</span><strong>{s.value}</strong></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Stats + office hours */}
+          <div className="team-facts">
+            <div className="team-fact"><strong>{current.stats.impact}</strong><span>Experience</span></div>
+            <div className="team-fact"><strong>{current.stats.projects}</strong><span>Key Projects</span></div>
+            <div className="team-fact"><strong>{current.stats.expertise}</strong><span>Specialization</span></div>
+            <div className="team-fact team-fact--hours">
+              <FaRegClock />
+              <div>
+                <strong>Office Hours</strong>
+                <span>Mon - Fri: {current.hours.monFri}</span>
+                <span>Sat: {current.hours.sat}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Education */}
+          <h3 className="team-block-title team-block-title--spaced">Education &amp; Credentials</h3>
+          <div className="team-edu-grid">
+            {current.education.map((edu, i) => (
+              <div className="team-edu-card" key={i}>
+                <span className="team-edu-icon"><FaGraduationCap /></span>
+                <div>
+                  <span className="team-edu-year">{edu.year}</span>
+                  <h4>{edu.certificate}</h4>
+                  <p>{edu.institution}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Message form */}
+          <h3 className="team-block-title team-block-title--spaced">Get In Touch with {current.name.split(' ')[0]}</h3>
+          <form className="team-form" onSubmit={(e) => e.preventDefault()}>
+            <div className="team-form-row">
+              <input type="text" placeholder="First Name *" required />
+              <input type="text" placeholder="Last Name" />
+            </div>
+            <div className="team-form-row">
+              <input type="tel" placeholder="Phone Number" />
+              <input type="email" placeholder="Email Address *" required />
+            </div>
+            <textarea placeholder="Write message..." rows={4} required />
+            <button type="submit" className="team-btn">Send Message <Send size={15} /></button>
+          </form>
+        </section>
+      )}
+
+      {/* ── CTA BANNER + PHOTO STRIP ── */}
+      <section className="team-bottom">
+        <div className="team-banner">
+          <img src={heroBg} alt="" className="team-banner-bg" loading="lazy" />
+          <div className="team-banner-overlay" />
+          <div className="team-banner-content">
+            <span className="team-banner-icon"><FaEnvelope /></span>
+            <div>
+              <span className="team-banner-eyebrow"><FaLeaf /> Get Started Now</span>
+              <h2>Join Us in Advancing <br />Science for Rwanda</h2>
+            </div>
+          </div>
+          <Link to="/contact" className="team-banner-btn">Contact Today <ArrowUpRight size={14} /></Link>
         </div>
-      </div>
+
+        <div className="team-strip">
+          {strip.map((src, i) => (<figure key={i}><img src={src} alt="" loading="lazy" /></figure>))}
+        </div>
+      </section>
 
     </div>
   );

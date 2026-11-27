@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/gallery-proxy/:path*",
+      "destination": "https://gallery.afs-rwanda.org/api/v1/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
